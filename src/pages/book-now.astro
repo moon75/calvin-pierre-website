@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { brand } from '../data/site';
+---
+
+<BaseLayout title={`Book a Consultation | ${brand.firmName}`}>
+  <section class="section section-dark page-hero">
+    <div class="container section-title">
+      <p class="eyebrow">Book Now</p>
+      <h1>Schedule a consultation with {brand.attorneyName}.</h1>
+      <p>Use the form below, call the office, or send a WhatsApp message for urgent matters.</p>
+    </div>
+  </section>
+</BaseLayout>

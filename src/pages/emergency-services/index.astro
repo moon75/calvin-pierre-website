@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { brand, emergencyServices } from '../../data/site';
+---
+
+<BaseLayout
+  title={`Emergency Immigration Services | ${brand.firmName}`}
+  description="Urgent immigration help for ICE detention, deportation orders, and ICE raid rights."
+>
+  <section class="section section-dark page-hero">
+    <div class="container section-title">
+      <p class="eyebrow">Emergency Services</p>
+      <h1>Fast legal action for detention, deportation, and ICE pressure.</h1>
+      <p>Urgent pages for families who need clear next steps, fast contact, and immediate legal review.</p>
+    </div>
+  </section>
+  <section class="section section-soft watermark-section">
+    <div class="container grid grid-3">
+      {emergencyServices.map((item) => (
+        <a class="emergency-card card" href={`/emergency-services/${item.slug}/`}>
+          <strong>{item.title}</strong>
+          <p>{item.summary}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .emergency-card {
+    padding: 26px;
+    background: rgba(255, 255, 255, 0.82);
+    border-left: 4px solid var(--color-blue);
+  }
+
+  .emergency-card strong {
+    color: var(--color-navy);
+    font-size: 1.2rem;
+  }
+
+  .emergency-card p {
+    color: #555555;
+  }
+</style>

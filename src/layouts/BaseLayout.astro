@@ -1,0 +1,68 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ContactPanel from '../components/ContactPanel.astro';
+import { brand, assets } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const {
+  title = `${brand.attorneyName} | Immigration Attorney`,
+  description = 'Immigration law representation for asylum, deportation defense, bond hearings, citizenship, appeals, visas, and urgent detention matters.',
+  noindex = false,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://attorneypierre.com').toString();
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LegalService',
+  name: brand.firmName,
+  image: new URL(assets.logoSquare, Astro.site ?? 'https://attorneypierre.com').toString(),
+  url: Astro.site?.toString() ?? 'https://attorneypierre.com',
+  telephone: brand.phone,
+  email: brand.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '3 Gateway Center, Suite 1229',
+    addressLocality: 'Newark',
+    addressRegion: 'NJ',
+    postalCode: '07102',
+    addressCountry: 'US',
+  },
+  areaServed: 'United States',
+  priceRange: '$$',
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" href="/assets/legacy/cropped-Screenshot-2025-08-25-at-3.04.57-PM-32x32.png" />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(assets.hero, Astro.site ?? 'https://attorneypierre.com').toString()} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <ContactPanel />
+    <Footer />
+  </body>
+</html>

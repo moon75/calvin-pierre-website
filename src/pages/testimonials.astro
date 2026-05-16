@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { brand, testimonials } from '../data/site';
+---
+
+<BaseLayout title={`Testimonials | ${brand.firmName}`}>
+  <section class="section section-dark page-hero">
+    <div class="container section-title">
+      <p class="eyebrow">Testimonials</p>
+      <h1>Success stories and client feedback.</h1>
+      <p>Use verified reviews and compliant attorney advertising language in the final version.</p>
+    </div>
+  </section>
+  <section class="section section-soft watermark-section">
+    <div class="container grid grid-3">
+      {testimonials.map((item) => (
+        <article class="card testimonial">
+          <p>{item.text}</p>
+          <strong>{item.name}</strong>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .testimonial {
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  .testimonial p {
+    color: #555555;
+  }
+
+  .testimonial strong {
+    color: var(--color-navy);
+  }
+</style>

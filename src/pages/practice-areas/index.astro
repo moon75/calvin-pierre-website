@@ -1,0 +1,30 @@
+---
+import ServiceCard from '../../components/ServiceCard.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { brand, services } from '../../data/site';
+---
+
+<BaseLayout
+  title={`Practice Areas | ${brand.firmName}`}
+  description="Immigration practice areas including asylum, appeals, bond hearings, citizenship, deportation defense, green cards, TPS, visas, and work authorization."
+>
+  <section class="section section-dark page-hero">
+    <div class="container section-title">
+      <p class="eyebrow">Areas of Law</p>
+      <h1>Immigration services for urgent and life-changing matters.</h1>
+      <p>Focused representation for asylum, detention, deportation defense, appeals, citizenship, visas, and work authorization.</p>
+    </div>
+  </section>
+  <section class="section section-soft watermark-section">
+    <div class="container grid grid-3">
+      {services.map((service) => (
+        <ServiceCard
+          title={service.title}
+          summary={service.summary}
+          image={service.image}
+          href={`/practice-areas/${service.slug}/`}
+        />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,338 @@
+---
+import { Mail, MapPin, Phone } from '@lucide/astro';
+import { assets, brand, mainNav } from '../data/site';
+
+const quickLinks = [
+  ...mainNav,
+  { label: 'WhatsApp', href: brand.whatsappHref },
+];
+
+const legalServices = [
+  { label: 'Asylum', href: '/practice-areas/asylum/' },
+  { label: 'Family Petitions', href: '/practice-areas/green-card-permanent-residence/' },
+  { label: 'Bond Hearings', href: '/practice-areas/bond-hearings/' },
+  { label: 'Citizenship', href: '/practice-areas/citizenship/' },
+  { label: 'Appeals', href: '/practice-areas/appeals/' },
+  { label: 'Terms of Service', href: '/terms-of-service/' },
+  { label: 'Privacy Policy', href: '/privacy-policy/' },
+];
+---
+
+<footer class="footer">
+  <div class="footer-watermark" aria-hidden="true"></div>
+  <div class="container footer-grid">
+    <div class="footer-col brand-col">
+      <a class="footer-brand" href="/" aria-label={`${brand.firmName} home`}>
+        <img src={assets.logoFooter} alt="Calvin Pierre, Esq. — Your trusted partner in immigration law" width="320" height="100" loading="lazy" />
+      </a>
+      <p class="brand-desc">
+        We provide trusted immigration services, including asylum, family petitions, bond hearings, citizenship, and appeals. Our mission is to protect your rights and guide you every step of the way.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <nav>
+        {quickLinks.map((item) => <a href={item.href}>{item.label}</a>)}
+      </nav>
+    </div>
+
+    <div class="footer-col">
+      <h3>Legal Services</h3>
+      <nav>
+        {legalServices.map((item) => <a href={item.href}>{item.label}</a>)}
+      </nav>
+    </div>
+
+    <div class="footer-col touch-col">
+      <h3>Get In Touch</h3>
+      <ul class="touch-list">
+        <li>
+          <span class="touch-icon"><MapPin size={18} stroke-width={1.7} /></span>
+          <span>{brand.address}</span>
+        </li>
+        <li>
+          <span class="touch-icon"><Phone size={18} stroke-width={1.7} /></span>
+          <a href={brand.phoneHref}>{brand.phone}</a>
+        </li>
+        <li>
+          <span class="touch-icon"><Mail size={18} stroke-width={1.7} /></span>
+          <a href={`mailto:${brand.email}`}>{brand.email}</a>
+        </li>
+      </ul>
+      <div class="socials" aria-label="Social media">
+        <a href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+            <path d="M13.5 21v-8h2.7l.4-3.2h-3.1V7.7c0-.9.3-1.6 1.6-1.6h1.7V3.2C16.4 3.1 15.5 3 14.5 3c-2.1 0-3.6 1.3-3.6 3.6v3.2H8v3.2h2.9V21h2.6Z"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" ry="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+          </svg>
+        </a>
+        <a href="#" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+            <path d="M19.6 6.4a5.7 5.7 0 0 1-3.4-1.2 5.7 5.7 0 0 1-1.9-3.2h-3v13.4a2.7 2.7 0 0 1-2.7 2.6 2.7 2.7 0 0 1-2.6-2.7 2.7 2.7 0 0 1 3.4-2.6V9.6a5.8 5.8 0 0 0-6.4 5.8 5.8 5.8 0 0 0 5.8 5.7 5.8 5.8 0 0 0 5.8-5.7V9.1a8.7 8.7 0 0 0 5 1.5V7.6c-.1 0-.1 0 0-1.2Z" />
+          </svg>
+        </a>
+      </div>
+      <div class="firm-badge">
+        <img src={assets.logoFooterStacked} alt={brand.firmName} loading="lazy" />
+      </div>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <span>&copy;2026 {brand.firmName}. All Rights Reserved.</span>
+    <span class="legal-links">
+      <a href="/terms-of-service/">Disclaimer</a>
+      <a href="/privacy-policy/">Privacy Policy</a>
+      <a href="/terms-of-service/">Impressum</a>
+    </span>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    position: relative;
+    overflow: hidden;
+    color: var(--color-navy);
+    background:
+      linear-gradient(90deg, rgba(247, 250, 255, 0.98), rgba(241, 247, 255, 0.96)),
+      #f5f8ff;
+  }
+
+  .footer-watermark {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.42;
+    background:
+      linear-gradient(90deg, transparent 0 31%, rgba(201, 171, 105, 0.052) 31% 66%, transparent 66%),
+      linear-gradient(135deg, transparent 36%, rgba(255, 255, 255, 0.72) 36% 61%, transparent 61%),
+      linear-gradient(90deg, transparent 49%, rgba(8, 38, 88, 0.045) 49% 50%, transparent 50%);
+  }
+
+  .footer .container {
+    position: relative;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr 0.95fr 1.15fr;
+    gap: clamp(34px, 5.4vw, 76px);
+    padding: 84px 0 72px;
+  }
+
+  .footer h3 {
+    position: relative;
+    margin: 0 0 38px;
+    color: var(--color-navy);
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 0;
+  }
+
+  .footer h3::after {
+    position: absolute;
+    left: 0;
+    bottom: -14px;
+    width: 38px;
+    height: 3px;
+    content: "";
+    background: var(--color-gold);
+  }
+
+  .footer nav,
+  .footer ul {
+    display: grid;
+    gap: 14px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .footer a,
+  .footer p,
+  .footer li,
+  .footer-bottom {
+    color: rgba(15, 26, 56, 0.78);
+    font-family: var(--font-sans);
+    font-size: 0.96rem;
+    font-weight: 500;
+    line-height: 1.55;
+  }
+
+  .footer nav a {
+    transition: color 180ms ease, transform 180ms ease;
+    width: fit-content;
+  }
+
+  .footer nav a:hover {
+    color: var(--color-gold);
+    transform: translateX(3px);
+  }
+
+  .brand-col {
+    display: grid;
+    gap: 22px;
+    align-content: start;
+  }
+
+  .footer-brand {
+    display: inline-block;
+    line-height: 0;
+  }
+
+  .footer-brand img {
+    width: clamp(240px, 22vw, 320px);
+    height: auto;
+  }
+
+  .brand-desc {
+    max-width: 320px;
+    margin: 0;
+    color: rgba(15, 26, 56, 0.68);
+    line-height: 1.7;
+  }
+
+  .touch-list {
+    gap: 16px;
+  }
+
+  .touch-list li {
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr);
+    gap: 12px;
+    align-items: start;
+    color: rgba(15, 26, 56, 0.78);
+  }
+
+  .touch-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    background: rgba(201, 171, 105, 0.12);
+    color: var(--color-gold);
+    flex-shrink: 0;
+  }
+
+  .touch-list a {
+    color: var(--color-navy);
+    font-weight: 600;
+    transition: color 180ms ease;
+  }
+
+  .touch-list a:hover {
+    color: var(--color-gold);
+  }
+
+  .socials {
+    display: inline-flex;
+    gap: 10px;
+    margin-top: 22px;
+  }
+
+  .firm-badge {
+    margin-top: 28px;
+    width: clamp(150px, 14vw, 190px);
+  }
+
+  .firm-badge img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 14px 36px rgba(15, 26, 56, 0.14);
+  }
+
+  .socials a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    color: var(--color-gold);
+    background: rgba(201, 171, 105, 0.12);
+    border: 1px solid rgba(201, 171, 105, 0.32);
+    border-radius: 999px;
+    transition:
+      background 180ms ease,
+      color 180ms ease,
+      transform 180ms ease;
+  }
+
+  .socials a:hover {
+    color: #ffffff;
+    background: var(--color-gold);
+    transform: translateY(-2px);
+  }
+
+  .footer-bottom {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 26px 0 36px;
+    border-top: 1px solid rgba(15, 26, 56, 0.1);
+  }
+
+  .footer-bottom > span:first-child {
+    color: rgba(15, 26, 56, 0.7);
+    font-size: 0.9rem;
+  }
+
+  .legal-links {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 22px;
+  }
+
+  .legal-links a {
+    color: rgba(15, 26, 56, 0.68);
+    font-size: 0.88rem;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 180ms ease;
+  }
+
+  .legal-links a:hover {
+    color: var(--color-gold);
+  }
+
+  @media (max-width: 1040px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      padding: 72px 0 56px;
+    }
+
+    .brand-col {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 44px;
+      padding: 56px 0 48px;
+    }
+
+    .footer h3 {
+      margin-bottom: 28px;
+    }
+
+    .footer-bottom {
+      justify-content: flex-start;
+    }
+  }
+</style>

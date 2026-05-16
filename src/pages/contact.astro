@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { brand } from '../data/site';
+---
+
+<BaseLayout title={`Contact | ${brand.firmName}`} description={`Contact ${brand.firmName} in Newark, NJ for immigration legal services.`}>
+  <section class="section section-dark page-hero">
+    <div class="container section-title">
+      <p class="eyebrow">Contact</p>
+      <h1>Request a confidential immigration consultation.</h1>
+      <p>{brand.address}</p>
+      <p><a href={brand.phoneHref}>{brand.phone}</a> / <a href={`mailto:${brand.email}`}>{brand.email}</a></p>
+    </div>
+  </section>
+</BaseLayout>

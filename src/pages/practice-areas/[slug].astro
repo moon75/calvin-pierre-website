@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { brand, emergencyServices, services } from '../../data/site';
+
+export function getStaticPaths() {
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+---
+
+<BaseLayout
+  title={`${service.title} | ${brand.firmName}`}
+  description={`${service.summary} Schedule a confidential immigration consultation with ${brand.attorneyName}.`}
+>
+  <section class="service-hero section-dark page-hero">
+    <div class="container service-grid">
+      <div class="section-title">
+        <p class="eyebrow">Practice Area</p>
+        <h1>{service.title}</h1>
+        <p>{service.summary}</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="/book-now/">Book Consultation</a>
+          <a class="btn btn-secondary" href={brand.phoneHref}>Call {brand.phone}</a>
+        </div>
+      </div>
+      <img src={service.image} alt="" loading="eager" />
+    </div>
+  </section>
+
+  <section class="prose-page watermark-section">
+    <div class="container content-grid">
+      <article>
+        <h2>Strategic immigration representation</h2>
+        <p>
+          Every immigration case turns on facts, timing, evidence, and the legal
+          options available to the client. This page is structured for a deeper
+          final writeup covering eligibility, filing strategy, deadlines,
+          documents, interviews, hearings, and next steps.
+        </p>
+        <h2>Built for search and campaigns</h2>
+        <p>
+          The layout supports service-specific FAQs, local Newark language,
+          national representation notes, related service links, consultation
+          calls to action, and campaign tracking.
+        </p>
+      </article>
+      <aside class="side-panel">
+        <h2>Urgent Help</h2>
+        {emergencyServices.map((item) => (
+          <a href={`/emergency-services/${item.slug}/`}>
+            <strong>{item.title}</strong>
+            <span>{item.summary}</span>
+          </a>
+        ))}
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .service-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(380px, 0.75fr);
+    gap: 44px;
+    align-items: center;
+  }
+
+  .service-grid img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 0;
+    object-fit: cover;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 52px;
+    align-items: start;
+  }
+
+  .side-panel {
+    display: grid;
+    gap: 12px;
+    padding: 22px;
+    border-radius: 0;
+    background: var(--color-paper);
+  }
+
+  .side-panel h2 {
+    margin: 0 0 8px;
+  }
+
+  .side-panel a {
+    display: grid;
+    gap: 5px;
+    padding: 14px;
+    border: 1px solid rgba(15, 26, 56, 0.1);
+    border-radius: 0;
+    background: #ffffff;
+  }
+
+  .side-panel strong {
+    color: var(--color-navy);
+  }
+
+  .side-panel span {
+    color: #555555;
+    font-size: 0.92rem;
+  }
+
+  @media (max-width: 900px) {
+    .service-grid,
+    .content-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
