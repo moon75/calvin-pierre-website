@@ -25,10 +25,10 @@ const { title, summary, href, image } = Astro.props;
     display: grid;
     min-height: 100%;
     overflow: hidden;
-    color: var(--color-navy);
-    background: rgba(255, 255, 255, 0.86);
-    border: 1px solid rgba(201, 171, 105, 0.18);
-    box-shadow: 0 20px 60px rgba(15, 26, 56, 0.06);
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(201, 171, 105, 0.2);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.32);
     transition:
       transform 160ms ease,
       border-color 160ms ease,
@@ -37,8 +37,8 @@ const { title, summary, href, image } = Astro.props;
 
   .service-card:hover {
     transform: translateY(-4px);
-    border-color: rgba(201, 171, 105, 0.48);
-    box-shadow: 0 24px 80px rgba(15, 26, 56, 0.12);
+    border-color: rgba(201, 171, 105, 0.55);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.46);
   }
 
   .service-card img {
@@ -54,7 +54,7 @@ const { title, summary, href, image } = Astro.props;
     justify-content: space-between;
     gap: 18px;
     padding: 22px 22px 0;
-    color: var(--color-navy);
+    color: #ffffff;
     font-family: var(--font-serif);
     font-size: 1.08rem;
     line-height: 1.25;
@@ -62,13 +62,13 @@ const { title, summary, href, image } = Astro.props;
 
   .service-card svg {
     flex: 0 0 auto;
-    color: var(--color-blue);
+    color: var(--color-gold);
   }
 
   .service-card p {
     margin: 10px 0 0;
     padding: 0 22px 24px;
-    color: rgba(15, 26, 56, 0.62);
+    color: rgba(255, 255, 255, 0.68);
     font-size: 0.94rem;
   }
 </style>

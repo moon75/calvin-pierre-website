@@ -13,16 +13,16 @@ import {
   ShieldCheck,
 } from '@lucide/astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { assets, brand, faqs, processSteps, services, stats } from '../data/site';
+import { assets, brand, faqs, processSteps, services } from '../data/site';
 
 const serviceIcons = [ShieldCheck, Gavel, Handshake, Languages, Landmark, BriefcaseBusiness];
 const homeServiceSlugs = [
+  'deportation-defense-removal-proceedings',
+  'habeas-corpus',
   'asylum',
   'appeals',
   'bond-hearings',
   'citizenship',
-  'deportation-defense-removal-proceedings',
-  'visas',
 ];
 const homeServices = homeServiceSlugs
   .map((slug) => services.find((service) => service.slug === slug))
@@ -44,46 +44,121 @@ const supportItems = [
     Icon: Lightbulb,
   },
 ];
-const hero = {
-  titleLines: ['Trusted Emergency Action.', 'Detention. Deportation.', 'Immigration Defense.'],
-  text: 'Immediate Action to Help Keep Families Together.',
-  image: assets.hero,
-  href: '/book-now/',
-  cta: 'Book An Appointment',
-};
+const heroSlides = [
+  {
+    title: 'Legal Support For Families Facing ICE Detention & Removal',
+    text: 'Guiding families through immigration challenges with clarity and care',
+    image: assets.hero,
+    href: '/book-now/',
+    cta: 'Book An Appointment',
+    CtaIcon: Scale,
+  },
+  {
+    title: 'Support For Asylum, Family Petitions & Relief Options',
+    text: 'Personalized legal solutions focused on keeping families together and securing your future',
+    image: assets.slide2,
+    href: '#consultation',
+    cta: 'Free Consultation',
+    CtaIcon: ArrowRight,
+  },
+  {
+    title: 'Protecting Your Rights During Immigration Proceedings',
+    text: 'Strategic, informed advocacy to help you navigate complex legal systems with confidence',
+    image: assets.slide3,
+    href: '#consultation',
+    cta: 'Free Consultation',
+    CtaIcon: ArrowRight,
+  },
+];
 ---
 
 <BaseLayout
   title={`${brand.attorneyName} | Immigration Lawyer in Newark, NJ`}
   description="Professional immigration law representation for asylum, deportation defense, bond hearings, citizenship, appeals, visas, and urgent detention matters."
 >
-  <section class="hero">
-    <article class="hero-slide is-active">
-      <div class="hero-bg" aria-hidden="true">
-        <img src={hero.image} alt="" loading="eager" />
-      </div>
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <h1>
-            {hero.titleLines.map((line) => <span>{line}</span>)}
-          </h1>
-          <p>{hero.text}</p>
-          <a class="btn btn-primary" href={hero.href}>{hero.cta} <ArrowRight size={14} /></a>
-        </div>
-        <div class="hero-figure" aria-hidden="true">
-          <img src={hero.image} alt="" width="2048" height="1365" loading="eager" />
-        </div>
-        <div class="hero-stats">
-          {stats.map((stat) => (
-            <div>
-              <strong>{stat.value}</strong>
-              <span>{stat.label}</span>
+  <section class="hero" data-hero-slider>
+    {heroSlides.map((slide, index) => {
+      const CtaIcon = slide.CtaIcon;
+      return (
+        <article class={`hero-slide ${index === 0 ? 'is-active' : ''}`} data-slide-index={index}>
+          <div class="hero-bg" aria-hidden="true">
+            <img src={slide.image} alt="" loading={index === 0 ? 'eager' : 'lazy'} />
+          </div>
+          <div class="container hero-grid">
+            <div class="hero-copy">
+              <span class="hero-eyebrow">
+                <Gavel size={16} stroke-width={1.8} />
+                {brand.bar}
+                <Gavel size={16} stroke-width={1.8} />
+              </span>
+              <h1>{slide.title}</h1>
+              <p>{slide.text}</p>
+              <div class="hero-actions">
+                <a class="btn btn-primary" href={slide.href}>
+                  {slide.cta}
+                  <CtaIcon size={16} stroke-width={1.8} />
+                </a>
+                <a class="btn btn-secondary" href={brand.phoneHref}>Call {brand.phone}</a>
+              </div>
             </div>
-          ))}
-        </div>
-      </div>
-    </article>
+            <div class="hero-figure" aria-hidden="true">
+              <img src={slide.image} alt="" width="2048" height="1365" loading={index === 0 ? 'eager' : 'lazy'} />
+            </div>
+          </div>
+        </article>
+      );
+    })}
+    <div class="hero-dots" role="tablist" aria-label="Hero slides">
+      {heroSlides.map((_, index) => (
+        <button
+          type="button"
+          class={`hero-dot ${index === 0 ? 'is-active' : ''}`}
+          data-slide-target={index}
+          aria-label={`Slide ${index + 1}`}
+        ></button>
+      ))}
+    </div>
   </section>
+
+  <script>
+    const slider = document.querySelector('[data-hero-slider]');
+    if (slider) {
+      const slides = Array.from(slider.querySelectorAll<HTMLElement>('.hero-slide'));
+      const dots = Array.from(slider.querySelectorAll<HTMLButtonElement>('.hero-dot'));
+      let current = 0;
+      let timer: ReturnType<typeof setInterval> | null = null;
+
+      const show = (next: number) => {
+        slides[current]?.classList.remove('is-active');
+        dots[current]?.classList.remove('is-active');
+        current = (next + slides.length) % slides.length;
+        slides[current]?.classList.add('is-active');
+        dots[current]?.classList.add('is-active');
+      };
+
+      const start = () => {
+        stop();
+        timer = setInterval(() => show(current + 1), 6000);
+      };
+      const stop = () => {
+        if (timer) {
+          clearInterval(timer);
+          timer = null;
+        }
+      };
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          show(index);
+          start();
+        });
+      });
+
+      slider.addEventListener('mouseenter', stop);
+      slider.addEventListener('mouseleave', start);
+      start();
+    }
+  </script>
 
   <section class="support-band section-soft watermark-section">
     <div class="container support-grid">
@@ -266,9 +341,9 @@ const hero = {
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: minmax(0, 0.88fr) minmax(560px, 1fr);
+    grid-template-columns: minmax(0, 0.88fr) minmax(0, 1fr);
     align-items: end;
-    min-height: clamp(690px, calc(100svh - 129px), 900px);
+    min-height: clamp(620px, calc(100svh - 129px), 900px);
     padding: 90px 0 98px;
   }
 
@@ -289,17 +364,43 @@ const hero = {
     opacity: 1;
   }
 
-  .hero-copy h1 {
-    margin: 0;
-    font-family: var(--font-serif);
-    font-size: clamp(2.65rem, 3.45vw, 3.65rem);
-    line-height: 1.08;
-    letter-spacing: 0;
+  .hero-eyebrow {
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 28px;
+    padding: 9px 18px;
+    color: var(--color-gold);
+    background: rgba(201, 171, 105, 0.1);
+    border: 1px solid rgba(201, 171, 105, 0.4);
+    border-radius: 6px;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
   }
 
-  .hero-copy h1 span {
-    display: block;
-    white-space: nowrap;
+  .hero-eyebrow svg {
+    flex: 0 0 auto;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+  }
+
+  .hero-copy h1 {
+    max-width: 780px;
+    margin: 0;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: clamp(2.4rem, 4vw, 4rem);
+    font-weight: 700;
+    line-height: 1.06;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
   }
 
   .hero-copy p {
@@ -358,62 +459,71 @@ const hero = {
       drop-shadow(0 54px 100px rgba(0, 0, 0, 0.56));
   }
 
-  .hero-stats {
+  .hero-dots {
     position: absolute;
-    z-index: 5;
-    right: clamp(42px, 5vw, 82px);
-    bottom: 118px;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    width: min(468px, calc(100vw - 84px));
-    border-left: 1px solid rgba(255, 255, 255, 0.12);
-    background:
-      linear-gradient(180deg, rgba(123, 151, 223, 0.38), rgba(14, 32, 70, 0.9)),
-      rgba(13, 32, 69, 0.72);
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    top: 50%;
+    right: clamp(20px, 2.4vw, 44px);
+    z-index: 6;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 22px;
+    align-items: center;
+    transform: translateY(-50%);
   }
 
-  .hero-stats,
-  .hero-stats * {
-    box-sizing: border-box;
+  .hero-dot {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.55);
+    cursor: pointer;
+    transition: background 220ms ease, transform 220ms ease;
   }
 
-  .hero-stats div {
-    display: grid;
-    align-content: center;
-    min-width: 0;
-    min-height: 148px;
-    padding: 30px 26px 26px;
-    border-right: 1px solid rgba(255, 255, 255, 0.12);
+  .hero-dot::before {
+    position: absolute;
+    inset: -10px;
+    content: "";
+    border: 1.5px solid transparent;
+    border-radius: 999px;
+    transition: border-color 220ms ease, inset 220ms ease;
   }
 
-  .hero-stats strong {
-    display: block;
-    font-family: var(--font-sans);
-    font-size: clamp(2.35rem, 2.75vw, 2.8rem);
-    font-weight: 300;
-    line-height: 1;
-    white-space: nowrap;
+  .hero-dot.is-active {
+    background: #ffffff;
   }
 
-  .hero-stats span {
-    display: block;
-    margin-top: 14px;
-    color: rgba(255, 255, 255, 0.74);
-    font-size: 0.86rem;
-    font-weight: 650;
-    line-height: 1.2;
+  .hero-dot.is-active::before {
+    inset: -8px;
+    border-color: #ffffff;
+  }
+
+  .hero-dot:hover {
+    background: #ffffff;
+  }
+
+  .hero-dot:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 6px;
+  }
+
+  @media (max-width: 640px) {
+    .hero-dots {
+      right: 14px;
+      gap: 18px;
+    }
   }
 
   .support-band {
     position: relative;
     z-index: 2;
-    color: var(--color-navy);
+    color: #ffffff;
     overflow: hidden;
     background:
-      linear-gradient(180deg, #ffffff 0%, #f4f8ff 100%);
+      linear-gradient(180deg, #04102a 0%, #061227 100%);
   }
 
   .support-grid {
@@ -433,9 +543,9 @@ const hero = {
     padding: 28px 26px 24px;
     overflow: hidden;
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(248, 251, 255, 0.9)),
-      #ffffff;
-    border: 1px solid rgba(201, 171, 105, 0.16);
+      linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+      rgba(8, 24, 56, 0.55);
+    border: 1px solid rgba(201, 171, 105, 0.2);
     transition:
       transform 180ms ease,
       border-color 180ms ease;
@@ -473,9 +583,9 @@ const hero = {
     justify-content: center;
     width: 50px;
     aspect-ratio: 1;
-    color: var(--color-blue);
-    background: rgba(201, 171, 105, 0.11);
-    border: 1px solid rgba(201, 171, 105, 0.2);
+    color: var(--color-gold);
+    background: rgba(201, 171, 105, 0.14);
+    border: 1px solid rgba(201, 171, 105, 0.36);
     border-radius: 50%;
   }
 
@@ -483,7 +593,7 @@ const hero = {
     position: relative;
     z-index: 1;
     margin: 0 0 12px;
-    color: var(--color-navy);
+    color: #ffffff;
     font-family: var(--font-serif);
     font-size: clamp(1.22rem, 1.45vw, 1.52rem);
     font-weight: 700;
@@ -495,9 +605,9 @@ const hero = {
     position: relative;
     z-index: 1;
     margin: 0;
-    color: rgba(15, 26, 56, 0.64);
+    color: rgba(255, 255, 255, 0.7);
     font-size: 0.9rem;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 1.58;
   }
 
@@ -544,26 +654,6 @@ const hero = {
       max-height: 620px;
     }
 
-    .hero-stats {
-      right: 34px;
-      bottom: 54px;
-      width: min(420px, calc(100vw - 68px));
-    }
-
-    .hero-stats div {
-      min-height: 124px;
-      padding: 24px 20px 20px;
-    }
-
-    .hero-stats strong {
-      font-size: clamp(2rem, 2.9vw, 2.34rem);
-    }
-
-    .hero-stats span {
-      margin-top: 11px;
-      font-size: 0.76rem;
-    }
-
   }
 
   .about-section {
@@ -580,7 +670,7 @@ const hero = {
   .portrait-frame {
     width: min(100%, 430px);
     margin-left: clamp(0px, 5vw, 42px);
-    background: #dfe8f8;
+    background: rgba(255, 255, 255, 0.04);
   }
 
   .portrait-frame img {
@@ -607,7 +697,7 @@ const hero = {
   .about-copy h2,
   .center-title h2 {
     margin: 0;
-    color: var(--color-navy);
+    color: #ffffff;
     font-family: var(--font-serif);
     font-size: clamp(2.05rem, 3.9vw, 3.75rem);
     line-height: 1.08;
@@ -617,9 +707,9 @@ const hero = {
   .about-copy p {
     max-width: 570px;
     margin: 14px 0 0;
-    color: rgba(15, 26, 56, 0.68);
+    color: rgba(255, 255, 255, 0.72);
     font-size: 0.95rem;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 1.74;
   }
 
@@ -635,7 +725,7 @@ const hero = {
   }
 
   .signature-row span {
-    color: var(--color-navy);
+    color: var(--color-gold);
     font-family: "Brush Script MT", "Segoe Script", cursive;
     font-size: clamp(2rem, 5vw, 3.4rem);
     line-height: 1;
@@ -645,14 +735,17 @@ const hero = {
     display: inline-flex;
     gap: 8px;
     align-items: center;
-    color: var(--color-navy);
+    color: #ffffff;
     padding-bottom: 10px;
     font-size: 0.82rem;
     font-weight: 800;
   }
 
   .practice-section {
-    background: #ffffff;
+    color: #ffffff;
+    background:
+      radial-gradient(circle at 80% 20%, rgba(201, 171, 105, 0.1), transparent 32%),
+      linear-gradient(180deg, #04102a 0%, #061227 100%);
   }
 
   .center-title {
@@ -663,8 +756,8 @@ const hero = {
 
   .center-title p {
     margin: 22px 0 0;
-    color: rgba(15, 26, 56, 0.58);
-    font-weight: 600;
+    color: rgba(255, 255, 255, 0.68);
+    font-weight: 500;
   }
 
   .practice-grid {
@@ -683,7 +776,7 @@ const hero = {
 
   .practice-item h3 {
     margin: 22px 0 12px;
-    color: var(--color-navy);
+    color: #ffffff;
     font-family: var(--font-serif);
     font-size: 1.28rem;
     line-height: 1.2;
@@ -692,13 +785,13 @@ const hero = {
   .practice-item p {
     max-width: 305px;
     margin: 0;
-    color: rgba(15, 26, 56, 0.62);
+    color: rgba(255, 255, 255, 0.66);
     font-size: 0.92rem;
   }
 
   .practice-item .item-arrow {
     margin-top: 14px;
-    color: var(--color-blue);
+    color: var(--color-gold);
   }
 
   .process-section {
@@ -726,7 +819,7 @@ const hero = {
 
   .process-intro h2 {
     margin: 28px 0 44px;
-    color: var(--color-navy);
+    color: #ffffff;
     font-family: var(--font-serif);
     font-size: clamp(2.05rem, 3.9vw, 3.75rem);
     font-weight: 700;
@@ -760,7 +853,7 @@ const hero = {
     left: 21px;
     width: 0;
     content: "";
-    border-left: 2px dotted rgba(15, 26, 56, 0.34);
+    border-left: 2px dotted rgba(255, 255, 255, 0.22);
   }
 
   .process-step {
@@ -795,7 +888,7 @@ const hero = {
 
   .process-body h3 {
     margin: 0 0 14px;
-    color: var(--color-navy);
+    color: #ffffff;
     font-family: var(--font-serif);
     font-size: clamp(1.5rem, 2.2vw, 2rem);
     font-weight: 700;
@@ -806,7 +899,7 @@ const hero = {
   .process-body p {
     max-width: 480px;
     margin: 0;
-    color: rgba(15, 26, 56, 0.66);
+    color: rgba(255, 255, 255, 0.68);
     font-size: 0.95rem;
     font-weight: 500;
     line-height: 1.72;
@@ -842,7 +935,10 @@ const hero = {
   }
 
   .faq-section {
-    background: #ffffff;
+    color: #ffffff;
+    background:
+      radial-gradient(circle at 18% 90%, rgba(201, 171, 105, 0.1), transparent 32%),
+      linear-gradient(180deg, #061227 0%, #04102a 100%);
   }
 
   .faq-grid {
@@ -867,7 +963,7 @@ const hero = {
 
   .faq-copy h2 {
     margin: 28px 0 44px;
-    color: var(--color-navy);
+    color: #ffffff;
     font-family: var(--font-serif);
     font-size: clamp(2.05rem, 3.9vw, 3.75rem);
     font-weight: 700;
@@ -883,9 +979,9 @@ const hero = {
   .faq-item {
     position: relative;
     padding: 22px 24px;
-    background: rgba(255, 255, 255, 0.78);
-    border: 1px solid rgba(15, 26, 56, 0.08);
-    box-shadow: 0 1px 0 rgba(15, 26, 56, 0.02);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
     transition:
       background 220ms ease,
       border-color 220ms ease,
@@ -894,16 +990,16 @@ const hero = {
   }
 
   .faq-item:hover {
-    background: #ffffff;
-    border-color: rgba(201, 171, 105, 0.32);
-    box-shadow: 0 18px 48px rgba(15, 26, 56, 0.08);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(201, 171, 105, 0.34);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.34);
     transform: translateY(-2px);
   }
 
   .faq-item[open] {
-    background: linear-gradient(180deg, rgba(201, 171, 105, 0.08), rgba(255, 255, 255, 0.96));
-    border-color: rgba(201, 171, 105, 0.42);
-    box-shadow: 0 22px 60px rgba(15, 26, 56, 0.1);
+    background: linear-gradient(180deg, rgba(201, 171, 105, 0.12), rgba(255, 255, 255, 0.04));
+    border-color: rgba(201, 171, 105, 0.5);
+    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.36);
   }
 
   .faq-item summary {
@@ -913,7 +1009,7 @@ const hero = {
     align-items: center;
     cursor: pointer;
     list-style: none;
-    color: var(--color-navy);
+    color: #ffffff;
     font-family: var(--font-serif);
     font-size: clamp(1rem, 1.25vw, 1.18rem);
     font-weight: 700;
@@ -950,7 +1046,7 @@ const hero = {
   }
 
   .faq-q-text {
-    color: var(--color-navy);
+    color: #ffffff;
   }
 
   .faq-q-icon {
@@ -960,9 +1056,9 @@ const hero = {
     width: 38px;
     height: 38px;
     border-radius: 999px;
-    border: 1px solid rgba(15, 26, 56, 0.18);
-    color: var(--color-navy);
-    background: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
     transition:
       transform 280ms cubic-bezier(0.34, 1.2, 0.5, 1),
       background 220ms ease,
@@ -986,7 +1082,7 @@ const hero = {
 
   .faq-answer p {
     margin: 14px 0 4px;
-    color: rgba(15, 26, 56, 0.66);
+    color: rgba(255, 255, 255, 0.7);
     font-size: 0.95rem;
     font-weight: 500;
     line-height: 1.72;
@@ -1053,37 +1149,51 @@ const hero = {
   }
 
   @media (max-width: 1080px) {
+    .hero,
+    .hero-grid {
+      min-height: 640px;
+    }
+
     .hero-grid {
       grid-template-columns: 1fr;
-      align-items: start;
-      padding-top: 70px;
+      align-items: center;
+      padding: 80px 0 110px;
     }
 
     .hero-copy {
       position: relative;
       z-index: 2;
+      max-width: 720px;
+      padding-left: 0;
+    }
+
+    .hero-copy h1 {
+      font-size: clamp(2rem, 4.8vw, 3.2rem);
+    }
+
+    .hero-copy p {
+      margin: 22px 0 38px;
+      font-size: 1.1rem;
+    }
+
+    .hero-copy .btn {
+      min-width: 240px;
+      min-height: 58px;
+      font-size: 0.9rem;
     }
 
     .hero-figure {
-      right: -190px;
+      right: -140px;
       bottom: 0;
-      width: 860px;
-      min-height: 560px;
-      opacity: 0.82;
+      width: min(640px, 70vw);
+      min-height: 460px;
+      opacity: 0.32;
     }
 
     .hero-figure img {
       right: 0;
-      width: 850px;
+      width: min(720px, 80vw);
     }
-
-    .hero-stats {
-      left: 62px;
-      right: auto;
-      bottom: 52px;
-      width: min(390px, calc(100vw - 124px));
-    }
-
   }
 
   @media (max-width: 900px) {
@@ -1104,70 +1214,74 @@ const hero = {
   }
 
   @media (max-width: 640px) {
-    .hero,
-    .hero-grid {
-      min-height: 780px;
+    .hero {
+      min-height: 620px;
     }
 
     .hero-grid {
       grid-template-columns: 1fr;
-      padding: 56px 0 236px;
+      align-items: center;
+      min-height: 620px;
+      padding: 64px 0 96px;
     }
 
     .hero-copy {
       padding-left: 0;
+      max-width: 100%;
+    }
+
+    .hero-eyebrow {
+      margin-bottom: 20px;
+      padding: 7px 12px;
+      font-size: 0.72rem;
+      letter-spacing: 0.2px;
+    }
+
+    .hero-eyebrow svg {
+      width: 14px;
+      height: 14px;
     }
 
     .hero-copy h1 {
-      font-size: clamp(2rem, 8.6vw, 3rem);
-    }
-
-    .hero-copy h1 span {
-      white-space: normal;
+      font-size: clamp(1.7rem, 7.6vw, 2.3rem);
+      letter-spacing: 0.3px;
     }
 
     .hero-copy p {
-      margin: 22px 0 38px;
-      font-size: 1.05rem;
+      margin: 18px 0 30px;
+      font-size: 1rem;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
     }
 
     .hero-copy .btn {
       min-width: 0;
       width: 100%;
-      min-height: 58px;
-      font-size: 0.83rem;
+      min-height: 56px;
+      font-size: 0.85rem;
     }
 
     .hero-figure {
-      position: absolute;
-      grid-column: auto;
-      right: -230px;
-      bottom: 60px;
-      width: 700px;
-      height: 390px;
-      min-height: 390px;
-      opacity: 0.44;
+      display: none;
     }
 
-    .hero-figure img {
-      width: 690px;
-    }
-
-    .hero-stats {
-      grid-template-columns: repeat(3, 1fr);
-      width: 100%;
-      left: 0;
+    .hero-dots {
+      flex-direction: row;
+      top: auto;
       right: auto;
-      bottom: 24px;
+      left: 50%;
+      bottom: 26px;
+      gap: 18px;
+      transform: translateX(-50%);
     }
 
-    .hero-stats div {
-      min-height: 88px;
-      padding: 17px 10px;
-    }
-
-    .hero-stats strong {
-      font-size: 1.45rem;
+    .hero-dot {
+      width: 8px;
+      height: 8px;
     }
 
     .support-item {

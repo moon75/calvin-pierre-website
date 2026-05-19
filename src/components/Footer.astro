@@ -99,21 +99,20 @@ const legalServices = [
   .footer {
     position: relative;
     overflow: hidden;
-    color: var(--color-navy);
+    color: #ffffff;
     background:
-      linear-gradient(90deg, rgba(247, 250, 255, 0.98), rgba(241, 247, 255, 0.96)),
-      #f5f8ff;
+      linear-gradient(180deg, #030c1f 0%, #02091a 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
   }
 
   .footer-watermark {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.42;
+    opacity: 0.5;
     background:
-      linear-gradient(90deg, transparent 0 31%, rgba(201, 171, 105, 0.052) 31% 66%, transparent 66%),
-      linear-gradient(135deg, transparent 36%, rgba(255, 255, 255, 0.72) 36% 61%, transparent 61%),
-      linear-gradient(90deg, transparent 49%, rgba(8, 38, 88, 0.045) 49% 50%, transparent 50%);
+      radial-gradient(circle at 22% 16%, rgba(201, 171, 105, 0.08), transparent 32%),
+      radial-gradient(circle at 80% 86%, rgba(67, 133, 255, 0.04), transparent 30%);
   }
 
   .footer .container {
@@ -130,7 +129,7 @@ const legalServices = [
   .footer h3 {
     position: relative;
     margin: 0 0 38px;
-    color: var(--color-navy);
+    color: #ffffff;
     font-family: var(--font-sans);
     font-size: 1.1rem;
     font-weight: 800;
@@ -160,7 +159,7 @@ const legalServices = [
   .footer p,
   .footer li,
   .footer-bottom {
-    color: rgba(15, 26, 56, 0.78);
+    color: rgba(255, 255, 255, 0.72);
     font-family: var(--font-sans);
     font-size: 0.96rem;
     font-weight: 500;
@@ -196,7 +195,7 @@ const legalServices = [
   .brand-desc {
     max-width: 320px;
     margin: 0;
-    color: rgba(15, 26, 56, 0.68);
+    color: rgba(255, 255, 255, 0.68);
     line-height: 1.7;
   }
 
@@ -209,7 +208,7 @@ const legalServices = [
     grid-template-columns: 36px minmax(0, 1fr);
     gap: 12px;
     align-items: start;
-    color: rgba(15, 26, 56, 0.78);
+    color: rgba(255, 255, 255, 0.78);
   }
 
   .touch-icon {
@@ -219,13 +218,13 @@ const legalServices = [
     width: 32px;
     height: 32px;
     border-radius: 999px;
-    background: rgba(201, 171, 105, 0.12);
+    background: rgba(201, 171, 105, 0.14);
     color: var(--color-gold);
     flex-shrink: 0;
   }
 
   .touch-list a {
-    color: var(--color-navy);
+    color: #ffffff;
     font-weight: 600;
     transition: color 180ms ease;
   }
@@ -282,11 +281,11 @@ const legalServices = [
     align-items: center;
     justify-content: space-between;
     padding: 26px 0 36px;
-    border-top: 1px solid rgba(15, 26, 56, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .footer-bottom > span:first-child {
-    color: rgba(15, 26, 56, 0.7);
+    color: rgba(255, 255, 255, 0.6);
     font-size: 0.9rem;
   }
 
@@ -297,7 +296,7 @@ const legalServices = [
   }
 
   .legal-links a {
-    color: rgba(15, 26, 56, 0.68);
+    color: rgba(255, 255, 255, 0.6);
     font-size: 0.88rem;
     text-decoration: underline;
     text-underline-offset: 3px;
