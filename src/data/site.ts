@@ -23,12 +23,14 @@ export const brand = {
 
 export const assets = {
   logo: '/assets/legacy/Pierre_Vanguard_Law_PC_Logo_4-removebg-preview-e1769976318198.png',
-  logoMain: '/assets/legacy/main logo.webp',
-  logoFooter: '/assets/legacy/logo footer 1.webp',
+  logoMain: '/assets/legacy/main logo png.png',
+  logoFooter: '/assets/legacy/main logo png.png',
   logoFooterStacked: '/assets/legacy/logo footer two.webp',
   logoSquare: '/assets/legacy/Pierre_Vanguard_Law_PC_Logo_4-1024x1024.jpg',
   attorneyLogo: '/assets/legacy/CALVIN-PIERRE-ESQ-12.webp',
   portrait: '/assets/legacy/539253779_17844571212558853_2228919632589370962_n.jpg',
+  aboutPhoto: '/assets/legacy/pierre photo.jpg',
+  faqPhoto: '/assets/legacy/for faq.jpg',
   hero: '/assets/legacy/New-Banner-for-Website-2048x1365.png',
   slide2: '/assets/legacy/slide-2-image.webp',
   slide3: '/assets/legacy/slide-3-image.webp',
@@ -55,9 +57,9 @@ export const mainNav = [
 ];
 
 export const stats = [
-  { value: '10+', label: 'Years of Experience' },
-  { value: '250+', label: 'Satisfied Clients' },
-  { value: '153+', label: 'Service Categories' },
+  { value: '250+', label: 'Clients Serviced Nationwide' },
+  { value: '5★', label: 'Rating on Google' },
+  { value: '4', label: 'Languages Supported' },
 ];
 
 export const services = [
