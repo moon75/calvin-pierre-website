@@ -15,8 +15,8 @@ import { brand, testimonials } from '../data/site';
     <div class="container grid grid-3">
       {testimonials.map((item) => (
         <article class="card testimonial">
+          <strong>"{item.title}"</strong>
           <p>{item.text}</p>
-          <strong>{item.name}</strong>
         </article>
       ))}
     </div>

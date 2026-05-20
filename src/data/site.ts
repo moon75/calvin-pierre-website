@@ -445,16 +445,19 @@ export const processSteps = [
 
 export const testimonials = [
   {
-    name: 'V. Cimih',
-    text: 'Calvin Pierre was extremely helpful. He helped us with our asylum. Five stars.',
+    title: 'Exceptional service, highly recommended!',
+    text: 'From the first consultation, Calvin Pierre made me feel at ease. He understood the difficulties of my situation and worked tirelessly to resolve my legal matters in the best way possible.',
+    stars: 5,
   },
   {
-    name: 'I. Mohammed',
-    text: 'Calvin Pierre goes above and beyond. I was detained for two months before I hired him. He got me out on parole.',
+    title: 'Trustworthy, efficient, and highly professional!',
+    text: 'The team provided exceptional legal support, guiding me through a complex case with professionalism, clarity, and outstanding results.',
+    stars: 4,
   },
   {
-    name: 'A. Demir',
-    text: 'From the first consultation, Calvin Pierre made me feel at ease and worked tirelessly to resolve my legal matters.',
+    title: 'Above and beyond — got me out on parole!',
+    text: 'Calvin Pierre goes above and beyond. I was detained for two months before I hired Calvin Pierre. He got me out on Parole! Thank you Calvin Pierre!',
+    stars: 5,
   },
 ];
 

@@ -9,11 +9,13 @@ import {
   Languages,
   Lightbulb,
   Plus,
+  Quote,
   Scale,
   ShieldCheck,
+  Star,
 } from '@lucide/astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { assets, brand, faqs, processSteps, services } from '../data/site';
+import { assets, brand, faqs, processSteps, services, testimonials } from '../data/site';
 
 const serviceIcons = [ShieldCheck, Gavel, Handshake, Languages, Landmark, BriefcaseBusiness];
 const homeServiceSlugs = [
@@ -203,17 +205,29 @@ const heroSlides = [
   </section>
 
   <section class="section practice-section">
-    <div class="container">
-      <div class="center-title">
-        <h2>Practice Areas</h2>
-        <p>We provide expert legal services in a range of practice areas to serve your needs:</p>
+    <div class="container practice-layout">
+      <div class="practice-intro">
+        <span class="hero-eyebrow">
+          <Gavel size={16} stroke-width={1.8} />
+          Practice Areas
+          <Gavel size={16} stroke-width={1.8} />
+        </span>
+        <h2>We provide expert legal services in a range of practice areas to serve your needs.</h2>
+        <p>
+          We provide expert legal guidance tailored to protect your rights, resolve disputes,
+          and support your business &amp; personal endeavors with professionalism and care.
+        </p>
+        <a class="btn btn-outline" href="/practice-areas/">
+          View All More
+          <Scale size={16} stroke-width={1.8} />
+        </a>
       </div>
       <div class="practice-grid">
         {homeServices.map((service, index) => {
           const Icon = serviceIcons[index] ?? Scale;
           return (
             <a class="practice-item" href={`/practice-areas/${service.slug}/`}>
-              <Icon size={34} stroke-width={1.35} />
+              <span class="practice-item-icon"><Icon size={28} stroke-width={1.5} /></span>
               <h3>{service.title}</h3>
               <p>{service.summary}</p>
               <ArrowRight class="item-arrow" size={15} />
@@ -244,6 +258,38 @@ const heroSlides = [
           </li>
         ))}
       </ol>
+    </div>
+  </section>
+
+  <section class="section testimonials-section">
+    <div class="container">
+      <div class="testimonials-head">
+        <span class="hero-eyebrow">
+          <Gavel size={16} stroke-width={1.8} />
+          Client Testimonials
+          <Gavel size={16} stroke-width={1.8} />
+        </span>
+        <h2>Proven Results from Satisfied Clients Worldwide</h2>
+        <p>Calvin Pierre was extremely helpful. He helped us with our Asylum! 5 Stars!</p>
+      </div>
+      <div class="testimonials-grid">
+        {testimonials.map((item) => (
+          <article class="testimonial-card">
+            <Quote class="testimonial-quote" size={36} stroke-width={1.4} />
+            <div class="testimonial-stars" aria-label={`${item.stars} out of 5 stars`}>
+              {Array.from({ length: 5 }, (_, i) => (
+                i < item.stars ? (
+                  <Star size={16} fill="currentColor" stroke-width={0} />
+                ) : (
+                  <Star size={16} stroke-width={1.6} />
+                )
+              ))}
+            </div>
+            <h3 class="testimonial-title">"{item.title}"</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -691,8 +737,7 @@ const heroSlides = [
     letter-spacing: 0;
   }
 
-  .about-copy h2,
-  .center-title h2 {
+  .about-copy h2 {
     margin: 0;
     color: #ffffff;
     font-family: var(--font-serif);
@@ -745,34 +790,108 @@ const heroSlides = [
       linear-gradient(180deg, #04102a 0%, #061227 100%);
   }
 
-  .center-title {
-    max-width: 760px;
-    margin: 0 auto 58px;
-    text-align: center;
+  .practice-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: clamp(48px, 5vw, 92px);
+    align-items: start;
   }
 
-  .center-title p {
-    margin: 22px 0 0;
-    color: rgba(255, 255, 255, 0.68);
+  .practice-intro {
+    position: sticky;
+    top: 130px;
+    display: grid;
+    gap: 22px;
+    align-content: start;
+  }
+
+  .practice-intro .hero-eyebrow {
+    align-self: start;
+    margin-bottom: 0;
+  }
+
+  .practice-intro h2 {
+    margin: 0;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: clamp(1.85rem, 3vw, 2.85rem);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+
+  .practice-intro p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.98rem;
     font-weight: 500;
+    line-height: 1.7;
+  }
+
+  .practice-intro .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    align-self: start;
+    margin-top: 8px;
+    padding: 16px 26px;
+    color: #ffffff;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    border-radius: 4px;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
+  }
+
+  .practice-intro .btn-outline:hover {
+    color: #0a1f44;
+    background: var(--color-gold);
+    border-color: var(--color-gold);
   }
 
   .practice-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 64px 84px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
   }
 
   .practice-item {
-    display: block;
+    position: relative;
+    display: grid;
+    gap: 16px;
+    align-content: start;
+    padding: 28px 26px 26px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    transition: background 220ms ease, border-color 220ms ease, transform 220ms ease;
   }
 
-  .practice-item svg {
-    color: var(--color-gold);
+  .practice-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(201, 171, 105, 0.4);
+    transform: translateY(-3px);
+  }
+
+  .practice-item-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    background: var(--color-gold);
+    color: #0a1f44;
+    border-radius: 4px;
   }
 
   .practice-item h3 {
-    margin: 22px 0 12px;
+    margin: 0;
     color: #ffffff;
     font-family: var(--font-serif);
     font-size: 1.28rem;
@@ -780,15 +899,32 @@ const heroSlides = [
   }
 
   .practice-item p {
-    max-width: 305px;
     margin: 0;
     color: rgba(255, 255, 255, 0.66);
-    font-size: 0.92rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
   }
 
   .practice-item .item-arrow {
-    margin-top: 14px;
     color: var(--color-gold);
+  }
+
+  @media (max-width: 980px) {
+    .practice-layout {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .practice-intro {
+      position: relative;
+      top: auto;
+    }
+  }
+
+  @media (max-width: 540px) {
+    .practice-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   .process-section {
@@ -928,6 +1064,99 @@ const heroSlides = [
 
     .process-steps::before {
       left: 18px;
+    }
+  }
+
+  .testimonials-section {
+    color: #ffffff;
+    background:
+      radial-gradient(circle at 82% 12%, rgba(201, 171, 105, 0.1), transparent 30%),
+      linear-gradient(180deg, #04102a 0%, #061227 100%);
+  }
+
+  .testimonials-head {
+    display: grid;
+    gap: 18px;
+    justify-items: center;
+    max-width: 760px;
+    margin: 0 auto 56px;
+    text-align: center;
+  }
+
+  .testimonials-head h2 {
+    margin: 0;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: clamp(1.95rem, 3.4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+
+  .testimonials-head p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .testimonial-card {
+    position: relative;
+    display: grid;
+    gap: 16px;
+    align-content: start;
+    padding: 32px 28px 28px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    transition: background 220ms ease, border-color 220ms ease, transform 220ms ease;
+  }
+
+  .testimonial-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(201, 171, 105, 0.4);
+    transform: translateY(-3px);
+  }
+
+  .testimonial-quote {
+    color: var(--color-gold);
+    opacity: 0.45;
+  }
+
+  .testimonial-stars {
+    display: inline-flex;
+    gap: 4px;
+    color: var(--color-gold);
+  }
+
+  .testimonial-title {
+    margin: 4px 0 0;
+    color: #ffffff;
+    font-family: var(--font-sans);
+    font-size: 1.08rem;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: 0.2px;
+  }
+
+  .testimonial-card p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  @media (max-width: 900px) {
+    .testimonials-grid {
+      grid-template-columns: 1fr;
     }
   }
 
@@ -1195,13 +1424,8 @@ const heroSlides = [
 
   @media (max-width: 900px) {
     .about-grid,
-    .practice-grid,
     .support-grid {
       grid-template-columns: 1fr;
-    }
-
-    .practice-grid {
-      gap: 36px;
     }
 
     .support-grid {
@@ -1316,10 +1540,6 @@ const heroSlides = [
     .signature-row {
       flex-direction: column;
       align-items: flex-start;
-    }
-
-    .center-title {
-      margin-bottom: 40px;
     }
   }
 </style>
