@@ -436,12 +436,12 @@ export const processSteps = [
   {
     number: '02',
     title: 'Proven Experience',
-    text: 'With years of practice in immigration law, we have successfully represented individuals, families, and businesses across the United States. Our deep knowledge of the legal system, combined with hands-on experience in complex cases, allows us to anticipate challenges and find practical solutions.',
+    text: 'We have successfully represented individuals and families across the United States. Our deep knowledge of the legal system, combined with hands-on experience in complex cases, allows us to anticipate challenges and find practical solutions.',
   },
   {
     number: '03',
     title: 'Nationwide Representation',
-    text: 'No matter where you live, we can represent you. Immigration law is federal, which means we are able to serve clients in all 50 states. Whether you need help with asylum, family petitions, citizenship, or appeals, our firm has the ability to assist you wherever you are.',
+    text: 'No matter where you live, we can represent you. We serve clients in all 50 states. Whether you need representation in immigration court, need to file an appeal with the BIA or if you are contesting an unlawful arrest, our firm has the ability to assist you wherever you are.',
   },
 ];
 
