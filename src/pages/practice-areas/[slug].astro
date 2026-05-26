@@ -3,10 +3,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { brand, emergencyServices, services } from '../../data/site';
 
 export function getStaticPaths() {
-  return services.map((service) => ({
-    params: { slug: service.slug },
-    props: { service },
-  }));
+  return services
+    .filter((service) => service.slug !== 'work-visas-employment-authorization')
+    .map((service) => ({
+      params: { slug: service.slug },
+      props: { service },
+    }));
 }
 
 const { service } = Astro.props;

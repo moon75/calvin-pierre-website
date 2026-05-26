@@ -1,31 +1,84 @@
 ---
+import { ArrowRight, CheckCircle2 } from '@lucide/astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { assets, brand } from '../data/site';
+
+const expertise = [
+  'Immigration',
+  'Civil Litigation',
+  'Mediation',
+  'Negotiation',
+  'Intellectual Property',
+];
+
+const stats = [
+  { value: '250+', label: 'Satisfied Clients' },
+  { value: '153+', label: 'Service Categories' },
+];
 ---
 
 <BaseLayout title={`About ${brand.attorneyName} | ${brand.firmName}`}>
-  <section class="section section-dark page-hero">
-    <div class="container about-hero">
-      <div class="section-title">
-        <p class="eyebrow">About</p>
-        <h1>{brand.attorneyName}</h1>
-        <p>Immigration attorney, son of Haitian immigrants, and advocate for families navigating the U.S. immigration system.</p>
+  <section class="section section-soft watermark-section about-detail-section">
+    <div class="container about-detail-grid">
+      <div class="about-detail-figure">
+        <div class="figure-frame">
+          <img src={assets.aboutPhoto} alt={brand.attorneyName} loading="lazy" />
+        </div>
       </div>
-      <img src={assets.aboutPhoto} alt={brand.attorneyName} />
-    </div>
-  </section>
-  <section class="prose-page watermark-section">
-    <div class="container">
-      <h2>Experienced and ready to help</h2>
-      <p>
-        Calvin Pierre is the proud son of Haitian immigrants and a first-generation
-        American. The final copy should expand his attorney biography, admissions,
-        languages, personal story, community involvement, and firm mission.
-      </p>
-      <p>
-        Keep this page human and specific. For attorney SEO, the biography
-        supports trust, local relevance, and conversion across practice pages.
-      </p>
+
+      <div class="about-detail-copy">
+        <span class="about-eyebrow">What About Us</span>
+        <h2>Experienced &amp; Ready To Help.</h2>
+
+        <p>
+          I am a proud son of Haitian immigrants and a first-generation American who understands
+          firsthand the challenges and hopes that come with building a new life in this country.
+          From an early age, I was taught the value of hard work, perseverance, and integrity&mdash;principles
+          that continue to guide my practice today. My passion for immigration law is deeply personal,
+          and I have dedicated my career to helping individuals and families navigate the complexities
+          of the U.S. immigration system. With extensive experience in immigration, civil litigation, and
+          intellectual property I bring a unique perspective and skill set to every case, ensuring that
+          my clients receive practical, comprehensive, and results-driven representation.
+        </p>
+
+        <p>
+          I earned my undergraduate degree at Howard University and my law degree from Widener
+          Commonwealth Law School, where I committed myself to serving communities in need. As a
+          first-generation American, I understand both the struggles and the resilience of immigrants,
+          and I am passionate about using my knowledge and experience to help others achieve their
+          dreams. I am fluent in Haitian Creole and English, and lead a diverse team that communicates
+          fluently in Spanish and French, allowing me to serve clients from a wide range of backgrounds
+          with sensitivity and cultural understanding. Above all, I am committed to being the go-to
+          immigration attorney for individuals, families, and businesses, providing the guidance and
+          advocacy they need to move forward with confidence and security.
+        </p>
+
+        <div class="expertise-block">
+          <p class="expertise-title">Areas Of Expertise</p>
+          <ul class="expertise-list">
+            {expertise.map((item) => (
+              <li>
+                <CheckCircle2 size={18} stroke-width={1.8} />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="stats-row">
+          {stats.map((stat) => (
+            <div class="stat-item">
+              <span class="stat-label">{stat.label}</span>
+              <span class="stat-value">{stat.value}</span>
+            </div>
+          ))}
+        </div>
+
+        <a class="btn btn-primary about-cta" href="/contact/">
+          Read More
+          <ArrowRight size={16} stroke-width={1.8} />
+        </a>
+      </div>
     </div>
   </section>
 </BaseLayout>
@@ -45,9 +98,196 @@ import { assets, brand } from '../data/site';
     object-fit: cover;
   }
 
+  .about-detail-section {
+    position: relative;
+    color: #ffffff;
+  }
+
+  .about-detail-grid {
+    display: grid;
+    grid-template-columns: minmax(320px, 460px) minmax(0, 1fr);
+    gap: clamp(56px, 7vw, 110px);
+    align-items: start;
+  }
+
+  .about-detail-figure {
+    position: sticky;
+    top: 130px;
+  }
+
+  .figure-frame {
+    position: relative;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .figure-frame::before {
+    position: absolute;
+    inset: 22px -22px -22px 22px;
+    content: "";
+    border: 1.5px solid var(--color-gold);
+    pointer-events: none;
+  }
+
+  .figure-frame img {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    aspect-ratio: 0.82;
+    object-fit: cover;
+  }
+
+  .about-detail-copy {
+    max-width: 720px;
+  }
+
+  .about-eyebrow {
+    display: inline-block;
+    padding: 8px 16px;
+    background: rgba(201, 171, 105, 0.14);
+    color: var(--color-gold);
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+  }
+
+  .about-detail-copy h2 {
+    margin: 22px 0 26px;
+    color: var(--color-gold);
+    font-family: var(--font-serif);
+    font-size: clamp(2.2rem, 4.2vw, 3.8rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: 0;
+  }
+
+  .about-detail-copy p {
+    margin: 0 0 22px;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.98rem;
+    font-weight: 500;
+    line-height: 1.78;
+  }
+
+  .expertise-block {
+    margin: 36px 0 12px;
+  }
+
+  .expertise-title {
+    margin: 0 0 16px;
+    color: #ffffff;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+  }
+
+  .expertise-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, max-content));
+    gap: 12px 36px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .expertise-list li {
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.88);
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .expertise-list svg {
+    flex: 0 0 auto;
+    color: var(--color-gold);
+  }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(32px, 5vw, 72px);
+    padding: 30px 0 14px;
+    margin: 14px 0 30px;
+    border-top: 1px solid rgba(201, 171, 105, 0.4);
+    border-bottom: 1px solid rgba(201, 171, 105, 0.4);
+  }
+
+  .stat-item {
+    display: grid;
+    gap: 8px;
+  }
+
+  .stat-label {
+    color: rgba(255, 255, 255, 0.7);
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+  }
+
+  .stat-value {
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: clamp(2.4rem, 4.2vw, 3.6rem);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0;
+  }
+
+  .about-cta {
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    min-height: 54px;
+    padding: 16px 30px;
+    font-size: 0.86rem;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 980px) {
+    .about-detail-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    .about-detail-figure {
+      position: relative;
+      top: auto;
+      max-width: 460px;
+    }
+
+    .figure-frame::before {
+      inset: 16px -16px -16px 16px;
+    }
+  }
+
   @media (max-width: 820px) {
     .about-hero {
       grid-template-columns: 1fr;
     }
   }
+
+  @media (max-width: 640px) {
+    .about-detail-copy h2 {
+      margin: 18px 0 22px;
+    }
+
+    .stats-row {
+      grid-template-columns: 1fr;
+      gap: 22px;
+      padding: 26px 0 10px;
+    }
+  }
 </style>
+
