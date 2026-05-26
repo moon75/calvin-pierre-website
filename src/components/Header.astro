@@ -27,7 +27,12 @@ const areas = [
   },
 ];
 
-const languages = ['EN', 'FR', 'HT', 'ES'];
+const languages = [
+  { code: 'en', label: 'EN' },
+  { code: 'fr', label: 'FR' },
+  { code: 'ht', label: 'HT' },
+  { code: 'es', label: 'ES' },
+];
 ---
 
 <header class="site-header">
@@ -40,12 +45,18 @@ const languages = ['EN', 'FR', 'HT', 'ES'];
       <div class="top-right">
         <div class="languages" aria-label="Languages">
           <Globe2 size={17} />
-          {languages.map((language) => <a href="#">{language}</a>)}
+          {languages.map((language) => (
+            <button type="button" class="lang-btn" data-lang={language.code}>
+              {language.label}
+            </button>
+          ))}
         </div>
         <span>Emergency 24/7</span>
       </div>
     </div>
   </div>
+
+  <div id="google_translate_element" aria-hidden="true"></div>
 
   <div class="nav-bar">
     <div class="header-container nav-inner">
@@ -275,15 +286,27 @@ const languages = ['EN', 'FR', 'HT', 'ES'];
     padding-right: 2px;
   }
 
-  .languages a {
+  .languages a,
+  .lang-btn {
     color: rgba(255, 255, 255, 0.9);
     font-family: var(--font-sans);
     font-size: 0.85rem;
     font-weight: 500;
     letter-spacing: 0.2px;
+    padding: 0 2px;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    transition: color 180ms ease;
   }
 
-  .languages a:hover {
+  .lang-btn.is-active {
+    color: var(--color-gold);
+    font-weight: 700;
+  }
+
+  .languages a:hover,
+  .lang-btn:hover {
     color: var(--color-gold);
   }
 
@@ -443,4 +466,104 @@ const languages = ['EN', 'FR', 'HT', 'ES'];
       height: 42px;
     }
   }
+
+  #google_translate_element {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+  }
 </style>
+
+<style is:global>
+  .goog-te-banner-frame,
+  .skiptranslate {
+    display: none !important;
+  }
+
+  body {
+    top: 0 !important;
+  }
+
+  .goog-tooltip,
+  .goog-tooltip:hover,
+  .goog-text-highlight {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    function getCookie(name) {
+      const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+      return match ? decodeURIComponent(match[2]) : null;
+    }
+
+    function setCookie(name, value) {
+      const host = location.hostname;
+      const domain = host.split('.').slice(-2).join('.');
+      document.cookie = name + '=' + value + ';path=/;';
+      if (host !== 'localhost' && host.indexOf('.') !== -1) {
+        document.cookie = name + '=' + value + ';path=/;domain=.' + domain + ';';
+      }
+    }
+
+    function currentLang() {
+      const cookie = getCookie('googtrans');
+      if (!cookie) return 'en';
+      const parts = cookie.split('/');
+      return parts[2] || 'en';
+    }
+
+    function markActive() {
+      const active = currentLang();
+      document.querySelectorAll('.lang-btn').forEach(function (btn) {
+        if (btn.dataset.lang === active) btn.classList.add('is-active');
+        else btn.classList.remove('is-active');
+      });
+    }
+
+    function bindButtons() {
+      document.querySelectorAll('.lang-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const lang = btn.dataset.lang;
+          if (lang === 'en') {
+            setCookie('googtrans', '');
+          } else {
+            setCookie('googtrans', '/en/' + lang);
+          }
+          location.reload();
+        });
+      });
+    }
+
+    window.googleTranslateElementInit = function () {
+      new google.translate.TranslateElement(
+        {
+          pageLanguage: 'en',
+          includedLanguages: 'en,fr,ht,es',
+          autoDisplay: false,
+        },
+        'google_translate_element'
+      );
+    };
+
+    function loadTranslate() {
+      if (document.getElementById('gtranslate-script')) return;
+      const s = document.createElement('script');
+      s.id = 'gtranslate-script';
+      s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      s.async = true;
+      document.body.appendChild(s);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      bindButtons();
+      markActive();
+      loadTranslate();
+    });
+  })();
+</script>

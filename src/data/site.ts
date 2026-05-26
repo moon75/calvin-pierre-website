@@ -414,16 +414,19 @@ export const emergencyServices = [
     title: 'ICE Detention Help',
     slug: 'ice-detention-help',
     summary: 'Immediate action for families dealing with detention, transfer, or urgent hearings.',
+    image: 'https://images.unsplash.com/photo-1591291621164-2c6367723315?auto=format&fit=crop&w=1200&q=80',
   },
   {
     title: 'Deportation Order',
     slug: 'deportation-order',
     summary: 'Urgent review of removal orders, appeal windows, stays, and reopen options.',
+    image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1200&q=80',
   },
   {
     title: 'ICE Raid Rights',
     slug: 'ice-raid-rights',
     summary: 'Practical legal guidance before and after workplace, home, or community enforcement.',
+    image: 'https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=1200&q=80',
   },
 ];
 
