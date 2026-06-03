@@ -3,10 +3,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { brand, emergencyServices } from '../../data/site';
 
 export function getStaticPaths() {
-  return emergencyServices.map((service) => ({
-    params: { slug: service.slug },
-    props: { service },
-  }));
+  const customSlugs = new Set(['ice-detention-help', 'deportation-order', 'ice-raid-rights']);
+  return emergencyServices
+    .filter((service) => !customSlugs.has(service.slug))
+    .map((service) => ({
+      params: { slug: service.slug },
+      props: { service },
+    }));
 }
 
 const { service } = Astro.props;

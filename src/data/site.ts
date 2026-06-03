@@ -343,32 +343,24 @@ export const services = [
     detail: {
       headline: 'Visas – Navigate Your Immigration Journey With Expert Guidance',
       intro:
-        'The visa application process involves strict requirements, detailed documentation, and tight deadlines that can overwhelm applicants. The firm provides professional guidance to help individuals, families, and businesses navigate visa pathways tailored to their unique circumstances. Whether you are applying initially, extending your stay, or pursuing long-term residency, personalized support streamlines the process and reduces costly delays.',
-      subhead: 'How Can Professional Legal Help Simplify Your Visa Application?',
+        'Applying for a visa is often one of the most important steps in planning a journey, whether for travel, education, employment, business, or permanent relocation. Unfortunately, the process can also be one of the most challenging—filled with strict requirements, detailed paperwork, tight deadlines, and ever-changing immigration policies. A single mistake or omission can lead to costly delays or even rejection. That is why having professional guidance can make all the difference.',
+      subhead: 'How We Help You Through The Visa Process',
       points: [
         {
-          lead: 'Understand Your Options',
-          body: 'Get clear advice on the best visa pathway based on your specific goals and situation.',
+          lead: 'Personalized Guidance',
+          body: 'We are committed to helping individuals, families, and businesses successfully navigate the visa process with confidence. From the very beginning, we take the time to understand your unique goals and situation, then provide clear advice on the best visa pathway for you. Whether you are applying for the first time, seeking to extend your stay, or exploring long-term residency opportunities, we offer tailored support designed to make the process smooth and stress-free.',
         },
         {
-          lead: 'Prepare Documentation',
-          body: 'Ensure all required paperwork is accurate, complete, and submitted on time.',
+          lead: 'In-Depth Immigration Knowledge',
+          body: 'Our approach combines in-depth knowledge of immigration rules with practical experience in handling complex applications. We assist with preparing and reviewing all required documents, ensuring accuracy and completeness, and guiding you through interviews or additional requirements when necessary. Beyond the paperwork, we provide reassurance and clarity at every stage, so you know what to expect and how to avoid unnecessary obstacles.',
         },
         {
-          lead: 'Review & Verify',
-          body: 'Have an attorney examine every application before submission to catch errors and weaknesses.',
-        },
-        {
-          lead: 'Interview Support',
-          body: 'Receive coaching for visa interviews and guidance on handling follow-up requests.',
-        },
-        {
-          lead: 'Reduce Uncertainty',
-          body: 'Work with an advocate who explains each stage so you always know what to expect.',
+          lead: 'Your Partner & Advocate',
+          body: 'Choosing us means you are not facing the visa process alone. We act as your partner and advocate, working to reduce uncertainty and increase your chances of success. With our support, you can focus on your plans—whether that means starting a new career, studying abroad, reuniting with loved ones, or building a life in a new country—while we handle the complexities of the application.',
         },
       ],
       closing:
-        'The firm combines deep knowledge of immigration regulations with practical experience handling complex applications. By partnering with experienced counsel, you can focus on your future plans while the legal team manages procedural complexity and improves your chances of approval.',
+        'If you are ready to begin your visa journey, reach out to us today. Let us take the stress out of the process and help you move forward with confidence.',
     },
   },
   {

@@ -4,7 +4,7 @@ import { brand, emergencyServices, services } from '../../data/site';
 
 export function getStaticPaths() {
   return services
-    .filter((service) => service.slug !== 'work-visas-employment-authorization')
+    .filter((service) => !['work-visas-employment-authorization', 'temporary-protected-status', 'habeas-corpus', 'green-card-permanent-residence'].includes(service.slug))
     .map((service) => ({
       params: { slug: service.slug },
       props: { service },
