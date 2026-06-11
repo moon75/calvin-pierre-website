@@ -1,0 +1,74 @@
+---
+import { ArrowRight } from '@lucide/astro';
+
+interface Props {
+  title: string;
+  summary: string;
+  href: string;
+  image?: string;
+}
+
+const { title, summary, href, image } = Astro.props;
+---
+
+<a class="service-card" href={href}>
+  {image && <img src={image} alt="" loading="lazy" />}
+  <span>
+    <strong>{title}</strong>
+    <ArrowRight size={15} />
+  </span>
+  <p>{summary}</p>
+</a>
+
+<style>
+  .service-card {
+    display: grid;
+    min-height: 100%;
+    overflow: hidden;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(201, 171, 105, 0.2);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.32);
+    transition:
+      transform 160ms ease,
+      border-color 160ms ease,
+      box-shadow 160ms ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(201, 171, 105, 0.55);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.46);
+  }
+
+  .service-card img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    background: var(--color-soft);
+  }
+
+  .service-card span {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 22px 22px 0;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: 1.08rem;
+    line-height: 1.25;
+  }
+
+  .service-card svg {
+    flex: 0 0 auto;
+    color: var(--color-gold);
+  }
+
+  .service-card p {
+    margin: 10px 0 0;
+    padding: 0 22px 24px;
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 0.94rem;
+  }
+</style>

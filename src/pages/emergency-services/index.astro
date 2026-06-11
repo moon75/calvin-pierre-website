@@ -1,0 +1,239 @@
+---
+import { AlertTriangle, ArrowRight, Phone } from '@lucide/astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { brand, emergencyServices } from '../../data/site';
+---
+
+<BaseLayout
+  title={`Emergency Immigration Services | ${brand.firmName}`}
+  description="Urgent immigration help for ICE detention, deportation orders, and ICE raid rights."
+>
+  <section class="section section-dark page-hero">
+    <div class="container section-title">
+      <p class="eyebrow">Emergency Services</p>
+      <h1>Fast legal action for detention, deportation, and ICE pressure.</h1>
+      <p>Urgent pages for families who need clear next steps, fast contact, and immediate legal review.</p>
+    </div>
+  </section>
+
+  <section class="section section-soft watermark-section emergency-section">
+    <div class="container">
+      <div class="emergency-grid">
+        {emergencyServices.map((item) => (
+          <a class="emergency-card" href={`/emergency-services/${item.slug}/`}>
+            <div class="emergency-image">
+              <img src={item.image} alt={item.title} loading="lazy" />
+              <span class="emergency-badge">
+                <AlertTriangle size={14} stroke-width={2} />
+                Urgent
+              </span>
+            </div>
+            <div class="emergency-body">
+              <h3>{item.title}</h3>
+              <p>{item.summary}</p>
+              <span class="emergency-link">
+                Get Help Now
+                <ArrowRight size={16} stroke-width={2} />
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div class="emergency-callout">
+        <div class="callout-icon"><Phone size={26} stroke-width={1.8} /></div>
+        <div class="callout-body">
+          <strong>Need help right now?</strong>
+          <p>Speak with our team 24/7 for urgent immigration matters.</p>
+        </div>
+        <a class="btn btn-primary" href={brand.phoneHref}>Call {brand.phone}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .emergency-section {
+    color: #ffffff;
+  }
+
+  .emergency-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 26px;
+  }
+
+  .emergency-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #ffffff;
+    text-decoration: none;
+    transition:
+      transform 260ms ease,
+      border-color 260ms ease,
+      box-shadow 260ms ease;
+  }
+
+  .emergency-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(201, 171, 105, 0.5);
+    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
+  }
+
+  .emergency-image {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+  }
+
+  .emergency-image::after {
+    position: absolute;
+    inset: 0;
+    content: "";
+    background: linear-gradient(180deg, rgba(4, 18, 39, 0) 30%, rgba(4, 18, 39, 0.85) 100%);
+    pointer-events: none;
+  }
+
+  .emergency-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 520ms ease;
+  }
+
+  .emergency-card:hover .emergency-image img {
+    transform: scale(1.06);
+  }
+
+  .emergency-badge {
+    position: absolute;
+    z-index: 1;
+    top: 16px;
+    left: 16px;
+    display: inline-flex;
+    gap: 6px;
+    align-items: center;
+    padding: 6px 12px;
+    background: var(--color-gold);
+    color: #0a1f44;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-radius: 999px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+  }
+
+  .emergency-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 24px 26px;
+  }
+
+  .emergency-body h3 {
+    margin: 0 0 10px;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+
+  .emergency-body p {
+    flex: 1;
+    margin: 0 0 18px;
+    color: rgba(255, 255, 255, 0.72);
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  .emergency-link {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    color: var(--color-gold);
+    font-family: var(--font-sans);
+    font-size: 0.84rem;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    transition: gap 220ms ease, color 220ms ease;
+  }
+
+  .emergency-card:hover .emergency-link {
+    gap: 14px;
+    color: #dcc487;
+  }
+
+  .emergency-callout {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 22px;
+    align-items: center;
+    margin-top: 44px;
+    padding: 26px 30px;
+    background:
+      linear-gradient(135deg, rgba(201, 171, 105, 0.18), rgba(201, 171, 105, 0.04));
+    border: 1px solid rgba(201, 171, 105, 0.4);
+    border-radius: 8px;
+  }
+
+  .callout-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    color: var(--color-gold);
+    background: rgba(201, 171, 105, 0.14);
+    border: 1px solid rgba(201, 171, 105, 0.4);
+    border-radius: 999px;
+  }
+
+  .callout-body strong {
+    display: block;
+    margin-bottom: 4px;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+  }
+
+  .callout-body p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.94rem;
+  }
+
+  @media (max-width: 980px) {
+    .emergency-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 720px) {
+    .emergency-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .emergency-callout {
+      grid-template-columns: 1fr;
+      text-align: center;
+      justify-items: center;
+    }
+
+    .callout-icon {
+      margin-bottom: 4px;
+    }
+  }
+</style>

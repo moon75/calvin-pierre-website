@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { brand, emergencyServices } from '../../data/site';
+
+export function getStaticPaths() {
+  const customSlugs = new Set(['ice-detention-help', 'deportation-order', 'ice-raid-rights']);
+  return emergencyServices
+    .filter((service) => !customSlugs.has(service.slug))
+    .map((service) => ({
+      params: { slug: service.slug },
+      props: { service },
+    }));
+}
+
+const { service } = Astro.props;
+---
+
+<BaseLayout
+  title={`${service.title} | Emergency Immigration Help`}
+  description={`${service.summary} Contact ${brand.firmName} for urgent immigration legal help.`}
+>
+  <section class="section section-dark page-hero">
+    <div class="container section-title">
+      <p class="eyebrow">Emergency Immigration Service</p>
+      <h1>{service.title}</h1>
+      <p>{service.summary}</p>
+      <div class="actions">
+        <a class="btn btn-primary" href={brand.phoneHref}>Call {brand.phone}</a>
+        <a class="btn btn-secondary" href="/book-now/">Book Now</a>
+      </div>
+    </div>
+  </section>
+  <section class="prose-page watermark-section">
+    <div class="container">
+      <h2>Urgent next steps</h2>
+      <p>
+        Build this page around urgent user intent: what to do now, what not to
+        sign, documents to collect, who can call, deadlines, detention facility
+        information, and a prominent phone/text path.
+      </p>
+      <h2>Campaign-ready structure</h2>
+      <p>
+        This page can be duplicated into a focused paid-search landing page with
+        call tracking, shortened navigation, and service-specific intake fields.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+  }
+</style>

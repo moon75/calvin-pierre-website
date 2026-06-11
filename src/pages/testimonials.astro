@@ -1,0 +1,290 @@
+---
+import { Star, BadgeCheck } from '@lucide/astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { brand } from '../data/site';
+
+const reviews = [
+  {
+    name: 'Megh Waltimire',
+    initial: 'M',
+    color: '#e2a8a0',
+    ago: '2 months ago',
+    verified: false,
+    text: "Calvin has been my attorney for over five years, and I couldn't ask for better support. He's sharp, responsive, and always makes sure things are handled the right way....",
+    truncated: true,
+  },
+  {
+    name: 'Jeremy Dinh',
+    initial: 'J',
+    color: '#0a1f44',
+    ago: '2 months ago',
+    verified: true,
+    text: 'Calvin is the absolute best attorney to work with. I own multiple rental units and rely on him for everything related to my real estate business, and he always delivers....',
+    truncated: true,
+  },
+  {
+    name: 'law adjara k',
+    initial: 'l',
+    color: '#7e7bc4',
+    ago: '2 months ago',
+    verified: true,
+    text: 'Very professional. I have dealt with many lawyers and Pierre shows you that he cares.',
+    truncated: false,
+  },
+  {
+    name: 'Mompremier Rose Guerlande',
+    initial: 'M',
+    color: '#1f7a6b',
+    ago: '2 months ago',
+    verified: true,
+    text: "Merci pour le bon travail que t 'as fait pour moi bon travail.",
+    truncated: false,
+  },
+  {
+    name: 'Brianna Koleva',
+    initial: 'B',
+    color: '#9b6d4a',
+    ago: '2 months ago',
+    verified: true,
+    text: 'I had an incredible experience with Pierre and the entire team! He is extremely professional, knowledgeable, and, most importantly, truly cares about his clients....',
+    truncated: true,
+  },
+  {
+    name: 'Rene Luxamarre',
+    initial: 'R',
+    color: '#a8b0bd',
+    ago: '2 months ago',
+    verified: true,
+    text: 'They handled my case efficiently and kept me informed throughout the process. I highly recommend their services.',
+    truncated: false,
+  },
+  {
+    name: 'Dood Jn Louis',
+    initial: 'D',
+    color: '#e6489b',
+    ago: '2 months ago',
+    verified: false,
+    text: 'I am extremely satisfied with the service I received . They were professional honest and very supportive during my case .',
+    truncated: false,
+  },
+  {
+    name: 'Drexler Blue',
+    initial: 'D',
+    color: '#1f7a6b',
+    ago: '3 months ago',
+    verified: true,
+    text: "Without Calvin my family would've been separated and he worked day & night to make sure that that didn't happen. So thankful, best in the business !",
+    truncated: false,
+  },
+];
+---
+
+<BaseLayout title={`Testimonials | ${brand.firmName}`}>
+  <section class="section section-dark page-hero">
+    <div class="container section-title">
+      <p class="eyebrow">Testimonials</p>
+      <h1>Success stories and client feedback.</h1>
+      <p>Verified Google reviews from clients of {brand.firmName}.</p>
+    </div>
+  </section>
+
+  <section class="section reviews-section">
+    <div class="container">
+      <div class="reviews-grid">
+        {reviews.map((review) => (
+          <article class="review-card">
+            <header class="review-head">
+              <span class="review-avatar" style={`background:${review.color}`}>{review.initial}</span>
+              <div class="review-meta">
+                <strong class="review-name">{review.name}</strong>
+                <span class="review-ago">{review.ago}</span>
+              </div>
+              <svg class="google-mark" viewBox="0 0 48 48" aria-hidden="true">
+                <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8a12 12 0 1 1 0-24c3 0 5.8 1.1 7.9 3l5.7-5.7A20 20 0 1 0 24 44a20 20 0 0 0 19.6-23.5z"/>
+                <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8A12 12 0 0 1 24 12c3 0 5.8 1.1 7.9 3l5.7-5.7A20 20 0 0 0 6.3 14.7z"/>
+                <path fill="#4CAF50" d="M24 44c5.2 0 10-2 13.6-5.3l-6.3-5.3A12 12 0 0 1 12.7 28l-6.6 5A20 20 0 0 0 24 44z"/>
+                <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3a12 12 0 0 1-4 5.5l6.3 5.3c-.4.4 6.7-4.8 6.7-14.8 0-1.3-.1-2.3-.7-3.5z"/>
+              </svg>
+            </header>
+
+            <div class="review-stars" aria-label="5 out of 5 stars">
+              {Array.from({ length: 5 }, () => (
+                <Star size={18} fill="#fbbc05" stroke="#fbbc05" stroke-width={0} />
+              ))}
+              {review.verified && (
+                <span class="verified-badge" aria-label="Verified">
+                  <BadgeCheck size={16} fill="#4285f4" stroke="#ffffff" stroke-width={2.5} />
+                </span>
+              )}
+            </div>
+
+            <p class="review-text">{review.text}</p>
+
+            {review.truncated && (
+              <span class="review-readmore">Read more</span>
+            )}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .reviews-section {
+    position: relative;
+    color: #ffffff;
+    background:
+      radial-gradient(circle at 82% 12%, rgba(201, 171, 105, 0.1), transparent 30%),
+      radial-gradient(circle at 18% 88%, rgba(201, 171, 105, 0.08), transparent 32%),
+      linear-gradient(180deg, #04102a 0%, #061227 100%);
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .review-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 26px 26px 24px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    text-align: center;
+    transition:
+      background 220ms ease,
+      border-color 220ms ease,
+      transform 220ms ease,
+      box-shadow 220ms ease;
+  }
+
+  .review-card::before {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 3px;
+    content: "";
+    background: linear-gradient(90deg, var(--color-gold), rgba(201, 171, 105, 0));
+    border-radius: 6px 6px 0 0;
+  }
+
+  .review-card:hover {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+    border-color: rgba(201, 171, 105, 0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.36);
+  }
+
+  .review-head {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr) 24px;
+    gap: 12px;
+    align-items: center;
+    text-align: left;
+    margin-bottom: 16px;
+  }
+
+  .review-avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    color: #ffffff;
+    font-family: var(--font-sans);
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  }
+
+  .review-meta {
+    display: grid;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .review-name {
+    color: #ffffff;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .review-ago {
+    color: rgba(255, 255, 255, 0.55);
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 400;
+  }
+
+  .google-mark {
+    width: 22px;
+    height: 22px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+  }
+
+  .review-stars {
+    display: inline-flex;
+    gap: 2px;
+    justify-content: center;
+    align-items: center;
+    margin: 4px 0 14px;
+  }
+
+  .verified-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+  }
+
+  .review-text {
+    flex: 1;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.78);
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .review-readmore {
+    display: block;
+    margin-top: 12px;
+    color: var(--color-gold);
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    transition: color 200ms ease;
+  }
+
+  .review-readmore:hover {
+    color: #dcc487;
+  }
+
+  @media (max-width: 980px) {
+    .reviews-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .reviews-grid {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+  }
+</style>

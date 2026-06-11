@@ -1,0 +1,2466 @@
+---
+import {
+  ArrowRight,
+  BadgeCheck,
+  CalendarCheck,
+  CheckCircle2,
+  ChevronDown,
+  Clock,
+  Globe,
+  Lightbulb,
+  Plus,
+  Scale,
+  ShieldCheck,
+  Sparkles,
+  Star,
+  Wallet,
+} from '@lucide/astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { brand, emergencyServices } from '../../data/site';
+
+const hero = {
+  eyebrow: 'Work Visa Authorization · Act Now',
+  title: {
+    pre: 'Work Legally In America',
+    accent: 'Build Your Career',
+    post: 'Without Fear',
+  },
+  intro:
+    "From H-1B visas for professionals to work permits for immigrants, we help you secure legal employment authorization that protects your career and opens doors to permanent residence. Attorney Calvin Pierre understands that work authorization isn't just paperwork — it's your livelihood and your future.",
+  actions: [
+    { label: 'Check Your Work Visa Options on WhatsApp', href: brand.whatsappHref, kind: 'whatsapp' as const },
+    { label: 'Schedule Work Visa Consultation', href: '/book-now/', kind: 'light' as const },
+  ],
+};
+
+const bodyParagraphs = [
+  "Working legally in the United States opens doors that change everything. It's the difference between living in the shadows and building a career. Between uncertainty and opportunity. Between temporary survival and long-term success. And for many people, legal work authorization is the first step toward permanent residence and eventual citizenship.",
+  "But here's what many people don't realize: there are dozens of work visa and employment authorization pathways. You might qualify for options you never knew existed. The key is matching your education, skills, and circumstances to the right visa category — and that's exactly what we do.",
+  "Are you a professional with a bachelor's degree? H-1B specialty occupation visa might be your path. Transferred by your international company? L-1 intracompany transferee visa could work. Extraordinary ability in your field? O-1 visa for individuals with exceptional talent. Canadian or Mexican? TN visa under NAFTA/USMCA offers streamlined access. Married to a US citizen? Employment Authorization Document (EAD) lets you work anywhere while your green card processes. Asylum granted? You can work immediately. Have TPS? Work permit included.",
+  "Attorney Calvin Pierre has helped over 800 people secure work authorization through every major category. We've obtained H-1B approvals during the most competitive lottery years. We've navigated L-1 transfers for startup branches that other lawyers said were too risky. We've secured O-1 visas for artists, athletes, scientists, and entrepreneurs. We've expedited EADs for people whose families depended on immediate income. We've renewed DACA work permits. We've handled everything from straightforward applications to seemingly impossible complications.",
+  "Work authorization cases require understanding both immigration law AND your industry. What qualifies as a \"specialty occupation\" for H-1B? How do you prove \"extraordinary ability\" for O-1? What's the difference between L-1A managers and L-1B specialized knowledge workers? How do you structure employment for TN visas? Which jobs qualify for H-2B temporary worker visas? When can you use the AC21 portability provision to change employers? These questions have technical answers with real consequences for your career.",
+  "We don't just file forms — we build strategic career plans. We analyze whether your position truly qualifies for the visa category. We work with your employer to structure the job description appropriately. We gather evidence that convinces USCIS you meet all requirements. We prepare you for interviews at US consulates abroad. We time applications to maximize approval chances and minimize gaps in authorization. We monitor visa expiration dates and file extensions months in advance. And critically, we always keep an eye on your path to permanent residence — because most work visas are temporary stepping stones, not permanent solutions.",
+  "Your career shouldn't be limited by immigration status. Whether you're a foreign professional seeking your first US work opportunity, an immigrant trying to support your family legally, or an employer trying to hire the talent you need — we navigate the complexity so you can focus on your work.",
+];
+
+const keyPoints = [
+  'All work visa categories — H-1B, L-1, O-1, TN, E-2, H-2B, and more',
+  'Employment Authorization Documents — for green card applicants, asylum seekers, TPS holders, DACA recipients',
+  "Driver's licenses — Most states issue licenses to TPS holders",
+  'Travel permission — Apply for advance parole to visit family abroad',
+  'Pathway to green card — In some cases, TPS can lead to permanent residence',
+  'Time-sensitive deadlines — We track every registration period so you never miss your window',
+  'All TPS countries — Haiti, Venezuela, Honduras, El Salvador, Nicaragua, Ukraine, Sudan, and more',
+];
+
+const pathSteps = [
+  {
+    number: '01',
+    title: 'Comprehensive Work Authorization Strategy Session',
+    timeline: 'Within 24-48 hours of contact',
+    body:
+      'We analyze your education, work experience, current immigration status, employer relationship, and career goals. We identify ALL potential work authorization pathways and recommend the optimal strategy for both immediate needs and long-term permanent residence goals.',
+    roles: [
+      { label: 'Your Role', text: 'Provide complete information about your background, employment, and immigration history' },
+      { label: 'Our Role', text: 'Analyze multiple pathways simultaneously, assess employer requirements, evaluate green card potential, develop prioritized strategy' },
+    ],
+    groups: [
+      {
+        heading: 'Employer-Sponsored Nonimmigrant Visas',
+        items: [
+          "H-1B: Specialty occupations requiring bachelor's degree (tech, engineering, business, healthcare, etc.)",
+          'L-1A/L-1B: Intracompany transferees (managers/executives or specialized knowledge workers)',
+          'O-1A/O-1B: Extraordinary ability (sciences, arts, business, athletics, film/TV)',
+          'TN: NAFTA/USMCA professionals (Canadian and Mexican citizens)',
+          'E-2: Treaty investors and employees',
+          'H-2B: Temporary non-agricultural workers (seasonal hospitality, construction, etc.)',
+          'E-3: Australian specialty occupation workers',
+        ],
+      },
+      {
+        heading: 'Employment Authorization Documents (EAD)',
+        items: [
+          'Adjustment of Status (I-485 pending): Can work for any employer while green card processes',
+          'Asylum-based: Pending asylum application (150+ days) or granted asylum',
+          'TPS-based: Work authorization for Temporary Protected Status holders',
+          'DACA: Deferred Action for Childhood Arrivals work permits',
+          'VAWA, U visa, T visa: Work authorization for humanitarian benefit recipients',
+          'H-4, L-2, E-2 dependent: Spouses of certain visa holders',
+        ],
+      },
+    ],
+    note: 'Critical insight: Many people qualify for multiple pathways. We identify the fastest route while preserving better long-term options.',
+  },
+  {
+    number: '02',
+    title: 'Employer Coordination & Job Documentation',
+    timeline: '1-3 weeks (employer-sponsored visas only)',
+    body:
+      'For employer-sponsored visas, we work with your employer (or prospective employer) to properly document the position, ensure compliance with visa requirements, and prepare required employer attestations. For EAD applications, we skip to document collection.',
+    roles: [
+      { label: 'Your Role', text: 'Coordinate between us and your employer, provide employment details' },
+      { label: 'Our Role', text: 'Communicate directly with employer HR/legal, educate them on requirements, draft job descriptions, prepare Labor Condition Applications (LCAs) for H-1B' },
+    ],
+    groups: [
+      {
+        heading: 'H-1B Requirements',
+        items: [
+          'File Labor Condition Application (LCA) with Department of Labor',
+          'Attest to paying prevailing wage or actual wage (whichever is higher)',
+          'Post LCA notice at worksite',
+          'Maintain public access file',
+          'No strikes/lockouts affecting position',
+        ],
+      },
+      {
+        heading: 'L-1 Requirements',
+        items: [
+          'Prove qualifying relationship between US and foreign entities',
+          'Demonstrate employee worked abroad for 1 year in past 3 years',
+          'Establish position qualifies as managerial/executive (L-1A) or specialized knowledge (L-1B)',
+        ],
+      },
+      {
+        heading: 'O-1 Requirements',
+        items: [
+          'Less employer-dependent (can petition for yourself via agent)',
+          "Focus on individual's extraordinary achievements",
+          'No prevailing wage requirements',
+        ],
+      },
+      {
+        heading: 'TN Requirements',
+        items: [
+          'Job must fit one of 60+ designated professions listed in USMCA',
+          'Canadian/Mexican citizenship required',
+          'No LCA required but must meet profession-specific requirements',
+        ],
+      },
+    ],
+    note: 'We draft all employer letters, attestations, and supporting documents to maximize approval chances.',
+  },
+  {
+    number: '03',
+    title: 'Evidence Collection & Case Building',
+    timeline: '2-4 weeks depending on case complexity',
+    body:
+      'We gather all required documentation to prove you qualify for the work visa or employment authorization. Evidence requirements vary dramatically by category but always include proving your credentials, employer relationship, and visa-specific eligibility criteria.',
+    roles: [
+      { label: 'Your Role', text: 'Provide education credentials, employment history, evidence of qualifications' },
+      { label: 'Our Role', text: 'Request specific documents, review credentials for USCIS compliance, obtain expert evaluations, organize evidence persuasively' },
+    ],
+    groups: [
+      {
+        heading: 'For All Work Visas',
+        items: [
+          'Valid passport',
+          'Education credentials (diplomas, transcripts, certificates)',
+          'Resume/CV',
+          'Previous immigration documents (prior visas, I-94s, I-20s)',
+        ],
+      },
+      {
+        heading: 'For H-1B (Specialty Occupation)',
+        items: [
+          "Bachelor's degree (or equivalent) in specific specialty",
+          'Credential evaluation if foreign degree',
+          'Job description detailing specialty occupation duties',
+          "Evidence position requires bachelor's degree (labor surveys, industry standards)",
+          'LCA approval from Department of Labor',
+          'Employer support letter',
+        ],
+      },
+      {
+        heading: 'For L-1 (Intracompany Transferee)',
+        items: [
+          'Proof of qualifying organizational relationship (ownership documents, org charts)',
+          'Evidence of 1 year abroad in past 3 years (pay stubs, tax documents, contracts)',
+          'Detailed description of foreign and US positions',
+          'For L-1A: Evidence of managerial/executive duties',
+          'For L-1B: Evidence of specialized knowledge',
+        ],
+      },
+      {
+        heading: 'For O-1 (Extraordinary Ability)',
+        items: [
+          'Evidence of national or international acclaim',
+          'At least 3 types of evidence from 8 possible categories',
+          'Major awards (Nobel, Oscar, Olympic medals, etc.)',
+          'Membership in associations requiring outstanding achievement',
+          'Published material about you in major media',
+          'Judging the work of others in your field',
+          'Original scholarly, artistic, or business contributions',
+          'Authorship of scholarly articles',
+          'High salary relative to others in field',
+          'Employment in critical/essential capacity for distinguished organizations',
+          'Advisory opinions from unions/peer groups (required)',
+          'Itinerary of events or activities in US',
+        ],
+      },
+      {
+        heading: 'For TN (NAFTA/USMCA Professionals)',
+        items: [
+          'Proof of Canadian or Mexican citizenship',
+          'Evidence of profession listed in USMCA (60+ categories)',
+          'Credentials required for that specific profession',
+          'Job offer letter detailing duties and temporary nature',
+        ],
+      },
+      {
+        heading: 'For Employment Authorization Documents (EAD)',
+        items: [
+          'Evidence of underlying immigration benefit (I-485 receipt, asylum grant, TPS approval, etc.)',
+          'Current immigration status documents',
+          'Photos',
+          'Previous work permits (if renewal)',
+        ],
+      },
+    ],
+    note: 'Pro tip: We often begin evidence collection before formally filing to avoid delays later.',
+  },
+  {
+    number: '04',
+    title: 'Petition/Application Filing',
+    timeline: 'Filed within 1-2 weeks after all documents collected',
+    body:
+      'We prepare and file the appropriate petition/application with USCIS, Department of State, or (for TN) at port of entry or consulate. Filing method varies by visa type.',
+    roles: [
+      { label: 'Your Role', text: 'Review and sign forms, pay government fees' },
+      { label: 'Our Role', text: 'Complete all forms perfectly, organize evidence packages, draft supporting legal briefs when beneficial, file via optimal method' },
+    ],
+    groups: [
+      {
+        heading: 'H-1B (lottery required for new cap-subject petitions)',
+        items: [
+          'Initial registration in March (lottery)',
+          'If selected, file I-129 petition with USCIS',
+          'Premium processing available ($2,805 for 15-day decision)',
+          'Can file up to 6 months before start date (October 1)',
+        ],
+      },
+      {
+        heading: 'L-1',
+        items: [
+          'File I-129 with USCIS',
+          'Can use Blanket L petition if company qualifies (faster)',
+          'Premium processing available',
+          'Can file from abroad at consulate (for new employees)',
+        ],
+      },
+      {
+        heading: 'O-1',
+        items: [
+          'File I-129 with USCIS',
+          'Must include advisory opinion from peer group',
+          'Premium processing available',
+          'Requires US agent or employer as petitioner',
+        ],
+      },
+      {
+        heading: 'TN',
+        items: [
+          'Can apply directly at US port of entry (Canadians only)',
+          'Or file I-129 with USCIS',
+          'Or apply at US consulate in Mexico',
+          'No premium processing but generally fast',
+        ],
+      },
+      {
+        heading: 'EAD (all categories)',
+        items: [
+          'File I-765 with USCIS',
+          'Filed alone or concurrently with underlying application (I-485, I-589, etc.)',
+          'Processing time: 3-6 months typically',
+          'Automatic extensions for certain renewals',
+        ],
+      },
+    ],
+    note: 'We choose the filing method that provides fastest approval while maintaining strongest legal position.',
+  },
+  {
+    number: '05',
+    title: 'USCIS Processing & RFE Response (if needed)',
+    timeline: 'Varies dramatically by visa type and processing method',
+    body:
+      'USCIS reviews the petition. They may approve, deny, or issue a Request for Evidence (RFE) asking for additional information. RFEs are common for H-1B and O-1; less common for L-1 and TN.',
+    roles: [
+      { label: 'Your Role', text: 'Respond quickly if we need additional documents' },
+      { label: 'Our Role', text: 'Monitor case status, respond comprehensively to RFEs, communicate with USCIS when appropriate' },
+    ],
+    groups: [
+      {
+        heading: 'Typical processing times',
+        items: [
+          'H-1B: 2-6 months (or 15 days with premium processing)',
+          'L-1: 2-4 months (or 15 days with premium processing)',
+          'O-1: 2-4 months (or 15 days with premium processing)',
+          'TN: Same day (at port of entry) or 2-4 months (USCIS filing)',
+          'EAD: 3-6 months (longer during high-volume periods)',
+        ],
+      },
+      {
+        heading: 'Common RFE topics',
+        items: [
+          "H-1B: Position doesn't require bachelor's degree, salary too low, employer legitimacy questions",
+          'O-1: Insufficient evidence of extraordinary ability, weak advisory opinions',
+          'L-1: Insufficient evidence of specialized knowledge, questionable organizational relationship',
+          'EAD: Missing underlying application documents, status questions',
+        ],
+      },
+    ],
+    note: 'Our RFE response approval rate is 94%. We respond strategically with comprehensive evidence and persuasive legal arguments.',
+  },
+  {
+    number: '06',
+    title: 'Visa Stamping at US Consulate (if outside US)',
+    timeline: '2-6 weeks from petition approval to consulate interview',
+    body:
+      "If you're outside the US when your petition is approved, you must attend a visa interview at a US consulate to receive the physical visa stamp in your passport. If you're in the US, you can usually begin working as soon as USCIS approves (no consulate visit needed).",
+    roles: [
+      { label: 'Your Role', text: 'Attend consulate interview with all required documents' },
+      { label: 'Our Role', text: 'Prepare you thoroughly for interview, provide document checklist, coordinate with consulate when needed' },
+    ],
+    groups: [
+      {
+        heading: 'Consulate interview process',
+        items: [
+          'Schedule interview appointment (can take weeks depending on location)',
+          'Attend biometrics appointment if required',
+          'Interview with consular officer (typically 5-15 minutes)',
+          'Officer reviews petition approval, asks questions about job and background',
+          'Most cases approved same day or within few days',
+          'Visa stamp placed in passport',
+          'Travel to US and begin work',
+        ],
+      },
+      {
+        heading: 'Interview preparation we provide',
+        items: [
+          'Comprehensive document checklist',
+          'Sample questions and recommended answers',
+          'Review of petition to ensure consistency',
+          'Country-specific consulate procedures',
+          'What to do if placed in "administrative processing" (security clearance delays)',
+        ],
+      },
+      {
+        heading: 'Special case — TN visa at border',
+        items: [
+          'Canadians can apply directly at port of entry',
+          'Bring all documents (job offer, credentials, application letter)',
+          'CBP officer adjudicates on the spot',
+          'Usually approved same day',
+        ],
+      },
+    ],
+  },
+  {
+    number: '07',
+    title: 'Arrival in US & Work Authorization Begins',
+    timeline: 'Immediate upon entry to US (nonimmigrant visas) or upon EAD card receipt',
+    body:
+      "You enter the US with your visa (or already in US with approved change of status) and can begin working. For EAD, work authorization begins on the date printed on your card.",
+    roles: [
+      { label: 'Your Role', text: "Provide work authorization documents to employer's HR, maintain valid status" },
+      { label: 'Our Role', text: 'Explain work authorization limits, monitor visa expiration, plan for extensions/renewals' },
+    ],
+    groups: [
+      {
+        heading: 'H-1B',
+        items: [
+          'Can work ONLY for petitioning employer (and any approved concurrent employers)',
+          'Can work up to 240 days beyond visa expiration if extension filed timely',
+          'Initial period: Up to 3 years, extendable to 6 years total (longer if green card in process)',
+        ],
+      },
+      {
+        heading: 'L-1',
+        items: [
+          'Can work ONLY for petitioning employer',
+          'L-1A: Up to 7 years total',
+          'L-1B: Up to 5 years total',
+        ],
+      },
+      {
+        heading: 'O-1',
+        items: [
+          'Can work ONLY for petitioning employer/agent',
+          'Initial period: Up to 3 years, extendable indefinitely in 1-year increments',
+        ],
+      },
+      {
+        heading: 'TN',
+        items: [
+          'Can work ONLY for petitioning employer',
+          'Initial period: Up to 3 years, extendable indefinitely in 3-year increments',
+        ],
+      },
+      {
+        heading: 'EAD (all categories)',
+        items: [
+          'Can work for ANY employer',
+          'Can change jobs freely',
+          'Can work multiple jobs',
+          'Can be self-employed',
+          'Valid for period printed on card (typically 1-2 years)',
+        ],
+      },
+    ],
+  },
+  {
+    number: '08',
+    title: 'Extensions, Transfers & Green Card Planning',
+    timeline: 'Ongoing throughout your work authorization period',
+    body:
+      'We monitor your visa expiration, file extensions 6+ months before expiration, handle employer changes if needed, and most importantly — we develop your green card strategy because most work visas are temporary.',
+    roles: [
+      { label: 'Your Role', text: 'Notify us of any job changes, address changes, or travel plans' },
+      { label: 'Our Role', text: 'Proactive extension filing, portability analysis, green card pathway development' },
+    ],
+    groups: [
+      {
+        heading: 'Extension timing',
+        items: [
+          'We file extensions 6-8 months before expiration',
+          'Most work visas allow you to continue working while extension is pending',
+          'Premium processing available for faster decisions',
+        ],
+      },
+      {
+        heading: 'Changing employers (portability)',
+        items: [
+          'H-1B: New employer must file new H-1B petition; can start working once filed if certain conditions met (AC21 portability)',
+          'L-1: Cannot transfer; new employer needs different visa type',
+          'O-1: New employer/agent must file new O-1 petition',
+          'TN: New employer requires new TN application',
+          'EAD: No restrictions; can change employers freely',
+        ],
+      },
+      {
+        heading: 'Green card pathway analysis',
+        items: [
+          'Most work visa holders pursue employment-based green cards',
+          'We evaluate: EB-1 (extraordinary ability/multinational executives), EB-2 (advanced degree/NIW), EB-3 (skilled workers)',
+          'Critical: Start green card process while in valid work visa status to maintain legal status during long processing times',
+        ],
+      },
+    ],
+    note: 'Important Note About Timing: Work visa processing times fluctuate based on USCIS workload, visa category, and whether premium processing is used. We provide updated timeline estimates during your consultation. Starting early is critical — many work visas have annual caps (H-1B) or require months of preparation (O-1).',
+  },
+];
+
+const successStories = [
+  {
+    name: 'Priya',
+    visa: 'H-1B specialty occupation (software engineer)',
+    quote: 'They got my H-1B approved during the most competitive year. Now I\'m on track for my green card.',
+    category: 'Technology / Software',
+  },
+  {
+    name: 'Carlos',
+    visa: 'L-1A manager transfer from Mexico operations',
+    quote: 'The branch was new. Other lawyers said it was too risky. They made it work.',
+    category: 'Business / Management',
+  },
+  {
+    name: 'Yuki',
+    visa: 'O-1B extraordinary ability in arts',
+    quote: 'I never thought my gallery exhibitions and awards would qualify me. They showed me I had O-1 evidence all along.',
+    category: 'Arts / Entertainment',
+  },
+  {
+    name: 'Maria Elena',
+    visa: 'I-765 EAD based on pending I-485 adjustment',
+    quote: 'I got my work permit in 3 months. Now I can support my family while we wait.',
+    category: 'Family-based green card applicant',
+  },
+  {
+    name: 'Dr. Ahmed',
+    visa: 'TN visa for Canadian physician',
+    quote: 'They prepared everything perfectly. I got my TN visa at the border and started work the next day.',
+    category: 'Healthcare',
+  },
+  {
+    name: 'Jean-Baptiste Family',
+    visa: 'TPS-based EAD → eventual adjustment to LPR',
+    quote: "They didn't just get us work permits. They planned our whole path to green cards.",
+    category: 'Humanitarian to permanent residence pathway',
+  },
+];
+
+const obstaclesIntro =
+  "Work visa denials, RFEs, employer issues, and timing complications affect thousands of applicants. We've seen every obstacle and know how to navigate them. Here are the most common challenges we help clients overcome successfully.";
+
+const challenges = [
+  {
+    number: '01',
+    title: 'H-1B Lottery (Cap Limitations)',
+    problem: {
+      lead:
+        'H-1B visas have an annual cap: 65,000 regular positions + 20,000 advanced degree positions = 85,000 total. Recent years have seen 400,000-780,000 registrations competing for these spots. That means selection rates of 10-25% — most applicants lose the lottery.',
+      items: [
+        'You can only apply once per year (registration in March, lottery results in March/April)',
+        'If not selected, you must wait an entire year to try again',
+        'Your employer must commit to sponsoring you despite lottery uncertainty',
+        'Students on OPT might run out of work authorization before getting selected',
+      ],
+    },
+    solution: {
+      lead: 'We maximize your lottery chances and provide backup strategies:',
+      items: [
+        "Advanced degree exemption: Master's or higher degree holders get TWO lottery chances (advanced degree pool first, then regular pool). We verify your credentials qualify for advanced degree category.",
+        'Cap-exempt H-1B positions (NO lottery): Universities and affiliated nonprofits, Nonprofit research organizations, Government research organizations. We help you identify cap-exempt employers in your field.',
+        'Multiple employer registrations: If you have job offers from multiple companies, each can register you (slightly improves odds). Must be legitimate separate positions.',
+        'Alternative visa strategies while waiting: O-1 (if you have extraordinary ability, O-1 has no cap or lottery), L-1 (if you\'ve worked abroad for related company for 1 year), TN (if you\'re Canadian or Mexican), E-2 (if you\'re from treaty country and can invest in business), OPT/STEM OPT extensions (for students: 24-36 months).',
+        "Start green card process: Pursue EB-2 NIW or EB-1 that don't require H-1B. Maintain status through alternative means while green card processes.",
+        'Perfect application if selected: If you win lottery, we ensure your H-1B petition is flawless. Our H-1B approval rate for lottery winners is 98%.',
+      ],
+    },
+    outcome: "The lottery is frustrating, but it's not your only option. We develop multi-year strategies that don't rely solely on H-1B.",
+  },
+  {
+    number: '02',
+    title: 'Specialty Occupation Evidence (H-1B Denials)',
+    problem: {
+      lead:
+        'USCIS has become increasingly strict about what qualifies as a "specialty occupation" requiring a bachelor\'s degree. They frequently issue RFEs or denials claiming:',
+      items: [
+        "Position doesn't require bachelor's degree",
+        'Duties are too general or administrative',
+        "Bachelor's degree requirement is uncommon in the industry",
+        'Employer cannot demonstrate need for degree-level professional',
+        'Common targeted positions: Computer programmers, Marketing specialists, Business analysts, Accountants (if not CPA), Project managers',
+      ],
+    },
+    solution: {
+      lead: 'We build specialty occupation cases that overcome USCIS skepticism:',
+      items: [
+        'Detailed, technical job descriptions: We draft job descriptions emphasizing complex, specialized duties. Focus on the "why" — why bachelor\'s degree is required. Include industry-specific technical language.',
+        'Expert opinion letters: University professors in relevant field, Industry experts, Former USCIS adjudicators who understand what convinces officers.',
+        'Labor market data: Occupational Outlook Handbook citations, Industry surveys showing degree requirements, Competitor job postings requiring degrees for same position.',
+        "Employer-specific justification: Why THIS employer needs degree-level professional, Complexity of employer's operations, Client/customer expectations.",
+        'Degree relevance demonstration: Show how your specific degree directly relates to job duties. Curriculum analysis connecting coursework to position requirements.',
+      ],
+    },
+    outcome: 'Our H-1B specialty occupation approval rate (including RFE responses) is 96%.',
+  },
+  {
+    number: '03',
+    title: 'Proving Extraordinary Ability (O-1 Cases)',
+    problem: {
+      lead:
+        'O-1 visas require proving you have "extraordinary ability" and "sustained national or international acclaim." Many talented professionals underestimate their achievements or don\'t know how to document them effectively. USCIS requires evidence from at least 3 of 8 categories:',
+      items: [
+        'Major internationally recognized awards',
+        'Membership in associations requiring outstanding achievement',
+        'Published material about you in major media',
+        'Judging the work of others',
+        'Original contributions of major significance',
+        'Scholarly articles authored by you',
+        'High salary relative to others',
+        'Critical/essential capacity for distinguished organizations',
+      ],
+    },
+    solution: {
+      lead: 'We identify evidence you already have and build compelling O-1 cases. We help you recognize qualifying evidence:',
+      items: [
+        'Awards: Industry awards, company recognitions, grants, fellowships, patents all can qualify — not just Nobel Prizes',
+        'Memberships: Professional associations with selective membership, honor societies, invite-only industry groups',
+        'Published material: Industry blogs, company newsletters, conference mentions, podcasts, interviews — not just New York Times',
+        'Judging: Grant reviewer, competition judge, peer reviewer, conference organizer, hiring committee',
+        'Original contributions: Patents, innovative techniques, industry standards you created, problems you solved',
+        'Authorship: Conference papers, technical documentation, whitepapers, case studies',
+        'High salary: Top 10-20% in your field (we provide salary surveys)',
+        'Critical role: Key employee for important project, unique skills, leadership position',
+      ],
+    },
+    outcome: 'Our O-1 approval rate is 91%. Most people are more qualified than they realize.',
+  },
+  {
+    number: '04',
+    title: 'Employer Issues (Sponsorship, Company Size, Legitimacy)',
+    problem: {
+      lead: 'Work visa approval depends heavily on employer credibility. USCIS scrutinizes:',
+      items: [
+        'Small companies/startups: Questioned ability to pay salary, company legitimacy',
+        'New branches: L-1 denied because US office is too new or small',
+        'Employer financial problems: Cannot prove ability to pay prevailing wage',
+        'Company structure: Unclear relationships between foreign and US entities',
+        "Employer unwillingness: Company doesn't want to sponsor work visa",
+      ],
+    },
+    solution: {
+      lead: 'We overcome employer-related complications strategically. For small companies/startups: emphasize company funding, investor backing, revenue projections; detailed business plans showing viability; tax returns, financial statements, contracts demonstrating legitimacy; explanation of why this specific employee is critical to growth.',
+      items: [
+        'For new L-1 branches: Demonstrate sufficient physical premises, evidence of business operations already occurring, proof of capital investment, contracts/purchase orders showing real business, detailed business plan for first year.',
+        "For financial concerns: Show employer's ability to pay through multiple sources — cash reserves, credit lines, investor commitments; historical payment of employees at required wage levels.",
+        'For L-1 organizational relationships: Detailed corporate structure documentation, ownership charts, stock certificates, board minutes, proof of qualifying relationship (parent, subsidiary, affiliate, branch).',
+        'For reluctant employers: Educate employers on benefits of sponsorship (retaining talent, competitive advantage), explain process is more streamlined than they think, offer to handle all legal work (minimal employer involvement), draft all required documents and attestations for their signature.',
+        'For self-employment/contractor situations: O-1 can use agent petitioner (you don\'t need traditional employer), E-2 allows you to sponsor yourself if you invest in business, EB-2 NIW allows self-petition for green card.',
+      ],
+    },
+    outcome:
+      "We've successfully obtained work visas for: Employees of 2-person startups, L-1 transfers to brand-new US branches, Workers at companies with tight finances, Self-employed consultants and freelancers.",
+  },
+  {
+    number: '05',
+    title: 'Timing & Authorization Gaps',
+    problem: {
+      lead: 'Gaps in work authorization can derail careers:',
+      items: [
+        'Student OPT expiring before H-1B October 1 start date',
+        'H-1B transfer delays while changing employers',
+        'EAD renewals taking months while current card expires',
+        'Visa expiration during green card processing',
+        'Employer delays in starting visa process',
+        'Consequences of gaps: Illegal employment (even one day can trigger 3-year bar), loss of income and benefits, potential deportation risk, damaged employer relationships',
+      ],
+    },
+    solution: {
+      lead: 'We plan meticulously to prevent authorization gaps:',
+      items: [
+        'OPT to H-1B transitions (Cap-Gap): Cap-gap extensions automatically extend F-1 and OPT through September 30 if H-1B filed. We ensure H-1B petition filed before OPT expires. If OPT expires before cap-gap, use STEM OPT extension (24 additional months for STEM graduates).',
+        'H-1B transfers (AC21 Portability): You can START new H-1B employment as soon as transfer petition is filed (if you\'re in valid H-1B status and petition is non-frivolous). We file transfer petitions immediately when you have new job offer. Include premium processing for 15-day certainty.',
+        'EAD renewals (timely filing): If you file renewal before current EAD expires, your work authorization automatically extends up to 180 days while renewal pending (for certain categories). We file renewals 120-150 days before expiration to trigger automatic extension. Expedite requests for urgent situations.',
+        'Visa expiration during green card (H-1B extensions beyond 6 years): H-1B can be extended beyond normal 6-year max if green card is in process. Extensions in 1 or 3-year increments based on green card stage. We track your green card case and file H-1B extensions with maximum available time.',
+        'Proactive planning: We monitor ALL your immigration dates in our system. Automated alerts 6 months before any expiration. Strategic filing calendars coordinating multiple applications.',
+        'Premium processing when critical: For time-sensitive cases, $2,805 premium processing provides 15-day decision. Removes uncertainty about timing.',
+      ],
+    },
+    outcome: 'We have a track record of ZERO clients experiencing work authorization gaps due to our planning.',
+  },
+  {
+    number: '06',
+    title: 'Changing Employers or Job Duties (Portability Issues)',
+    problem: {
+      lead:
+        'Most work visas tie you to a specific employer and specific job duties. Changing employers or significantly changing your role can require new visa petition, create gaps in authorization, risk denial if not handled properly, or trigger RFEs about visa misuse. Visa-specific portability rules:',
+      items: [
+        'H-1B: New petition required, but can port to new employer once filed',
+        'L-1: Cannot transfer to new employer (L-1 only valid with petitioning company)',
+        'O-1: New petition required for each new employer/agent',
+        'TN: New application required for new employer',
+        'EAD: Fully portable (can change employers freely)',
+      ],
+    },
+    solution: {
+      lead: 'We handle employer changes strategically to maintain status:',
+      items: [
+        'For H-1B holders: AC21 Portability — if you have H-1B status and your I-140 green card petition has been pending 180+ days (or approved), you can change to "same or similar" job without new H-1B. Otherwise, new employer files new H-1B petition; you can start work once filed. We prepare new LCA and petition immediately upon job offer. Premium processing ensures fast approval.',
+        'For L-1 holders: Cannot transfer L-1 to new employer. Options: (a) new employer files H-1B, O-1, or green card, or (b) if green card in process, use EAD. We plan L-1 to green card transition before L-1 expires.',
+        'For O-1 holders: New employer or agent files new O-1 petition. Can include multiple employers in single O-1 if using agent petitioner. We coordinate new petition while current O-1 valid.',
+        'For job duty changes within same employer: H-1B — material changes require amended petition. L-1 — significant changes in duties may require new petition. We analyze whether changes are "material" and require amendment.',
+        'For EAD holders: Complete freedom to change employers. No notice required to USCIS. Can work for multiple employers simultaneously. Can be self-employed.',
+      ],
+    },
+    outcome: "Work visa complications can derail careers — but they're almost never insurmountable. We've solved these exact problems hundreds of times.",
+  },
+];
+
+const pricingTiers = [
+  {
+    name: 'H-1B Specialty Occupation (New Petition)',
+    price: '$3,500 – $5,000',
+    priceNote: 'attorney fee',
+    included: [
+      'Comprehensive eligibility assessment',
+      'Employer coordination and education',
+      'Labor Condition Application (LCA) preparation and filing',
+      'Form I-129 (Petition for Nonimmigrant Worker) preparation',
+      'Detailed job description and specialty occupation evidence',
+      'Credential evaluation if needed',
+      'Support letter drafting',
+      'Response to one Request for Evidence (RFE) if issued',
+      'Consulate interview preparation (if outside US)',
+      'Case monitoring through approval',
+    ],
+    excluded: [
+      'Government filing fee ($780 H-1B petition + $500 fraud prevention fee + $4,000 Public Law 114-113 fee if applicable)',
+      'Premium processing ($2,805 if desired)',
+      'Credential evaluation fees ($100-300)',
+      'Visa stamp fee at consulate ($205)',
+    ],
+    timeline: '4-8 weeks preparation + 2-6 months USCIS processing (or 15 days with premium)',
+  },
+  {
+    name: 'H-1B Extension or Transfer',
+    price: '$2,500 – $3,500',
+    priceNote: 'attorney fee',
+    included: [
+      'Everything in Initial Package',
+      'Analysis of AC21 portability options if applicable',
+      'Extension beyond 6-year maximum if green card in process',
+      'Updated LCA and supporting documentation',
+    ],
+    excluded: [
+      'Government filing fee ($780 H-1B petition + $500 fraud prevention fee + $4,000 Public Law 114-113 fee if applicable)',
+      'Premium processing ($2,805 if desired)',
+      'Credential evaluation fees ($100-300)',
+      'Visa stamp fee at consulate ($205)',
+    ],
+    timeline: '2-4 weeks preparation + 2-6 months USCIS processing (or 15 days with premium)',
+  },
+  {
+    name: 'L-1 Intracompany Transfer (L-1A or L-1B)',
+    price: '$4,500 – $7,000',
+    priceNote: 'attorney fee',
+    included: [
+      'Eligibility analysis (1-year foreign employment requirement)',
+      'Organizational relationship documentation',
+      'Detailed job description (managerial/executive or specialized knowledge)',
+      'Evidence of qualifying employment abroad',
+      'Form I-129 preparation and filing',
+      'Supporting legal brief',
+      'New office L-1 additional documentation if applicable',
+      'RFE response if needed',
+      'Interview preparation',
+    ],
+    excluded: [
+      'Government fees ($1,385 L-1 petition + $500 fraud prevention fee if applicable)',
+      'Premium processing ($2,805 if desired)',
+      'Visa stamp fee ($205)',
+    ],
+    timeline: '4-6 weeks preparation + 2-4 months processing (or 15 days with premium)',
+    note: 'Special: New office L-1 cases (US office less than 1 year old) require more evidence and have higher attorney fees ($6,000-$8,000).',
+  },
+  {
+    name: 'O-1 Extraordinary Ability',
+    price: '$6,000 – $10,000',
+    priceNote: 'attorney fee',
+    included: [
+      'Comprehensive achievement analysis',
+      'Evidence strategy across 8 statutory criteria',
+      'Coordination with 5-10 expert recommenders',
+      'Advisory opinion request preparation (required)',
+      'Detailed CV and achievement compilation',
+      'Form I-129 preparation with extensive supporting evidence',
+      'Legal brief arguing extraordinary ability',
+      'RFE response if needed (common for O-1)',
+      'Interview preparation',
+    ],
+    excluded: [
+      'Government fee ($1,055 O-1 petition)',
+      'Premium processing ($2,805 if desired)',
+      'Expert recommendation letter fees (experts may charge $500-$2,000 each)',
+      'Visa stamp fee ($205)',
+      'Professional documentation reproduction costs',
+    ],
+    timeline: '6-10 weeks preparation (evidence gathering intensive) + 2-4 months processing (or 15 days with premium)',
+  },
+  {
+    name: 'TN Visa (NAFTA/USMCA Professionals)',
+    price: '$1,500 – $3,500',
+    priceNote: 'attorney fee (port of entry vs USCIS filing)',
+    included: [
+      'Profession qualification analysis (60+ designated categories)',
+      'Credential verification',
+      'Job offer letter review/drafting',
+      'Supporting documentation package',
+      'Application letter and instructions for port of entry application (Canadians)',
+      'Form I-129 preparation if filing with USCIS',
+      'Interview preparation for consulate (Mexicans) or port of entry (Canadians)',
+    ],
+    excluded: [
+      'Government fee ($50 TN at port of entry; $460 if filing I-129 with USCIS)',
+      'Credential evaluation ($100-300 if needed)',
+    ],
+    timeline: '1-2 weeks preparation + same day approval (port of entry) or 2-4 months (USCIS)',
+  },
+  {
+    name: 'Employment Authorization Document (EAD)',
+    price: '$1,200 – $2,000',
+    priceNote: 'attorney fee',
+    included: [
+      'Eligibility verification',
+      'Form I-765 preparation and filing',
+      'Supporting documentation based on category',
+      'Renewal timing strategy',
+      'Expedite request if urgent circumstances',
+      'Case monitoring',
+    ],
+    excluded: [
+      'Government fee ($410-$555 depending on category; some categories have no fee)',
+      'Biometrics fee ($85 if not included)',
+    ],
+    timeline: '3-6 months (longer during high-volume periods)',
+  },
+  {
+    name: 'E-2 Treaty Investor Visa',
+    price: '$7,000 – $12,000',
+    priceNote: 'attorney fee',
+    included: [
+      'Investment amount analysis (typically $100,000-$200,000 minimum)',
+      'Business plan development coordination',
+      'Proof of investment source and transfer',
+      'Business structure documentation (US company formation)',
+      'Form DS-160 and E-2 application preparation',
+      'Supporting evidence package',
+      'Consulate interview preparation',
+      'Employee E-2 visa support if needed',
+    ],
+    excluded: [
+      'Government consulate fees ($315)',
+      'Business plan professional preparation ($2,000-$5,000 if using external consultant)',
+      'Corporate formation costs ($500-$2,000)',
+      'Actual investment capital (your funds)',
+    ],
+    timeline: '8-12 weeks preparation + 2-4 months consulate processing',
+  },
+];
+
+const addOnServices = [
+  { name: 'Premium Processing (I-129 petitions)', price: '$2,805 government fee', body: '15-calendar-day processing for H-1B, L-1, O-1, some other visa types' },
+  { name: 'RFE Response (additional beyond first)', price: '$1,500 – $3,000', body: 'Comprehensive response to additional evidence requests' },
+  { name: 'Visa Stamp Consulate Support', price: '$800', body: 'Interview preparation and documentation review beyond basic consultation' },
+  { name: 'Credential Evaluation', price: '$100 – $300', body: 'Foreign degree equivalency evaluation for US standards' },
+  { name: 'Expert Recommendation Letters (O-1)', price: '$500 – $2,000 per expert', body: 'Paid directly to experts; some provide letters free' },
+  { name: 'Employment Verification Letter Drafting', price: '$300', body: 'Detailed support letters for employers' },
+  { name: 'AC21 Portability Analysis', price: '$500', body: 'Detailed analysis of whether you can change jobs under AC21 provisions' },
+  { name: 'Multiple Employer H-1B (Concurrent)', price: '$2,500 per additional employer', body: 'Additional H-1B petition for second employer while maintaining first' },
+];
+
+const paymentOptions = [
+  'Payment Plans Available — 2 to 4 installments over 60–90 days',
+  'Major Credit Cards — Visa, Mastercard, Amex, Discover',
+  'Zelle & Wire Transfer — Fast, convenient payment',
+  'Secure Online Portal — Pay from your phone anytime',
+];
+
+const guarantee =
+  "If your work visa is denied due to our error or negligence (not due to ineligibility we disclosed upfront or information you failed to provide), we'll file a motion to reopen or reconsider at no additional attorney fee.";
+
+const resources = [
+  {
+    title: 'Work Visa Pathfinder Tool',
+    body: 'Discover which work visas match your qualifications: your eligible categories (H-1B, L-1, O-1, TN, EAD, etc.), estimated processing timelines and costs, employer sponsorship requirements, green card pathway potential, and a personalized action plan.',
+    button: 'Find My Work Visa Path',
+    Icon: Sparkles,
+  },
+  {
+    title: 'H-1B Lottery Survival Guide',
+    body: 'Maximize your odds, understand the process, explore alternatives.',
+    button: 'Download PDF',
+    Icon: ShieldCheck,
+  },
+  {
+    title: 'Work Visa Types Explained',
+    body: '15-minute videos on H-1B, L-1, O-1, TN, and EAD pathways.',
+    button: 'Watch Series',
+    Icon: Lightbulb,
+  },
+  {
+    title: 'H-1B Sponsorship Database',
+    body: 'Search 50,000+ companies by sponsorship history and industry.',
+    button: 'Search Database',
+    Icon: BadgeCheck,
+  },
+  {
+    title: 'O-1 Extraordinary Ability Self-Assessment',
+    body: 'Do you qualify? Evidence checklist and qualification guide.',
+    button: 'Download Guide',
+    Icon: CheckCircle2,
+  },
+  {
+    title: 'Interview Prep: Discussing Visa Sponsorship',
+    body: 'What to say (and not say) when asking employers about sponsorship.',
+    button: 'Watch Video',
+    Icon: Wallet,
+  },
+  {
+    title: 'Work Authorization Calendar & Deadline Tracker',
+    body: 'Never miss extension deadlines, track your visa timeline.',
+    button: 'Access Tracker',
+    Icon: Clock,
+  },
+];
+---
+
+<BaseLayout
+  title={`Work Visas & Employment Authorization | ${brand.firmName}`}
+  description={`H-1B, L-1, O-1, TN, EAD and more — employment-based immigration representation by ${brand.attorneyName}. Strategic work visa planning for professionals and employers.`}
+>
+  <section class="page-hero section-dark work-hero">
+    <div class="container work-hero-content">
+      <span class="work-hero-eyebrow">{hero.eyebrow}</span>
+      <h1 class="work-hero-headline">
+        {hero.title.pre}{' '}
+        <span class="work-hero-accent">{hero.title.accent}</span>{' '}
+        {hero.title.post}
+      </h1>
+      <p class="work-hero-lede">{hero.intro}</p>
+      <div class="work-hero-actions">
+        {hero.actions.map((action) => (
+          action.kind === 'whatsapp' ? (
+            <a class="btn btn-work-whatsapp" href={action.href} target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                <path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.8-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.3-.6-.4Zm-5.4 7.5h-.1c-1.8 0-3.6-.5-5.1-1.4l-.4-.2-3.8 1 1-3.7-.2-.4c-1-1.6-1.5-3.4-1.5-5.3 0-5.5 4.5-10 10-10 2.7 0 5.2 1 7 2.9 1.9 1.9 2.9 4.4 2.9 7.1 0 5.5-4.5 10-10 10Zm8.5-18.5C18.3 1 15.3 0 12.1 0 5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6.1L0 24l5.9-1.5c1.8 1 3.9 1.5 6.1 1.5h.1c6.6 0 12-5.4 12-12 0-3.2-1.3-6.2-3.5-8.5Z"/>
+              </svg>
+              <span>{action.label}</span>
+            </a>
+          ) : (
+            <a class="btn btn-work-light" href={action.href}>
+              <CalendarCheck size={16} stroke-width={2} />
+              <span>{action.label}</span>
+            </a>
+          )
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft watermark-section">
+    <div class="container body-grid">
+      <article class="body-article">
+        <p class="eyebrow">Practice Area</p>
+        <h2>Work Authorization In The U.S.</h2>
+        {bodyParagraphs.map((p) => <p>{p}</p>)}
+      </article>
+      <aside class="key-points">
+        <h3>Key Points</h3>
+        <ul>
+          {keyPoints.map((point) => (
+            <li>
+              <CheckCircle2 size={18} stroke-width={2} />
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+        <a class="key-points-cta" href={brand.whatsappHref} target="_blank" rel="noopener">
+          Ask About Your Work Visa Options
+          <ArrowRight size={14} stroke-width={2} />
+        </a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section path-section">
+    <div class="container path-head">
+      <span class="hero-eyebrow"><Sparkles size={16} stroke-width={1.8} />Strategic And Streamlined<Sparkles size={16} stroke-width={1.8} /></span>
+      <h2>Your Path To Work Authorization</h2>
+      <p>Eight purposeful stages — from strategy session to green-card planning — designed to maximize approval odds and prevent authorization gaps.</p>
+    </div>
+    <div class="container path-list">
+      {pathSteps.map((step, index) => (
+        <details class="path-step" name="path-steps" open={index === 0}>
+          <summary>
+            <span class="path-number">{step.number}</span>
+            <span class="path-title">{step.title}</span>
+            <span class="path-icon" aria-hidden="true"><Plus size={20} stroke-width={1.8} /></span>
+          </summary>
+          <div class="path-body">
+            <p class="path-lead">{step.body}</p>
+            <div class="path-roles">
+              {step.roles.map((role) => (
+                <div class="path-role">
+                  <strong>{role.label}</strong>
+                  <span>{role.text}</span>
+                </div>
+              ))}
+            </div>
+            {step.groups && step.groups.map((group) => (
+              <div class="path-group">
+                <h4>{group.heading}</h4>
+                <ul>
+                  {group.items.map((item) => <li>{item}</li>)}
+                </ul>
+              </div>
+            ))}
+            {step.note && <p class="path-note">{step.note}</p>}
+            <p class="path-timeline"><Clock size={14} stroke-width={2} /> <em>Timeline: {step.timeline}</em></p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="section section-soft watermark-section stories-section">
+    <div class="container stories-head">
+      <span class="hero-eyebrow"><BadgeCheck size={16} stroke-width={1.8} />Real Success Stories<BadgeCheck size={16} stroke-width={1.8} /></span>
+      <h2>Legal Work, Real Lawyers, Real Success Stories</h2>
+      <p>Six clients who turned uncertain work authorization into careers, families, and futures in the United States.</p>
+    </div>
+    <div class="container stories-grid">
+      {successStories.map((story) => (
+        <article class="story-card">
+          <div class="story-tag">{story.category}</div>
+          <h3>{story.name}</h3>
+          <p class="story-visa">{story.visa}</p>
+          <p class="story-quote">&ldquo;{story.quote}&rdquo;</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section challenges-section">
+    <div class="container challenges-head">
+      <span class="hero-eyebrow"><ShieldCheck size={16} stroke-width={1.8} />Obstacles We Overcome<ShieldCheck size={16} stroke-width={1.8} /></span>
+      <h2>Work Visa Obstacles We Help You Overcome</h2>
+      <p>{obstaclesIntro}</p>
+    </div>
+    <div class="container challenges-list">
+      {challenges.map((challenge) => (
+        <article class="challenge-card">
+          <header>
+            <span class="challenge-number">Challenge {challenge.number}</span>
+            <h3>{challenge.title}</h3>
+          </header>
+          <div class="challenge-grid">
+            <div class="challenge-block">
+              <h4>The Problem</h4>
+              <p>{challenge.problem.lead}</p>
+              <ul>
+                {challenge.problem.items.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+            <div class="challenge-block">
+              <h4>Our Solution</h4>
+              <p>{challenge.solution.lead}</p>
+              <ul>
+                {challenge.solution.items.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+          </div>
+          <div class="challenge-outcome">
+            <strong>Outcome:</strong> {challenge.outcome}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section section-soft watermark-section pricing-section">
+    <div class="container pricing-head">
+      <span class="hero-eyebrow"><Wallet size={16} stroke-width={1.8} />Transparent Pricing<Wallet size={16} stroke-width={1.8} /></span>
+      <h2>Work Visa Cost &amp; Pricing Guide</h2>
+      <p>Flat-fee attorney rates by visa category. Government filing fees, premium processing, and third-party costs are listed separately so you know exactly what to budget.</p>
+    </div>
+    <div class="container pricing-grid">
+      {pricingTiers.map((tier) => (
+        <article class="pricing-card">
+          <header>
+            <h3>{tier.name}</h3>
+            <div class="pricing-price">
+              <span class="pricing-amount">{tier.price}</span>
+              <span class="pricing-note">{tier.priceNote}</span>
+            </div>
+          </header>
+          <div class="pricing-section-block">
+            <h4>What's Included</h4>
+            <ul class="check-list">
+              {tier.included.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+          <div class="pricing-section-block">
+            <h4>Not Included</h4>
+            <ul class="muted-list">
+              {tier.excluded.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+          <p class="pricing-timeline"><Clock size={14} stroke-width={2} /> {tier.timeline}</p>
+          {tier.note && <p class="pricing-note-block">{tier.note}</p>}
+        </article>
+      ))}
+    </div>
+
+    <div class="container addons-block">
+      <h3>Add-On Services</h3>
+      <div class="addons-grid">
+        {addOnServices.map((addon) => (
+          <article class="addon-card">
+            <h4>{addon.name}</h4>
+            <span class="addon-price">{addon.price}</span>
+            <p>{addon.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <div class="container payment-block">
+      <div class="payment-card">
+        <h3>Payment Options</h3>
+        <ul>
+          {paymentOptions.map((option) => (
+            <li>
+              <CheckCircle2 size={16} stroke-width={2} />
+              <span>{option}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="payment-card payment-card--guarantee">
+        <h3>Our Guarantee</h3>
+        <p>{guarantee}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section resources-section">
+    <div class="container resources-head">
+      <span class="hero-eyebrow"><Lightbulb size={16} stroke-width={1.8} />Career Tools<Lightbulb size={16} stroke-width={1.8} /></span>
+      <h2>Free Work Visa Resources &amp; Career Tools</h2>
+      <p>Plan smarter with these free tools — but personalized legal strategy is still what protects your career. Don't leave your work authorization to chance.</p>
+    </div>
+    <div class="container resources-grid">
+      {resources.map((resource) => {
+        const Icon = resource.Icon;
+        return (
+          <article class="resource-card">
+            <div class="resource-icon"><Icon size={26} stroke-width={1.6} /></div>
+            <h3>{resource.title}</h3>
+            <p>{resource.body}</p>
+            <a class="resource-btn" href="/book-now/">
+              {resource.button}
+              <ArrowRight size={14} stroke-width={2} />
+            </a>
+          </article>
+        );
+      })}
+    </div>
+    <div class="container resources-cta">
+      <a class="btn btn-work-whatsapp" href={brand.whatsappHref} target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+          <path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.8-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.3-.6-.4Zm-5.4 7.5h-.1c-1.8 0-3.6-.5-5.1-1.4l-.4-.2-3.8 1 1-3.7-.2-.4c-1-1.6-1.5-3.4-1.5-5.3 0-5.5 4.5-10 10-10 2.7 0 5.2 1 7 2.9 1.9 1.9 2.9 4.4 2.9 7.1 0 5.5-4.5 10-10 10Zm8.5-18.5C18.3 1 15.3 0 12.1 0 5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6.1L0 24l5.9-1.5c1.8 1 3.9 1.5 6.1 1.5h.1c6.6 0 12-5.4 12-12 0-3.2-1.3-6.2-3.5-8.5Z"/>
+        </svg>
+        <span>Get Your Work Visa Strategy on WhatsApp</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section wv-profile-section">
+    <div class="container">
+      <div class="wv-profile-card">
+        <div class="wv-profile-top">
+          <div class="wv-profile-title-group">
+            <h2 class="wv-profile-title">Work Visas &amp; Employment Authorization</h2>
+            <p class="wv-profile-subtitle">Pierre legal assistance for professionals and employers</p>
+          </div>
+          <div class="wv-profile-rating" aria-label="4.8 out of 5 stars">
+            <div class="wv-profile-stars">
+              {Array.from({ length: 5 }, (_, i) => (
+                <Star size={17} fill={i < 5 ? 'currentColor' : 'none'} stroke-width={0} />
+              ))}
+            </div>
+            <span class="wv-profile-score">4.8</span>
+          </div>
+        </div>
+
+        <div class="wv-profile-badges">
+          {['H-1B', 'L-1', 'O-1', 'TN Visa', 'EAD', 'EB 1/2/3'].map((badge) => (
+            <span class="wv-badge">{badge}</span>
+          ))}
+        </div>
+
+        <p class="wv-profile-desc">
+          Attorney Calvin Pierre specializes in helping immigrants navigate the complex US
+          employment-based immigration system. From H-1B filings to extraordinary ability O-1 visas,
+          we ensure your career in the US starts on the right legal footing — and stays protected
+          every step of the way.
+        </p>
+
+        <div class="wv-profile-footer">
+          <div class="wv-profile-price">
+            <span class="wv-footer-label">Attorney Fee Range</span>
+            <span class="wv-price-value">$1,500 &ndash; $10,000</span>
+          </div>
+          <div class="wv-profile-langs">
+            <Globe size={15} stroke-width={2} />
+            <span class="wv-footer-label">Languages:</span>
+            <span>English</span>
+            <span class="wv-lang-sep">·</span>
+            <span>Español</span>
+            <span class="wv-lang-sep">·</span>
+            <span>Kreyòl</span>
+            <span class="wv-lang-sep">·</span>
+            <span>Français</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wv-faq-section">
+    <div class="container wv-faq-inner">
+      <div class="wv-faq-head">
+        <span class="hero-eyebrow"><Scale size={16} stroke-width={1.8} />Employment Immigration<Scale size={16} stroke-width={1.8} /></span>
+        <h2>Employment Immigration: FAQ</h2>
+        <p>Plain-language answers to the questions we hear most from workers, employers, and international professionals.</p>
+      </div>
+      <div class="wv-faq-list">
+        {[
+          {
+            q: 'What is H-1B? What\'s the difference between work visas?',
+            a: 'Most work visas — H-1B, L-1, O-1, TN — are employer-specific, meaning you can only legally work for the sponsoring employer. The H-1B covers specialty occupations requiring a bachelor\'s degree or equivalent (technology, engineering, finance, healthcare). The L-1 is for employees transferring within the same international company. The O-1 is for individuals with extraordinary ability in their field. The TN is available only to Canadian and Mexican citizens under USMCA. EADs (Employment Authorization Documents) differ from all of these — they let you work for any employer, change jobs freely, and even be self-employed. The right visa depends on your education, employer relationship, nationality, and long-term goals. We identify your best pathway during a free consultation.',
+          },
+          {
+            q: 'How long does the process take?',
+            a: 'It varies significantly by visa type: TN visa for Canadians at a port of entry can be approved the same day. Premium Processing for H-1B, L-1, and O-1 costs $2,805 but guarantees a USCIS decision in 15 business days. Standard H-1B, L-1, and O-1 processing typically takes 3–6 months. EAD (work permit) processing runs 3–6 months, sometimes longer during high-volume periods. E-2 investor visa consular processing is 2–4 months. We always recommend starting the process as early as possible — especially for H-1B, which has a March registration deadline each year.',
+          },
+          {
+            q: 'What is the H-1B lottery and how does it work?',
+            a: 'The H-1B cap allows only 65,000 new H-1B visas per year, plus 20,000 for U.S. master\'s degree holders — 85,000 total. In recent years, between 400,000 and 780,000 people have registered, meaning selection rates of roughly 15–25%. USCIS runs a random lottery each March to select who may file. If you hold a U.S. master\'s degree or higher, you get two chances in the lottery (the advanced degree pool and the general cap pool). If not selected, you must wait a full year to try again. This is why we also develop backup strategies: cap-exempt H-1B positions (universities, nonprofits), O-1 for extraordinary ability, L-1 for intracompany transfers, or TN for Canadian and Mexican nationals. You should never rely only on the lottery.',
+          },
+          {
+            q: 'What happens if I want to change jobs while on a work visa?',
+            a: 'This depends on your visa type. H-1B holders can change employers through a process called AC21 portability — your new employer files a new H-1B petition and, once filed, you can start working for them (no need to wait for approval, as long as you were in valid H-1B status). If your I-140 green card petition has been approved or pending for 180+ days, you can even move to a "same or similar" job at a different company without a new H-1B. L-1 holders cannot transfer their L-1 to a new employer — the L-1 is tied to your specific company relationship. O-1 holders need a new petition from the new employer. TN holders need a new TN application for the new employer. EAD holders can change jobs freely with no USCIS filing required. Call us before making any move — a wrong step can create a gap in your work authorization.',
+          },
+          {
+            q: 'What if I leave the U.S. on a work visa?',
+            a: 'Travel on a work visa is generally permitted but requires careful planning. You must have a valid visa stamp in your passport to re-enter the U.S. (your I-797 approval notice is not a visa). If your visa stamp has expired, you\'ll need to attend a visa interview at a U.S. consulate abroad before returning. Some countries have faster consulate appointments than others — this is worth planning in advance. H-1B, L-1, and O-1 holders should also be aware that travel during a pending extension can create complications. Canadians on TN visas can simply re-apply at the border each time. We recommend confirming your travel plans with us before booking any international trip.',
+          },
+          {
+            q: 'Can my family come with me on a work visa?',
+            a: 'Yes, in most cases. H-1B holders can bring their spouse and unmarried children under 21 on H-4 dependent visas. H-4 spouses may be eligible for their own EAD work permit if the H-1B holder has an approved I-140 green card petition. L-1 holders\' spouses automatically receive work authorization (L-2 visa grants EAD). O-1 dependents (O-3) cannot work in the U.S. TN dependents (TD) cannot work either. E-2 spouses are eligible for work authorization. If your spouse wants to work, the visa category you choose can significantly affect their options — we factor this into our visa strategy.',
+          },
+          {
+            q: 'What if my work visa petition gets an RFE (Request for Evidence)?',
+            a: 'An RFE is not a denial — it is USCIS asking for additional documentation or clarification before making a decision. They are common for H-1B (specialty occupation questions), O-1 (extraordinary ability evidence), and L-1 (specialized knowledge). You typically have 87 days to respond. A comprehensive, well-argued RFE response can turn a likely denial into an approval. Our RFE response approval rate is 94%. The most important thing is not to rush or submit an incomplete response. We review every RFE carefully, identify the specific concern, gather targeted evidence, and submit a persuasive legal argument. If you receive an RFE from a prior attorney\'s case, we can take over and respond on your behalf.',
+          },
+        ].map((faq, index) => (
+          <details class="wv-faq-item" name="wv-faq" open={index === 0}>
+            <summary>
+              <span class="wv-faq-num">{String(index + 1).padStart(2, '0')}</span>
+              <span class="wv-faq-q">{faq.q}</span>
+              <span class="wv-faq-icon" aria-hidden="true">
+                <Plus size={20} stroke-width={1.75} />
+              </span>
+            </summary>
+            <div class="wv-faq-answer">
+              <p>{faq.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+      <div class="wv-faq-cta">
+        <p>Have a question not answered here?</p>
+        <a class="btn btn-work-whatsapp" href={brand.whatsappHref} target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.8-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.3-.6-.4Zm-5.4 7.5h-.1c-1.8 0-3.6-.5-5.1-1.4l-.4-.2-3.8 1 1-3.7-.2-.4c-1-1.6-1.5-3.4-1.5-5.3 0-5.5 4.5-10 10-10 2.7 0 5.2 1 7 2.9 1.9 1.9 2.9 4.4 2.9 7.1 0 5.5-4.5 10-10 10Zm8.5-18.5C18.3 1 15.3 0 12.1 0 5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6.1L0 24l5.9-1.5c1.8 1 3.9 1.5 6.1 1.5h.1c6.6 0 12-5.4 12-12 0-3.2-1.3-6.2-3.5-8.5Z"/>
+          </svg>
+          <span>Ask Us on WhatsApp — Free</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .work-hero-content {
+    display: grid;
+    gap: 22px;
+    justify-items: center;
+    max-width: 920px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .work-hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 18px;
+    color: var(--color-gold);
+    background: rgba(201, 171, 105, 0.1);
+    border: 1px solid rgba(201, 171, 105, 0.45);
+    border-radius: 6px;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+
+  .work-hero-headline {
+    margin: 0;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: clamp(2.2rem, 4.6vw, 3.9rem);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: 0;
+  }
+
+  .work-hero-accent {
+    color: var(--color-gold);
+  }
+
+  .work-hero-lede {
+    max-width: 720px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.78);
+    font-family: var(--font-sans);
+    font-size: 1.02rem;
+    font-weight: 500;
+    line-height: 1.72;
+  }
+
+  .work-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 10px;
+  }
+
+  .btn-work-whatsapp,
+  .btn-work-light {
+    gap: 10px;
+    min-height: 56px;
+    padding: 0 24px;
+    font-size: 0.78rem;
+  }
+
+  .btn-work-whatsapp {
+    color: #ffffff;
+    background: var(--color-whatsapp);
+  }
+
+  .btn-work-whatsapp:hover {
+    background: #1ebd5b;
+  }
+
+  .btn-work-light {
+    color: #0a1f44;
+    background: #ffffff;
+    border: 1px solid #ffffff;
+  }
+
+  .btn-work-light:hover {
+    color: #0a1f44;
+    background: var(--color-gold);
+    border-color: var(--color-gold);
+  }
+
+  .body-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 52px;
+    align-items: start;
+  }
+
+  .body-article {
+    display: grid;
+    gap: 16px;
+  }
+
+  .body-article .eyebrow {
+    color: var(--color-gold);
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+  }
+
+  .body-article h2 {
+    margin: 0 0 8px;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: clamp(1.9rem, 3vw, 2.7rem);
+    font-weight: 700;
+    line-height: 1.12;
+  }
+
+  .body-article p {
+    max-width: 760px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  .key-points {
+    display: grid;
+    gap: 18px;
+    align-content: start;
+    padding: 28px 26px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(201, 171, 105, 0.28);
+    border-left: 3px solid var(--color-gold);
+  }
+
+  .key-points h3 {
+    margin: 0;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 700;
+  }
+
+  .key-points ul {
+    display: grid;
+    gap: 12px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .key-points li {
+    display: grid;
+    grid-template-columns: 22px minmax(0, 1fr);
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  .key-points li svg {
+    margin-top: 3px;
+    color: var(--color-gold);
+  }
+
+  .key-points-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    align-self: start;
+    padding: 12px 16px;
+    background: var(--color-gold);
+    color: #0a1f44;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+
+  .key-points-cta:hover {
+    background: var(--color-gold-2);
+  }
+
+  @media (max-width: 980px) {
+    .body-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .path-section {
+    color: #ffffff;
+    background:
+      radial-gradient(circle at 80% 20%, rgba(201, 171, 105, 0.1), transparent 32%),
+      linear-gradient(180deg, #04102a 0%, #061227 100%);
+  }
+
+  .path-head,
+  .stories-head,
+  .challenges-head,
+  .pricing-head,
+  .resources-head {
+    display: grid;
+    gap: 16px;
+    justify-items: center;
+    max-width: 820px;
+    margin: 0 auto 48px;
+    text-align: center;
+  }
+
+  .path-head h2,
+  .stories-head h2,
+  .challenges-head h2,
+  .pricing-head h2,
+  .resources-head h2 {
+    margin: 0;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: clamp(1.95rem, 3.2vw, 2.9rem);
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  .path-head p,
+  .stories-head p,
+  .challenges-head p,
+  .pricing-head p,
+  .resources-head p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .path-list {
+    display: grid;
+    gap: 12px;
+  }
+
+  .path-step {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 220ms ease, border-color 220ms ease;
+  }
+
+  .path-step[open] {
+    background: linear-gradient(180deg, rgba(201, 171, 105, 0.12), rgba(255, 255, 255, 0.04));
+    border-color: rgba(201, 171, 105, 0.5);
+  }
+
+  .path-step summary {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 18px;
+    align-items: center;
+    padding: 22px 24px;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .path-step summary::-webkit-details-marker { display: none; }
+  .path-step summary::marker { content: ""; }
+
+  .path-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    height: 44px;
+    background: var(--color-gold);
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 0.92rem;
+  }
+
+  .path-title {
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .path-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
+    transition: transform 280ms cubic-bezier(0.34, 1.2, 0.5, 1), background 220ms ease;
+  }
+
+  .path-step[open] .path-icon {
+    transform: rotate(135deg);
+    background: var(--color-gold);
+    border-color: var(--color-gold);
+  }
+
+  .path-body {
+    display: grid;
+    gap: 18px;
+    padding: 0 24px 26px 84px;
+  }
+
+  .path-lead {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.98rem;
+    line-height: 1.74;
+  }
+
+  .path-roles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+  }
+
+  .path-role {
+    display: grid;
+    gap: 4px;
+    padding: 14px 16px;
+    background: rgba(0, 0, 0, 0.18);
+    border-left: 2px solid var(--color-gold);
+  }
+
+  .path-role strong {
+    color: var(--color-gold);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+  }
+
+  .path-role span {
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  .path-group {
+    display: grid;
+    gap: 8px;
+  }
+
+  .path-group h4 {
+    margin: 0;
+    color: #ffffff;
+    font-family: var(--font-sans);
+    font-size: 0.92rem;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+
+  .path-group ul {
+    display: grid;
+    gap: 6px;
+    padding: 0 0 0 18px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.74);
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+  .path-note {
+    margin: 0;
+    padding: 14px 16px;
+    background: rgba(201, 171, 105, 0.1);
+    border: 1px solid rgba(201, 171, 105, 0.3);
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+  .path-timeline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    color: var(--color-gold);
+    font-size: 0.85rem;
+  }
+
+  .path-timeline em { font-style: normal; }
+
+  @media (max-width: 640px) {
+    .path-body { padding-left: 24px; }
+  }
+
+  .stories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+  }
+
+  .story-card {
+    display: grid;
+    gap: 10px;
+    align-content: start;
+    padding: 26px 24px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 220ms ease, border-color 220ms ease, transform 220ms ease;
+  }
+
+  .story-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(201, 171, 105, 0.45);
+    transform: translateY(-3px);
+  }
+
+  .story-tag {
+    display: inline-block;
+    align-self: start;
+    padding: 5px 12px;
+    background: rgba(201, 171, 105, 0.14);
+    color: var(--color-gold);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+  }
+
+  .story-card h3 {
+    margin: 6px 0 0;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  .story-visa {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 0.86rem;
+    font-style: italic;
+  }
+
+  .story-quote {
+    margin: 8px 0 0;
+    color: rgba(255, 255, 255, 0.84);
+    font-size: 0.96rem;
+    line-height: 1.6;
+  }
+
+  .challenges-section {
+    color: #ffffff;
+    background:
+      radial-gradient(circle at 18% 90%, rgba(201, 171, 105, 0.1), transparent 32%),
+      linear-gradient(180deg, #061227 0%, #04102a 100%);
+  }
+
+  .challenges-list {
+    display: grid;
+    gap: 22px;
+  }
+
+  .challenge-card {
+    display: grid;
+    gap: 22px;
+    padding: 32px 32px 28px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 3px solid var(--color-gold);
+  }
+
+  .challenge-card header {
+    display: grid;
+    gap: 8px;
+  }
+
+  .challenge-number {
+    color: var(--color-gold);
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+  }
+
+  .challenge-card h3 {
+    margin: 0;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+    font-weight: 700;
+    line-height: 1.18;
+  }
+
+  .challenge-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+  }
+
+  .challenge-block h4 {
+    margin: 0 0 10px;
+    color: var(--color-gold);
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  .challenge-block p {
+    margin: 0 0 10px;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .challenge-block ul {
+    display: grid;
+    gap: 6px;
+    padding: 0 0 0 18px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.74);
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+  .challenge-outcome {
+    padding: 16px 18px;
+    background: rgba(201, 171, 105, 0.12);
+    border-left: 3px solid var(--color-gold);
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  .challenge-outcome strong {
+    color: var(--color-gold);
+    margin-right: 4px;
+  }
+
+  @media (max-width: 820px) {
+    .challenge-grid {
+      grid-template-columns: 1fr;
+    }
+    .challenge-card { padding: 26px 22px; }
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 18px;
+    margin-bottom: 56px;
+  }
+
+  .pricing-card {
+    display: grid;
+    gap: 16px;
+    padding: 28px 26px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 220ms ease, border-color 220ms ease, transform 220ms ease;
+  }
+
+  .pricing-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(201, 171, 105, 0.45);
+    transform: translateY(-3px);
+  }
+
+  .pricing-card header {
+    display: grid;
+    gap: 8px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .pricing-card h3 {
+    margin: 0;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .pricing-price {
+    display: grid;
+    gap: 2px;
+  }
+
+  .pricing-amount {
+    color: var(--color-gold);
+    font-family: var(--font-serif);
+    font-size: 1.55rem;
+    font-weight: 700;
+  }
+
+  .pricing-note {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.82rem;
+  }
+
+  .pricing-section-block h4 {
+    margin: 0 0 8px;
+    color: var(--color-gold);
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+  }
+
+  .check-list,
+  .muted-list {
+    display: grid;
+    gap: 6px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .check-list li {
+    position: relative;
+    padding-left: 22px;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  .check-list li::before {
+    position: absolute;
+    top: 6px;
+    left: 0;
+    width: 14px;
+    height: 8px;
+    content: "";
+    border-left: 2px solid var(--color-gold);
+    border-bottom: 2px solid var(--color-gold);
+    transform: rotate(-45deg);
+  }
+
+  .muted-list li {
+    position: relative;
+    padding-left: 22px;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.86rem;
+    line-height: 1.55;
+  }
+
+  .muted-list li::before {
+    position: absolute;
+    top: 9px;
+    left: 0;
+    width: 12px;
+    height: 2px;
+    content: "";
+    background: rgba(255, 255, 255, 0.35);
+  }
+
+  .pricing-timeline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding-top: 8px;
+    color: var(--color-gold);
+    font-size: 0.85rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .pricing-note-block {
+    margin: 0;
+    padding: 12px 14px;
+    background: rgba(201, 171, 105, 0.1);
+    border: 1px solid rgba(201, 171, 105, 0.3);
+    color: rgba(255, 255, 255, 0.84);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .addons-block {
+    margin-bottom: 56px;
+  }
+
+  .addons-block h3 {
+    margin: 0 0 22px;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: clamp(1.4rem, 2.4vw, 2rem);
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .addons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px;
+  }
+
+  .addon-card {
+    display: grid;
+    gap: 6px;
+    padding: 20px 22px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .addon-card h4 {
+    margin: 0;
+    color: #ffffff;
+    font-family: var(--font-sans);
+    font-size: 0.98rem;
+    font-weight: 700;
+  }
+
+  .addon-price {
+    color: var(--color-gold);
+    font-size: 0.92rem;
+    font-weight: 700;
+  }
+
+  .addon-card p {
+    margin: 4px 0 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .payment-block {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 18px;
+  }
+
+  .payment-card {
+    padding: 26px 26px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(201, 171, 105, 0.3);
+    border-left: 3px solid var(--color-gold);
+  }
+
+  .payment-card h3 {
+    margin: 0 0 14px;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+
+  .payment-card ul {
+    display: grid;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .payment-card li {
+    display: grid;
+    grid-template-columns: 20px minmax(0, 1fr);
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  .payment-card li svg {
+    margin-top: 4px;
+    color: var(--color-gold);
+  }
+
+  .payment-card--guarantee p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .resources-section {
+    color: #ffffff;
+    background:
+      radial-gradient(circle at 80% 10%, rgba(201, 171, 105, 0.12), transparent 32%),
+      linear-gradient(180deg, #04102a 0%, #061227 100%);
+  }
+
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+    margin-bottom: 36px;
+  }
+
+  .resource-card {
+    display: grid;
+    gap: 12px;
+    align-content: start;
+    padding: 26px 24px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 220ms ease, border-color 220ms ease, transform 220ms ease;
+  }
+
+  .resource-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(201, 171, 105, 0.45);
+    transform: translateY(-3px);
+  }
+
+  .resource-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    background: var(--color-gold);
+    color: #0a1f44;
+    border-radius: 4px;
+  }
+
+  .resource-card h3 {
+    margin: 0;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: 1.18rem;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .resource-card p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .resource-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    align-self: start;
+    margin-top: 4px;
+    color: var(--color-gold);
+    font-size: 0.82rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+  }
+
+  .resources-cta {
+    display: flex;
+    justify-content: center;
+  }
+
+  @media (max-width: 600px) {
+    .work-hero-actions {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .btn-work-whatsapp,
+    .btn-work-light {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  /* ── Profile / Listing Card ── */
+  .wv-profile-section {
+    background:
+      radial-gradient(circle at 50% 50%, rgba(201, 171, 105, 0.07), transparent 60%),
+      linear-gradient(180deg, #061227 0%, #04102a 100%);
+  }
+
+  .wv-profile-card {
+    display: grid;
+    gap: 26px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 36px 40px;
+    background: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+  }
+
+  .wv-profile-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .wv-profile-title-group {
+    display: grid;
+    gap: 6px;
+  }
+
+  .wv-profile-title {
+    margin: 0;
+    color: #0a1f44;
+    font-family: var(--font-serif);
+    font-size: clamp(1.45rem, 2.4vw, 2rem);
+    font-weight: 700;
+    line-height: 1.12;
+  }
+
+  .wv-profile-subtitle {
+    margin: 0;
+    color: #64748b;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .wv-profile-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .wv-profile-stars {
+    display: flex;
+    gap: 2px;
+    color: #f59e0b;
+  }
+
+  .wv-profile-score {
+    color: #0a1f44;
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    font-weight: 800;
+  }
+
+  .wv-profile-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .wv-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 16px;
+    background: #0a1f44;
+    color: #ffffff;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    border-radius: 2px;
+  }
+
+  .wv-profile-desc {
+    margin: 0;
+    color: #334155;
+    font-family: var(--font-sans);
+    font-size: 0.97rem;
+    line-height: 1.72;
+    padding-top: 4px;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .wv-profile-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-top: 18px;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .wv-profile-price {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .wv-footer-label {
+    color: #94a3b8;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  .wv-price-value {
+    color: #0a1f44;
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .wv-profile-langs {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    color: #475569;
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    font-weight: 500;
+  }
+
+  .wv-profile-langs svg {
+    color: #94a3b8;
+    flex-shrink: 0;
+  }
+
+  .wv-lang-sep {
+    color: #cbd5e1;
+  }
+
+  @media (max-width: 680px) {
+    .wv-profile-card {
+      padding: 26px 22px;
+      gap: 20px;
+    }
+
+    .wv-profile-top {
+      flex-direction: column-reverse;
+      gap: 12px;
+    }
+
+    .wv-profile-footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .wv-profile-langs {
+      font-size: 0.82rem;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .wv-badge {
+      padding: 5px 12px;
+      font-size: 0.72rem;
+    }
+  }
+
+  /* ── Employment Immigration FAQ ── */
+  .wv-faq-section {
+    color: #ffffff;
+    background:
+      radial-gradient(circle at 20% 80%, rgba(201, 171, 105, 0.1), transparent 36%),
+      linear-gradient(180deg, #04102a 0%, #061227 100%);
+  }
+
+  .wv-faq-inner {
+    display: grid;
+    gap: 52px;
+  }
+
+  .wv-faq-head {
+    display: grid;
+    gap: 16px;
+    justify-items: center;
+    max-width: 820px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .wv-faq-head h2 {
+    margin: 0;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: 0;
+  }
+
+  .wv-faq-head p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .wv-faq-list {
+    display: grid;
+    gap: 14px;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .wv-faq-item {
+    position: relative;
+    padding: 22px 24px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+    transition:
+      background 220ms ease,
+      border-color 220ms ease,
+      box-shadow 220ms ease,
+      transform 220ms ease;
+  }
+
+  .wv-faq-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(201, 171, 105, 0.34);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .wv-faq-item[open] {
+    background: linear-gradient(180deg, rgba(201, 171, 105, 0.12), rgba(255, 255, 255, 0.04));
+    border-color: rgba(201, 171, 105, 0.5);
+    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.34);
+  }
+
+  .wv-faq-item summary {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 18px;
+    align-items: center;
+    cursor: pointer;
+    list-style: none;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: clamp(1rem, 1.2vw, 1.16rem);
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .wv-faq-item summary::-webkit-details-marker { display: none; }
+
+  .wv-faq-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 10px;
+    background: var(--color-gold);
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: 0.86rem;
+    font-weight: 700;
+  }
+
+  .wv-faq-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
+    flex-shrink: 0;
+    transition:
+      transform 280ms cubic-bezier(0.34, 1.2, 0.5, 1),
+      background 220ms ease,
+      border-color 220ms ease;
+  }
+
+  .wv-faq-item[open] .wv-faq-icon {
+    transform: rotate(135deg);
+    background: var(--color-gold);
+    border-color: var(--color-gold);
+  }
+
+  .wv-faq-answer {
+    padding: 14px 0 4px 54px;
+  }
+
+  .wv-faq-answer p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.96rem;
+    line-height: 1.78;
+  }
+
+  .wv-faq-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    text-align: center;
+  }
+
+  .wv-faq-cta p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+  }
+
+  @media (max-width: 640px) {
+    .wv-faq-item {
+      padding: 18px 16px;
+    }
+
+    .wv-faq-item summary {
+      gap: 12px;
+    }
+
+    .wv-faq-num {
+      min-width: 30px;
+      height: 30px;
+      font-size: 0.78rem;
+    }
+
+    .wv-faq-icon {
+      width: 32px;
+      height: 32px;
+    }
+
+    .wv-faq-answer {
+      padding: 12px 0 4px 0;
+    }
+
+    .wv-faq-inner {
+      gap: 36px;
+    }
+  }
+</style>

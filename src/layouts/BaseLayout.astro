@@ -1,0 +1,157 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ContactPanel from '../components/ContactPanel.astro';
+import { brand, assets } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const {
+  title = `${brand.attorneyName} | Immigration Attorney`,
+  description = 'Immigration law representation for asylum, deportation defense, bond hearings, citizenship, appeals, visas, and urgent detention matters.',
+  noindex = false,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://attorneypierre.com').toString();
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LegalService',
+  name: brand.firmName,
+  image: new URL(assets.logoSquare, Astro.site ?? 'https://attorneypierre.com').toString(),
+  url: Astro.site?.toString() ?? 'https://attorneypierre.com',
+  telephone: brand.phone,
+  email: brand.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '3 Gateway Center, Suite 1229',
+    addressLocality: 'Newark',
+    addressRegion: 'NJ',
+    postalCode: '07102',
+    addressCountry: 'US',
+  },
+  areaServed: 'United States',
+  priceRange: '$$',
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" href="/assets/legacy/cropped-Screenshot-2025-08-25-at-3.04.57-PM-32x32.png" />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(assets.hero, Astro.site ?? 'https://attorneypierre.com').toString()} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <ContactPanel />
+    <Footer />
+
+    <script is:inline>
+      (function () {
+        if (typeof window === 'undefined') return;
+        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduced) return;
+
+        const sectionHeadingSelector = [
+          '.section h2',
+          '.section h3',
+          '.section-title',
+          '.about-copy',
+          '.practice-intro',
+          '.process-intro',
+          '.testimonials-head',
+          '.faq-copy',
+          '.ice-steps-intro',
+          '.ice-section-head',
+          '.ice-faq-copy',
+          '.ice-final-inner',
+        ].join(',');
+
+        const cardSelector = [
+          '.card',
+          '.support-item',
+          '.practice-item',
+          '.testimonial-card',
+          '.faq-item',
+          '.process-step',
+          '.review-card',
+          '.emergency-card',
+          '.ice-strategy-card',
+          '.ice-story-card',
+          '.ice-step',
+          '.about-grid',
+          '.portrait-frame',
+          '.expertise-block',
+          '.stats-row',
+          '.faq-figure',
+        ].join(',');
+
+        function applyReveal(selector, options) {
+          const els = document.querySelectorAll(selector);
+          els.forEach((el, idx) => {
+            if (el.classList.contains('reveal')) return;
+            el.classList.add('reveal');
+            if (options && options.variant) el.classList.add(options.variant);
+            if (options && options.stagger) {
+              const delay = (idx % 6) + 1;
+              el.classList.add('reveal-d' + delay);
+            }
+          });
+        }
+
+        applyReveal(sectionHeadingSelector, { variant: 'reveal-fade' });
+        applyReveal(cardSelector, { stagger: true });
+
+        // Stagger cards within their parent grids individually
+        const grids = document.querySelectorAll(
+          '.support-grid, .practice-grid, .testimonials-grid, .faq-list, .ice-strategy-grid, .ice-stories-grid, .ice-faq-list, .reviews-grid, .emergency-grid, .ice-step-list'
+        );
+        grids.forEach((grid) => {
+          Array.from(grid.children).forEach((child, idx) => {
+            for (let d = 1; d <= 6; d += 1) child.classList.remove('reveal-d' + d);
+            const delay = (idx % 6) + 1;
+            child.classList.add('reveal-d' + delay);
+          });
+        });
+
+        if (!('IntersectionObserver' in window)) {
+          document.querySelectorAll('.reveal').forEach((el) => el.classList.add('is-visible'));
+          return;
+        }
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
+        );
+
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+      })();
+    </script>
+  </body>
+</html>

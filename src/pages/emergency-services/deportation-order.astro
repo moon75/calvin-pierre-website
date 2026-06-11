@@ -1,0 +1,1204 @@
+---
+import {
+  ArrowRight,
+  CalendarClock,
+  FileSearch,
+  FolderOpen,
+  Gavel,
+  MapPin,
+  MessageCircle,
+  MessageSquare,
+  Phone,
+  Plus,
+  Quote,
+  RefreshCw,
+  Scale,
+  ShieldAlert,
+  ShieldCheck,
+  Star,
+} from '@lucide/astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { brand } from '../../data/site';
+
+const steps = [
+  {
+    title: 'DO NOT Ignore The Order',
+    text: 'ICE can execute a deportation order at any time without additional notice. You could be arrested and removed within days or weeks.',
+  },
+  {
+    title: 'Find The Order Date And Issuing Court',
+    text: 'Look at your Notice of Decision or Order of Removal. The date matters. Strict legal deadlines apply, and missing them can be permanent.',
+  },
+  {
+    title: 'DO NOT Leave The United States',
+    text: 'If you leave voluntarily, you may be barred from returning for 10 years or permanently. We need to explore all options before you make that decision.',
+  },
+  {
+    title: 'Gather Evidence Of Changed Circumstances',
+    text: 'New marriage, U.S. citizen children, country conditions that have worsened, evidence you never received proper notice. These can be grounds to reopen your case.',
+  },
+  {
+    title: 'Contact Us Immediately',
+    text: 'We can file emergency motions to stop your deportation while we fight to reopen or appeal your case.',
+  },
+];
+
+const strategies = [
+  {
+    title: 'Emergency Stay Of Removal',
+    text: "If your deportation is imminent, we file an emergency motion to stay (pause) your removal. This buys critical time to prepare your case and prevents ICE from deporting you while we fight in court. We've stopped deportations hours before scheduled flights.",
+    Icon: ShieldAlert,
+  },
+  {
+    title: 'Motion To Reopen Or Reconsider',
+    text: 'A deportation order is not always final. We analyze your case to identify legal grounds to reopen it — ineffective assistance of prior counsel, new evidence, changed country conditions, or failure to receive proper notice. If the judge made a legal error, we file a Motion to Reconsider.',
+    Icon: RefreshCw,
+  },
+  {
+    title: 'Appeals To Higher Courts',
+    text: 'If your case was recently decided and you have valid legal grounds, we can appeal to the Board of Immigration Appeals (BIA) or federal Circuit Court. We know what appellate judges in the Second Circuit look for and present arguments that maximize your chances.',
+    Icon: Scale,
+  },
+  {
+    title: 'Alternative Relief Applications',
+    text: "Even with a deportation order, you may still qualify for relief you didn't previously pursue — asylum based on new country conditions, cancellation of removal, adjustment of status through family, or prosecutorial discretion. We explore every possible avenue.",
+    Icon: FolderOpen,
+  },
+];
+
+const trustBand = [
+  {
+    title: '24/7 Emergency Stays Filed',
+    text: "We've filed emergency stays of removal at all hours — including motions filed hours before scheduled deportation flights.",
+    Icon: ShieldAlert,
+  },
+  {
+    title: 'Multilingual Legal Team',
+    text: 'Our team speaks English, Spanish, Portuguese, Haitian Creole, and French — so nothing gets lost in translation when every word matters.',
+    Icon: MessageSquare,
+  },
+  {
+    title: 'Cases Reopened This Year',
+    text: "We've successfully reopened deportation cases and overturned final orders for families across NJ, NY, and PA this year.",
+    Icon: RefreshCw,
+  },
+];
+
+const stories = [
+  {
+    title: 'Reopened 2019 Order — Green Card Approved',
+    name: 'Jean-Paul D.',
+    city: 'Newark, NJ',
+    stars: 5,
+    text: "I had a deportation order from 2019. I thought it was over. Attorney Pierre found that my previous lawyer never told me about my appeal rights. We reopened my case and I just got my green card approved last month.",
+  },
+  {
+    title: 'Emergency Stay Filed In 6 Hours',
+    name: 'Luisa M.',
+    city: 'Jersey City, NJ',
+    stars: 5,
+    text: "ICE came to my house to deport me. Attorney Pierre filed an emergency stay within 6 hours. They couldn't take me. Now we're fighting my case and I'm still here with my children.",
+  },
+  {
+    title: 'Reopened On Changed Country Conditions',
+    name: 'Ricardo P.',
+    city: 'Elizabeth, NJ',
+    stars: 5,
+    text: "I was ordered deported in 2020 but never left. I was terrified every day. This team reopened my case based on changed conditions in my country. I now have a work permit and we're waiting for my asylum interview.",
+  },
+];
+
+const deportationFaqs = [
+  {
+    question: 'Is it too late if I already have a deportation order?',
+    answer: "Not necessarily. Depending on when the order was issued and the circumstances of your case, there may be legal options to reopen, appeal, or stay your removal. We analyze every case individually to determine what's possible.",
+  },
+  {
+    question: 'How much does this cost?',
+    answer: "Fighting a deportation order requires significant legal work, but we offer payment plans for families in crisis. During your free consultation, we'll explain the costs and create a plan that works for your situation.",
+  },
+  {
+    question: 'What if my order is old — from years ago?',
+    answer: "Old orders can sometimes be easier to fight. If circumstances in your home country have changed, if you've built stronger ties in the U.S., or if you qualify for relief you didn't pursue before, we may be able to reopen your case.",
+  },
+  {
+    question: 'Can I be arrested at any time?',
+    answer: "Yes. Once you have a final deportation order, ICE has the authority to arrest and remove you without additional court proceedings. That's why filing an emergency stay is critical — it legally prevents ICE from deporting you while we fight.",
+  },
+  {
+    question: 'What are my chances of winning?',
+    answer: "Every case is different. Success depends on: the original reason for your deportation order, whether proper procedures were followed, new evidence or changed circumstances, your criminal history (if any), and your ties to the United States. We'll honestly assess your case during the consultation.",
+  },
+  {
+    question: 'What happens if we lose?',
+    answer: "If we exhaust all legal options and the deportation order stands, we'll help you prepare for departure and explore the possibility of applying to return legally in the future. We fight until every option is exhausted.",
+  },
+];
+---
+
+<BaseLayout
+  title={`Deportation Order Defense | 24/7 Emergency Help | ${brand.firmName}`}
+  description="You received a deportation order — it's not over. We file emergency stays, motions to reopen, and appeals. 24/7 emergency intake with Attorney Calvin Pierre."
+>
+  <section class="section section-dark page-hero ice-hero">
+    <div class="container ice-hero-grid">
+      <div class="ice-hero-copy">
+        <span class="hero-eyebrow">
+          <Gavel size={16} stroke-width={1.8} />
+          Emergency Service · 24/7 Intake
+          <Gavel size={16} stroke-width={1.8} />
+        </span>
+        <h1>You Received A Deportation Order. It's Not Over. We Fight To Pause Or Reverse Removal.</h1>
+        <p>
+          As a proud son of Haitian immigrants, Attorney Calvin Pierre has helped families overturn
+          final orders and stay in America. We speak English, Spanish, Portuguese, Haitian Creole,
+          and French.
+        </p>
+        <div class="ice-hero-actions">
+          <a class="btn btn-primary" href={brand.phoneHref}>
+            <Phone size={16} stroke-width={2} />
+            Call {brand.phone}
+          </a>
+          <a class="btn btn-whatsapp" href={brand.whatsappHref} target="_blank" rel="noopener">
+            <MessageCircle size={16} stroke-width={2} />
+            WhatsApp Now
+          </a>
+        </div>
+        <p class="ice-hero-trust">
+          <ShieldCheck size={15} stroke-width={2} />
+          We've filed emergency stays and successfully reopened deportation cases for families this year.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="support-band section-soft watermark-section">
+    <div class="container support-grid">
+      {trustBand.map(({ title, text, Icon }) => (
+        <article class="support-item">
+          <div class="support-icon"><Icon size={32} stroke-width={1.55} /></div>
+          <div>
+            <h2>{title}</h2>
+            <p>{text}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section ice-steps-section watermark-section">
+    <div class="container ice-steps-grid">
+      <div class="ice-steps-intro">
+        <span class="hero-eyebrow">
+          <Gavel size={16} stroke-width={1.8} />
+          What To Do Right Now
+          <Gavel size={16} stroke-width={1.8} />
+        </span>
+        <h2>If you received a deportation order, take these steps immediately.</h2>
+        <p>
+          Strict legal deadlines apply. The actions you take in the first hours can determine
+          whether your case can be reopened at all.
+        </p>
+        <a class="btn btn-outline" href={brand.phoneHref}>
+          Start Emergency Intake
+          <ArrowRight size={16} stroke-width={1.8} />
+        </a>
+      </div>
+      <ol class="ice-step-list">
+        {steps.map((step, index) => (
+          <li class="ice-step">
+            <span class="ice-step-num">{String(index + 1).padStart(2, '0')}</span>
+            <div class="ice-step-body">
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section ice-strategies-section">
+    <div class="container">
+      <div class="ice-section-head">
+        <span class="hero-eyebrow">
+          <Gavel size={16} stroke-width={1.8} />
+          Our Approach
+          <Gavel size={16} stroke-width={1.8} />
+        </span>
+        <h2>How we fight your deportation order</h2>
+        <p>
+          Every case has options. Here's how we approach the fight — four parallel paths to pause,
+          reopen, appeal, or find new relief.
+        </p>
+      </div>
+      <div class="ice-strategy-grid">
+        {strategies.map(({ title, text, Icon }) => (
+          <article class="ice-strategy-card">
+            <span class="ice-strategy-icon"><Icon size={28} stroke-width={1.5} /></span>
+            <h3>{title}</h3>
+            <p>{text}</p>
+            <ArrowRight class="ice-strategy-arrow" size={15} />
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section ice-stories-section">
+    <div class="container">
+      <div class="ice-section-head">
+        <span class="hero-eyebrow">
+          <Gavel size={16} stroke-width={1.8} />
+          Real Results
+          <Gavel size={16} stroke-width={1.8} />
+        </span>
+        <h2>Families Who Thought It Was Over</h2>
+        <p>These are real stories from families who thought it was over.</p>
+      </div>
+      <div class="ice-stories-grid">
+        {stories.map((story) => (
+          <article class="ice-story-card">
+            <Quote class="ice-story-quote" size={36} stroke-width={1.4} />
+            <div class="ice-story-stars" aria-label={`${story.stars} out of 5 stars`}>
+              {Array.from({ length: 5 }, (_, i) =>
+                i < story.stars ? (
+                  <Star size={16} fill="currentColor" stroke-width={0} />
+                ) : (
+                  <Star size={16} stroke-width={1.6} />
+                )
+              )}
+            </div>
+            <h3 class="ice-story-title">"{story.title}"</h3>
+            <p>{story.text}</p>
+            <footer>
+              <strong>{story.name}</strong>
+              <span>{story.city}</span>
+            </footer>
+          </article>
+        ))}
+      </div>
+      <p class="ice-disclaimer">
+        Past results do not guarantee a future outcome. Every case is different.
+      </p>
+    </div>
+  </section>
+
+  <section class="section ice-faq-section">
+    <div class="container ice-faq-grid">
+      <div class="ice-faq-copy">
+        <span class="hero-eyebrow">
+          <Gavel size={16} stroke-width={1.8} />
+          FAQ
+          <Gavel size={16} stroke-width={1.8} />
+        </span>
+        <h2>Your questions, answered.</h2>
+        <p>
+          Honest answers about timing, cost, old orders, arrest risk, and what really happens if
+          we lose.
+        </p>
+      </div>
+      <div class="ice-faq-list">
+        {deportationFaqs.map((faq, index) => (
+          <details class="faq-item" name="deportation-faq" open={index === 0}>
+            <summary>
+              <span class="faq-q-num">{String(index + 1).padStart(2, '0')}</span>
+              <span class="faq-q-text">{faq.question}</span>
+              <span class="faq-q-icon" aria-hidden="true">
+                <Plus size={20} stroke-width={1.75} />
+              </span>
+            </summary>
+            <div class="faq-answer">
+              <p>{faq.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section ice-final-cta watermark-section">
+    <div class="container">
+      <div class="ice-final-inner">
+        <h2>Don't Wait &mdash; ICE Can Execute Your Order At Any Time</h2>
+        <p class="ice-final-lead">
+          Strict legal deadlines apply. Missing them can be permanent.<br />
+          We file emergency Stays of Removal.
+        </p>
+        <div class="ice-hero-actions ice-final-actions">
+          <a class="btn btn-whatsapp" href={brand.whatsappHref} target="_blank" rel="noopener">
+            <MessageCircle size={16} stroke-width={2} />
+            Emergency Help on WhatsApp
+          </a>
+          <a class="btn btn-primary" href={brand.phoneHref}>
+            <Phone size={16} stroke-width={2} />
+            Call Now: Emergency Line
+          </a>
+        </div>
+        <p class="ice-final-languages">
+          Hablamos Español &nbsp;|&nbsp; Falamos Português &nbsp;|&nbsp; Nou pale Kreyòl &nbsp;|&nbsp; Nous parlons Français
+        </p>
+        <div class="ice-final-divider" aria-hidden="true"></div>
+        <p class="ice-final-locations">
+          <MapPin size={16} stroke-width={2} />
+          Headquartered in Newark &nbsp;|&nbsp; Serving All of New Jersey, New York &amp; Pennsylvania
+        </p>
+        <p class="ice-final-note">
+          Attorney Calvin Pierre is licensed to practice immigration law throughout the United States.
+          Immigration cases are federal matters and can be handled from any of our offices.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero-eyebrow {
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    padding: 8px 16px;
+    color: var(--color-gold);
+    background: rgba(201, 171, 105, 0.1);
+    border: 1px solid rgba(201, 171, 105, 0.4);
+    border-radius: 6px;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+  }
+
+  .hero-eyebrow svg {
+    flex: 0 0 auto;
+  }
+
+  .support-band {
+    position: relative;
+    z-index: 2;
+    color: #ffffff;
+    overflow: hidden;
+    background: linear-gradient(180deg, #04102a 0%, #061227 100%);
+  }
+
+  .support-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(18px, 2vw, 28px);
+    padding: 40px 0 38px;
+  }
+
+  .support-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 50px minmax(0, 1fr);
+    gap: 18px;
+    align-content: start;
+    min-height: 188px;
+    padding: 28px 26px 24px;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+      rgba(8, 24, 56, 0.55);
+    border: 1px solid rgba(201, 171, 105, 0.2);
+    transition: transform 180ms ease, border-color 180ms ease;
+  }
+
+  .support-item::before {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 4px;
+    content: "";
+    background: linear-gradient(90deg, var(--color-gold), rgba(8, 38, 88, 0.34));
+  }
+
+  .support-item::after {
+    position: absolute;
+    right: -42px;
+    bottom: -52px;
+    width: 150px;
+    height: 150px;
+    content: "";
+    border-radius: 999px;
+    background: rgba(201, 171, 105, 0.08);
+  }
+
+  .support-item:hover {
+    transform: translateY(-4px);
+    border-color: rgba(201, 171, 105, 0.34);
+  }
+
+  .support-icon {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    aspect-ratio: 1;
+    color: var(--color-gold);
+    background: rgba(201, 171, 105, 0.14);
+    border: 1px solid rgba(201, 171, 105, 0.36);
+    border-radius: 50%;
+  }
+
+  .support-item h2 {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 12px;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: clamp(1.22rem, 1.45vw, 1.52rem);
+    font-weight: 700;
+    line-height: 1.08;
+  }
+
+  .support-item p {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.58;
+  }
+
+  @media (max-width: 900px) {
+    .support-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      padding: 42px 0;
+    }
+  }
+
+  .ice-hero {
+    color: #ffffff;
+  }
+
+  .ice-hero-grid {
+    display: grid;
+    gap: 28px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .ice-hero-copy .hero-eyebrow {
+    align-self: center;
+    margin: 0 auto 22px;
+  }
+
+  .ice-hero-copy h1 {
+    margin: 0;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: clamp(2.05rem, 3.8vw, 3.4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+
+  .ice-hero-copy > p {
+    max-width: 720px;
+    margin: 22px auto 32px;
+    color: rgba(255, 255, 255, 0.78);
+    font-family: var(--font-sans);
+    font-size: clamp(1rem, 1.2vw, 1.12rem);
+    line-height: 1.6;
+  }
+
+  .ice-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+  }
+
+  .ice-hero-actions .btn {
+    gap: 10px;
+    min-width: 220px;
+    min-height: 56px;
+    justify-content: center;
+    font-size: 0.88rem;
+  }
+
+  .btn-whatsapp {
+    background: #1faa5a;
+    color: #ffffff;
+    border: 0;
+  }
+
+  .btn-whatsapp:hover {
+    background: #178d4a;
+    color: #ffffff;
+  }
+
+  .ice-hero-trust {
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    max-width: 640px;
+    margin: 30px auto 0;
+    padding: 12px 22px;
+    background: rgba(201, 171, 105, 0.1);
+    border: 1px solid rgba(201, 171, 105, 0.34);
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.86);
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-style: italic;
+  }
+
+  .ice-hero-trust svg {
+    flex: 0 0 auto;
+    color: var(--color-gold);
+  }
+
+  .ice-steps-section {
+    color: #ffffff;
+    background:
+      radial-gradient(circle at 18% 18%, rgba(201, 171, 105, 0.1), transparent 32%),
+      linear-gradient(180deg, #061227 0%, #04102a 100%);
+  }
+
+  .ice-steps-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(48px, 6vw, 100px);
+    align-items: start;
+  }
+
+  .ice-steps-intro {
+    position: sticky;
+    top: 130px;
+    display: grid;
+    gap: 22px;
+    align-content: start;
+  }
+
+  .ice-steps-intro .hero-eyebrow {
+    align-self: start;
+    margin: 0;
+  }
+
+  .ice-steps-intro h2 {
+    margin: 0;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: clamp(1.85rem, 3vw, 2.85rem);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+
+  .ice-steps-intro p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.98rem;
+    line-height: 1.7;
+  }
+
+  .ice-steps-intro .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    align-self: start;
+    margin-top: 8px;
+    padding: 16px 26px;
+    color: #ffffff;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    border-radius: 4px;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
+  }
+
+  .ice-steps-intro .btn-outline:hover {
+    color: #0a1f44;
+    background: var(--color-gold);
+    border-color: var(--color-gold);
+  }
+
+  .ice-step-list {
+    position: relative;
+    margin: 0;
+    padding: 4px 0 0;
+    list-style: none;
+  }
+
+  .ice-step-list::before {
+    position: absolute;
+    top: 44px;
+    bottom: 44px;
+    left: 21px;
+    width: 0;
+    content: "";
+    border-left: 2px dotted rgba(255, 255, 255, 0.22);
+  }
+
+  .ice-step {
+    position: relative;
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 28px;
+    padding: 0 0 36px;
+  }
+
+  .ice-step:last-child {
+    padding-bottom: 0;
+  }
+
+  .ice-step-num {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    background: var(--color-gold);
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: 0.86rem;
+    font-weight: 700;
+    box-shadow: 0 14px 28px rgba(201, 171, 105, 0.32);
+  }
+
+  .ice-step-body h3 {
+    margin: 0 0 12px;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: clamp(1.2rem, 1.6vw, 1.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+
+  .ice-step-body p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    line-height: 1.72;
+  }
+
+  .ice-strategies-section {
+    color: #ffffff;
+    background:
+      radial-gradient(circle at 82% 14%, rgba(201, 171, 105, 0.1), transparent 32%),
+      linear-gradient(180deg, #04102a 0%, #061227 100%);
+  }
+
+  .ice-section-head {
+    display: grid;
+    gap: 16px;
+    justify-items: center;
+    max-width: 720px;
+    margin: 0 auto 50px;
+    text-align: center;
+  }
+
+  .ice-section-head h2 {
+    margin: 0;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: clamp(1.95rem, 3.4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+
+  .ice-section-head p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .ice-strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .ice-strategy-card {
+    position: relative;
+    display: grid;
+    gap: 16px;
+    align-content: start;
+    padding: 30px 28px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    transition: background 220ms ease, border-color 220ms ease, transform 220ms ease;
+  }
+
+  .ice-strategy-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(201, 171, 105, 0.4);
+    transform: translateY(-3px);
+  }
+
+  .ice-strategy-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    background: var(--color-gold);
+    color: #0a1f44;
+    border-radius: 4px;
+  }
+
+  .ice-strategy-card h3 {
+    margin: 0;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: 1.32rem;
+    line-height: 1.25;
+  }
+
+  .ice-strategy-card p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.66);
+    font-size: 0.94rem;
+    line-height: 1.65;
+  }
+
+  .ice-strategy-arrow {
+    color: var(--color-gold);
+  }
+
+  .ice-stories-section {
+    color: #ffffff;
+    background:
+      radial-gradient(circle at 18% 90%, rgba(201, 171, 105, 0.1), transparent 32%),
+      linear-gradient(180deg, #061227 0%, #04102a 100%);
+  }
+
+  .ice-stories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .ice-story-card {
+    position: relative;
+    display: grid;
+    gap: 14px;
+    align-content: start;
+    padding: 32px 28px 26px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    transition: background 220ms ease, border-color 220ms ease, transform 220ms ease;
+  }
+
+  .ice-story-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(201, 171, 105, 0.4);
+    transform: translateY(-3px);
+  }
+
+  .ice-story-quote {
+    color: var(--color-gold);
+    opacity: 0.45;
+  }
+
+  .ice-story-stars {
+    display: inline-flex;
+    gap: 4px;
+    color: var(--color-gold);
+  }
+
+  .ice-story-title {
+    margin: 4px 0 0;
+    color: #ffffff;
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: 0.2px;
+  }
+
+  .ice-story-card > p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: var(--font-sans);
+    font-size: 0.94rem;
+    line-height: 1.65;
+  }
+
+  .ice-story-card footer {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .ice-story-card footer strong {
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: 1.02rem;
+    font-weight: 700;
+  }
+
+  .ice-story-card footer span {
+    color: var(--color-gold);
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+
+  .ice-disclaimer {
+    margin: 36px auto 0;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-style: italic;
+    text-align: center;
+  }
+
+  .ice-faq-section {
+    color: #ffffff;
+    background:
+      radial-gradient(circle at 82% 90%, rgba(201, 171, 105, 0.1), transparent 32%),
+      linear-gradient(180deg, #04102a 0%, #061227 100%);
+  }
+
+  .ice-faq-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: clamp(48px, 6vw, 100px);
+    align-items: start;
+  }
+
+  .ice-faq-copy {
+    position: sticky;
+    top: 130px;
+    display: grid;
+    gap: 22px;
+    align-content: start;
+  }
+
+  .ice-faq-copy .hero-eyebrow {
+    align-self: start;
+    margin: 0;
+  }
+
+  .ice-faq-copy h2 {
+    margin: 0;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: clamp(1.85rem, 3vw, 2.85rem);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+
+  .ice-faq-copy p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.98rem;
+    line-height: 1.7;
+  }
+
+  .ice-faq-list {
+    display: grid;
+    gap: 14px;
+  }
+
+  .ice-faq-list .faq-item {
+    position: relative;
+    padding: 22px 24px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+    transition:
+      background 220ms ease,
+      border-color 220ms ease,
+      box-shadow 220ms ease,
+      transform 220ms ease;
+  }
+
+  .ice-faq-list .faq-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(201, 171, 105, 0.34);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.34);
+    transform: translateY(-2px);
+  }
+
+  .ice-faq-list .faq-item[open] {
+    background: linear-gradient(180deg, rgba(201, 171, 105, 0.12), rgba(255, 255, 255, 0.04));
+    border-color: rgba(201, 171, 105, 0.5);
+    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.36);
+  }
+
+  .ice-faq-list .faq-item summary {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 18px;
+    align-items: center;
+    cursor: pointer;
+    list-style: none;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: clamp(1rem, 1.2vw, 1.16rem);
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .ice-faq-list .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .ice-faq-list .faq-q-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 10px;
+    background: var(--color-gold);
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: 0.86rem;
+    font-weight: 700;
+  }
+
+  .ice-faq-list .faq-q-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
+    transition:
+      transform 280ms cubic-bezier(0.34, 1.2, 0.5, 1),
+      background 220ms ease,
+      color 220ms ease,
+      border-color 220ms ease;
+  }
+
+  .ice-faq-list .faq-item[open] .faq-q-icon {
+    transform: rotate(135deg);
+    background: var(--color-gold);
+    color: #ffffff;
+    border-color: var(--color-gold);
+  }
+
+  .ice-faq-list .faq-answer {
+    padding-left: 54px;
+  }
+
+  .ice-faq-list .faq-answer p {
+    margin: 14px 0 4px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.94rem;
+    line-height: 1.72;
+  }
+
+  .ice-final-cta {
+    color: #ffffff;
+    text-align: center;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(201, 171, 105, 0.12), transparent 50%),
+      linear-gradient(180deg, #061227 0%, #04102a 100%);
+  }
+
+  .ice-final-inner {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .ice-final-cta h2 {
+    margin: 0 0 16px;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 3.8vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+
+  .ice-final-lead {
+    max-width: 600px;
+    margin: 0 auto 32px;
+    color: rgba(255, 255, 255, 0.78);
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
+    line-height: 1.5;
+  }
+
+  .ice-final-actions {
+    margin-bottom: 28px;
+  }
+
+  .ice-final-languages {
+    margin: 0 0 32px;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .ice-final-divider {
+    height: 1px;
+    margin: 0 auto 28px;
+    background: linear-gradient(90deg, transparent, rgba(201, 171, 105, 0.4), transparent);
+  }
+
+  .ice-final-locations {
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 16px;
+    color: var(--color-gold);
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+
+  .ice-final-locations svg {
+    flex: 0 0 auto;
+  }
+
+  .ice-final-note {
+    max-width: 680px;
+    margin: 0 auto;
+    color: rgba(255, 255, 255, 0.58);
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-style: italic;
+    line-height: 1.65;
+  }
+
+  @media (max-width: 980px) {
+    .ice-steps-grid,
+    .ice-faq-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    .ice-steps-intro,
+    .ice-faq-copy {
+      position: relative;
+      top: auto;
+    }
+
+    .ice-strategy-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .ice-stories-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .ice-hero-actions .btn {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .ice-hero-trust {
+      flex-wrap: wrap;
+      text-align: center;
+      border-radius: 8px;
+      padding: 10px 16px;
+    }
+
+    .support-item {
+      min-height: unset;
+      padding: 22px 20px;
+    }
+
+    .ice-step {
+      grid-template-columns: 38px minmax(0, 1fr);
+      gap: 18px;
+      padding-bottom: 32px;
+    }
+
+    .ice-step-num {
+      width: 38px;
+      height: 38px;
+      font-size: 0.78rem;
+    }
+
+    .ice-step-list::before {
+      left: 18px;
+    }
+
+    .ice-strategy-card,
+    .ice-story-card {
+      padding: 22px 20px;
+    }
+
+    .ice-stories-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .ice-faq-list .faq-item {
+      padding: 18px 16px;
+    }
+
+    .ice-faq-list .faq-item summary {
+      gap: 12px;
+    }
+
+    .ice-faq-list .faq-answer {
+      padding-left: 0;
+    }
+
+    .ice-steps-intro .btn-outline {
+      width: 100%;
+    }
+
+    .ice-final-languages {
+      font-size: 0.82rem;
+      line-height: 1.9;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .ice-section-head {
+      margin-bottom: 32px;
+    }
+
+    .ice-strategy-card,
+    .ice-story-card {
+      padding: 20px 16px;
+    }
+
+    .support-item {
+      padding: 18px 16px;
+    }
+
+    .ice-faq-list .faq-q-num {
+      min-width: 30px;
+      height: 30px;
+      font-size: 0.78rem;
+    }
+
+    .ice-faq-list .faq-q-icon {
+      width: 32px;
+      height: 32px;
+    }
+  }
+</style>

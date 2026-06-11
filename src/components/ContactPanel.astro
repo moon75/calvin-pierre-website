@@ -1,0 +1,564 @@
+---
+import { ArrowRight, CalendarDays, Clock, Globe2, Mail, Phone, ShieldCheck, Star } from '@lucide/astro';
+import { brand } from '../data/site';
+
+const trustStats = [
+  { value: '250+', label: 'Clients Serviced Nationwide' },
+  { value: '5★', label: 'Rating on Google' },
+  { value: '4', label: 'Languages Supported' },
+];
+---
+
+<section class="consult-panel" id="consultation">
+  <div class="consult-pattern" aria-hidden="true"></div>
+  <div class="consult-orb" aria-hidden="true"></div>
+  <div class="container consult-grid">
+    <div class="consult-info">
+      <span class="consult-eyebrow">Free Consultation</span>
+      <h2>Request A Consultation</h2>
+      <p class="consult-lead">We provide consultations from the comfort of your home. Simply contact us online and an attorney will reach out promptly.</p>
+
+      <ul class="trust-strip">
+        {trustStats.map((stat) => (
+          <li>
+            <strong>{stat.value}</strong>
+            <span>{stat.label}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div class="direct-contact">
+        <a class="direct-item" href="/book-now/">
+          <span class="direct-icon"><CalendarDays size={18} stroke-width={1.6} /></span>
+          <span class="direct-text">
+            <span>Schedule online</span>
+            <strong>Book a consultation</strong>
+          </span>
+        </a>
+        <a class="direct-item" href={brand.phoneHref}>
+          <span class="direct-icon"><Phone size={18} stroke-width={1.6} /></span>
+          <span class="direct-text">
+            <span>Call directly</span>
+            <strong>{brand.phone}</strong>
+          </span>
+        </a>
+        <a class="direct-item" href={`mailto:${brand.email}`}>
+          <span class="direct-icon"><Mail size={18} stroke-width={1.6} /></span>
+          <span class="direct-text">
+            <span>Email the firm</span>
+            <strong>{brand.email}</strong>
+          </span>
+        </a>
+      </div>
+
+      <ul class="consult-assurance">
+        <li><ShieldCheck size={15} stroke-width={1.8} /> Confidential & attorney-reviewed</li>
+        <li><Clock size={15} stroke-width={1.8} /> Typical response within 1 business hour</li>
+        <li><Globe2 size={15} stroke-width={1.8} /> Nationwide representation, NJ-based</li>
+      </ul>
+    </div>
+
+    <form class="consult-form" name="consultation" method="post" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="consultation" />
+      <p class="hp"><label>Don't fill this out: <input name="bot-field" /></label></p>
+
+      <div class="form-head">
+        <span class="form-rating">
+          <Star size={13} fill="currentColor" />
+          <Star size={13} fill="currentColor" />
+          <Star size={13} fill="currentColor" />
+          <Star size={13} fill="currentColor" />
+          <Star size={13} fill="currentColor" />
+        </span>
+        <h3>Tell us about your case</h3>
+        <p>All fields marked with <span class="req">*</span> are required.</p>
+      </div>
+
+      <div class="form-row two">
+        <label class="field">
+          <span class="field-label">First name <span class="req">*</span></span>
+          <input name="first_name" type="text" autocomplete="given-name" required />
+        </label>
+        <label class="field">
+          <span class="field-label">Last name <span class="req">*</span></span>
+          <input name="last_name" type="text" autocomplete="family-name" required />
+        </label>
+      </div>
+
+      <div class="form-row two">
+        <label class="field">
+          <span class="field-label">Email <span class="req">*</span></span>
+          <input name="email" type="email" autocomplete="email" required />
+        </label>
+        <label class="field">
+          <span class="field-label">Phone <span class="req">*</span></span>
+          <input name="phone" type="tel" autocomplete="tel" required />
+        </label>
+      </div>
+
+      <label class="field">
+        <span class="field-label">Describe your case <span class="req">*</span></span>
+        <textarea name="message" rows="5" required></textarea>
+      </label>
+
+      <label class="checkbox-row">
+        <input type="checkbox" name="sms_consent" required />
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="checkbox-text">
+          I agree to receive appointment reminders via SMS from {brand.attorneyName}. Standard rates may apply. Reply STOP to unsubscribe.
+        </span>
+      </label>
+
+      <button type="submit" class="btn-submit">
+        <span>Submit Request</span>
+        <ArrowRight size={16} stroke-width={2} />
+      </button>
+    </form>
+  </div>
+</section>
+
+<style>
+  .consult-panel {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(80px, 9vw, 140px) 0;
+    color: #ffffff;
+    background:
+      radial-gradient(circle at 18% 6%, rgba(201, 171, 105, 0.16), transparent 32%),
+      radial-gradient(circle at 92% 92%, rgba(67, 133, 255, 0.08), transparent 28%),
+      linear-gradient(160deg, #061633 0%, #04122b 50%, #030d22 100%);
+  }
+
+  .consult-pattern {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.4;
+    background-image:
+      radial-gradient(rgba(201, 171, 105, 0.16) 1px, transparent 1px),
+      radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 32px 32px, 80px 80px;
+    background-position: 0 0, 16px 16px;
+    mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
+  }
+
+  .consult-orb {
+    position: absolute;
+    top: -180px;
+    right: -180px;
+    width: 520px;
+    height: 520px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(201, 171, 105, 0.22), transparent 60%);
+    filter: blur(6px);
+    pointer-events: none;
+  }
+
+  .consult-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.04fr);
+    gap: clamp(48px, 6vw, 96px);
+    align-items: start;
+  }
+
+  .consult-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    background: rgba(201, 171, 105, 0.14);
+    border: 1px solid rgba(201, 171, 105, 0.32);
+    color: var(--color-gold);
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+  }
+
+  .consult-info h2 {
+    margin: 24px 0 22px;
+    color: var(--color-gold);
+    font-family: var(--font-serif);
+    font-size: clamp(2.4rem, 4.6vw, 3.85rem);
+    font-weight: 700;
+    line-height: 1.04;
+    letter-spacing: 0;
+  }
+
+  .consult-lead {
+    max-width: 460px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.74);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.7;
+  }
+
+  .trust-strip {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    margin: 40px 0 0;
+    padding: 26px 0;
+    list-style: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .trust-strip li {
+    display: grid;
+    gap: 6px;
+    padding: 0 16px;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .trust-strip li:first-child {
+    padding-left: 0;
+  }
+
+  .trust-strip li:last-child {
+    border-right: 0;
+  }
+
+  .trust-strip strong {
+    color: var(--color-gold);
+    font-family: var(--font-serif);
+    font-size: clamp(1.55rem, 2vw, 2rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0;
+  }
+
+  .trust-strip span {
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+
+  .direct-contact {
+    display: grid;
+    gap: 14px;
+    margin-top: 32px;
+  }
+
+  .direct-item {
+    display: inline-flex;
+    gap: 16px;
+    align-items: center;
+    color: #ffffff;
+    transition: transform 200ms ease, color 200ms ease;
+  }
+
+  .direct-item:hover {
+    color: var(--color-gold);
+    transform: translateX(3px);
+  }
+
+  .direct-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
+    background: rgba(201, 171, 105, 0.14);
+    border: 1px solid rgba(201, 171, 105, 0.32);
+    color: var(--color-gold);
+    flex-shrink: 0;
+  }
+
+  .direct-text {
+    display: grid;
+    gap: 2px;
+    line-height: 1.2;
+  }
+
+  .direct-text > span {
+    color: rgba(255, 255, 255, 0.56);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+  }
+
+  .direct-text strong {
+    color: inherit;
+    font-family: var(--font-sans);
+    font-size: 1.04rem;
+    font-weight: 600;
+  }
+
+  .consult-assurance {
+    display: grid;
+    gap: 11px;
+    padding: 0;
+    margin: 32px 0 0;
+    list-style: none;
+  }
+
+  .consult-assurance li {
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 0.86rem;
+    font-weight: 500;
+  }
+
+  .consult-assurance svg {
+    color: var(--color-gold);
+    flex-shrink: 0;
+  }
+
+  .consult-form {
+    position: relative;
+    display: grid;
+    gap: 18px;
+    padding: clamp(28px, 3.4vw, 42px);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02)),
+      rgba(8, 24, 56, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 18px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow:
+      0 28px 80px rgba(0, 0, 0, 0.32),
+      0 0 0 1px rgba(201, 171, 105, 0.06) inset;
+  }
+
+  .consult-form::before {
+    position: absolute;
+    top: -1px;
+    left: 22px;
+    right: 22px;
+    height: 1px;
+    content: "";
+    background: linear-gradient(90deg, transparent, rgba(201, 171, 105, 0.6), transparent);
+  }
+
+  .hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .form-head {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  .form-rating {
+    display: inline-flex;
+    gap: 2px;
+    color: var(--color-gold);
+  }
+
+  .form-head h3 {
+    margin: 0;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: clamp(1.35rem, 1.8vw, 1.6rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+
+  .form-head p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 0.84rem;
+  }
+
+  .form-row {
+    display: grid;
+    gap: 14px;
+  }
+
+  .form-row.two {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .field {
+    display: grid;
+    gap: 7px;
+  }
+
+  .field-label {
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+  }
+
+  .req {
+    color: #ff7676;
+    font-weight: 700;
+  }
+
+  .consult-form input:not([type="checkbox"]),
+  .consult-form textarea {
+    width: 100%;
+    padding: 13px 16px;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 10px;
+    font-family: var(--font-sans);
+    font-size: 0.94rem;
+    outline: none;
+    transition: border-color 200ms ease, background 200ms ease, box-shadow 200ms ease;
+  }
+
+  .consult-form textarea {
+    resize: vertical;
+    min-height: 130px;
+  }
+
+  .consult-form input:hover,
+  .consult-form textarea:hover {
+    border-color: rgba(255, 255, 255, 0.24);
+    background: rgba(255, 255, 255, 0.055);
+  }
+
+  .consult-form input:focus,
+  .consult-form textarea:focus {
+    border-color: var(--color-gold);
+    background: rgba(201, 171, 105, 0.06);
+    box-shadow: 0 0 0 3px rgba(201, 171, 105, 0.18);
+  }
+
+  .checkbox-row {
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 12px;
+    align-items: start;
+    margin-top: 4px;
+    cursor: pointer;
+  }
+
+  .checkbox-row input[type="checkbox"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .checkmark {
+    position: relative;
+    grid-column: 1;
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.34);
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 5px;
+    transition: background 180ms ease, border-color 180ms ease;
+  }
+
+  .checkbox-row input[type="checkbox"]:checked ~ .checkmark {
+    background: var(--color-gold);
+    border-color: var(--color-gold);
+  }
+
+  .checkbox-row input[type="checkbox"]:checked ~ .checkmark::after {
+    position: absolute;
+    top: 2px;
+    left: 6px;
+    width: 5px;
+    height: 10px;
+    content: "";
+    border: solid #ffffff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  .checkbox-row input[type="checkbox"]:focus-visible ~ .checkmark {
+    box-shadow: 0 0 0 3px rgba(201, 171, 105, 0.28);
+  }
+
+  .checkbox-text {
+    color: rgba(255, 255, 255, 0.66);
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
+
+  .btn-submit {
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8px;
+    padding: 16px 22px;
+    border: 0;
+    border-radius: 12px;
+    color: #ffffff;
+    background: linear-gradient(135deg, var(--color-gold) 0%, #b89250 100%);
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 18px 38px rgba(201, 171, 105, 0.32);
+    transition: transform 200ms ease, box-shadow 200ms ease, filter 200ms ease;
+  }
+
+  .btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 22px 48px rgba(201, 171, 105, 0.42);
+    filter: brightness(1.04);
+  }
+
+  .btn-submit svg {
+    transition: transform 200ms ease;
+  }
+
+  .btn-submit:hover svg {
+    transform: translateX(3px);
+  }
+
+  @media (max-width: 980px) {
+    .consult-grid {
+      grid-template-columns: 1fr;
+      gap: 56px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .trust-strip {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .trust-strip li {
+      padding: 0;
+      border-right: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 14px;
+    }
+
+    .trust-strip li:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .form-row.two {
+      grid-template-columns: 1fr;
+    }
+
+    .direct-item {
+      gap: 12px;
+    }
+  }
+</style>

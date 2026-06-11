@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { brand } from '../../data/site';
+---
+
+<BaseLayout title={`News | ${brand.firmName}`} description="Immigration law updates, firm news, and client education articles.">
+  <section class="section section-dark page-hero">
+    <div class="container section-title">
+      <p class="eyebrow">News</p>
+      <h1>Immigration updates and client education.</h1>
+      <p>Blog content will move here from WordPress or Sanity. Keep articles practical, local, and service-linked.</p>
+    </div>
+  </section>
+  <section class="prose-page watermark-section">
+    <div class="container">
+      <h2>Content migration placeholder</h2>
+      <p>
+        The old WordPress posts can be exported through the WordPress REST API or
+        XML export, cleaned, then converted to Sanity documents or Astro content
+        collections.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

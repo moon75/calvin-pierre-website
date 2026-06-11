@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { brand } from '../data/site';
+---
+
+<BaseLayout title={`Book a Consultation | ${brand.firmName}`}>
+  <section class="section section-dark page-hero">
+    <div class="container section-title">
+      <p class="eyebrow">Book Now</p>
+      <h1>Schedule a consultation with {brand.attorneyName}.</h1>
+      <p>Use the calendar below, call the office, or send a WhatsApp message for urgent matters.</p>
+    </div>
+  </section>
+
+  <section class="section section-soft watermark-section">
+    <div class="container">
+      <div
+        class="calendly-inline-widget"
+        data-url={`${brand.calendlyUrl}?hide_gdpr_banner=1&primary_color=c9ab69`}
+        style="min-width:320px;height:760px;"
+      ></div>
+      <script
+        type="text/javascript"
+        src="https://assets.calendly.com/assets/external/widget.js"
+        async
+      ></script>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .calendly-inline-widget {
+    width: 100%;
+    background: #ffffff;
+  }
+
+  @media (max-width: 720px) {
+    .calendly-inline-widget {
+      height: 1080px !important;
+    }
+  }
+</style>
