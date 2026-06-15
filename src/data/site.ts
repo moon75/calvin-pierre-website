@@ -8,7 +8,7 @@ export const brand = {
   calendlyUrl: 'https://calendly.com/attorneypierre-info/30min',
   email: 'attorney@pierrevanguardlaw.com',
   address: '3 Gateway Center, Suite 1229 Newark, NJ 07102',
-  bar: 'NJ Bar #381512023',
+
   rating: '4.9/5 (150+ Reviews)',
   consultation: 'Free Consultation',
   languages: ['English', 'Haitian Creole', 'Spanish', 'French'],
