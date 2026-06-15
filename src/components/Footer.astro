@@ -92,6 +92,14 @@ const legalServices = [
       <a href="/privacy-policy/">Privacy Policy</a>
       <a href="/terms-of-service/">Impressum</a>
     </span>
+    <a class="dev-credit" href="https://www.fiverr.com/moon_wp_dev" target="_blank" rel="noopener noreferrer">
+      <span class="dev-credit-icon">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+        </svg>
+      </span>
+      <span>Crafted by <strong>Moon</strong></span>
+    </a>
   </div>
 </footer>
 
@@ -303,6 +311,47 @@ const legalServices = [
 
   .legal-links a:hover {
     color: var(--color-gold);
+  }
+
+  .dev-credit {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 14px 6px 10px;
+    border: 1px solid rgba(201, 171, 105, 0.22);
+    border-radius: 999px;
+    background: rgba(201, 171, 105, 0.06);
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition:
+      border-color 200ms ease,
+      background 200ms ease,
+      color 200ms ease;
+  }
+
+  .dev-credit:hover {
+    border-color: rgba(201, 171, 105, 0.55);
+    background: rgba(201, 171, 105, 0.12);
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .dev-credit strong {
+    color: var(--color-gold);
+    font-weight: 700;
+  }
+
+  .dev-credit-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(201, 171, 105, 0.15);
+    color: var(--color-gold);
+    flex-shrink: 0;
   }
 
   @media (max-width: 1040px) {
