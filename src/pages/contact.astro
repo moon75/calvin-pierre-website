@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { brand } from '../data/site';
+import { brand, social } from '../data/site';
 ---
 
 <BaseLayout title={`Contact | ${brand.firmName}`} description={`Contact ${brand.firmName} in Newark, NJ for immigration legal services.`}>
@@ -12,4 +12,299 @@ import { brand } from '../data/site';
       <p><a href={brand.phoneHref}>{brand.phone}</a> / <a href={`mailto:${brand.email}`}>{brand.email}</a></p>
     </div>
   </section>
+
+  <section class="section contact-section watermark-section">
+    <div class="container contact-grid">
+      <div class="contact-form-wrap">
+        <h2>Send Us a Message</h2>
+        <form
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="contact-form"
+        >
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="hidden"><label>Don't fill this out: <input name="bot-field" /></label></p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name <span class="req">*</span></label>
+              <input type="text" id="name" name="name" required placeholder="Your full name" />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address <span class="req">*</span></label>
+              <input type="email" id="email" name="email" required placeholder="your@email.com" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" />
+            </div>
+            <div class="form-group">
+              <label for="service">What do you need help with? <span class="req">*</span></label>
+              <select id="service" name="service" required>
+                <option value="" disabled selected>Select a practice area</option>
+                <option value="Asylum">Asylum</option>
+                <option value="Deportation Defense">Deportation Defense</option>
+                <option value="Habeas Corpus">Habeas Corpus</option>
+                <option value="ICE Detention">ICE Detention</option>
+                <option value="Bond Hearing">Bond Hearing</option>
+                <option value="Green Card">Green Card</option>
+                <option value="Citizenship">Citizenship</option>
+                <option value="TPS">TPS</option>
+                <option value="Visas">Visas</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Brief Description of Your Situation</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell us a little about your case..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary submit-btn">Send Message</button>
+        </form>
+      </div>
+
+      <aside class="contact-aside">
+        <div class="aside-block">
+          <h3>Office</h3>
+          <p>{brand.address}</p>
+        </div>
+        <div class="aside-block">
+          <h3>Phone / Text</h3>
+          <a href={brand.phoneHref}>{brand.phone}</a>
+        </div>
+        <div class="aside-block">
+          <h3>WhatsApp</h3>
+          <a href={brand.whatsappHref} target="_blank" rel="noopener">Message us on WhatsApp</a>
+        </div>
+        <div class="aside-block">
+          <h3>Email</h3>
+          <a href={`mailto:${brand.email}`}>{brand.email}</a>
+        </div>
+        <div class="aside-block">
+          <h3>Languages</h3>
+          <p>English · Haitian Creole · Spanish · French</p>
+        </div>
+        <div class="aside-block">
+          <h3>Follow Us</h3>
+          <div class="aside-socials">
+            <a href={social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.2h-3.1V7.7c0-.9.3-1.6 1.6-1.6h1.7V3.2C16.4 3.1 15.5 3 14.5 3c-2.1 0-3.6 1.3-3.6 3.6v3.2H8v3.2h2.9V21h2.6Z"/></svg>
+              Facebook
+            </a>
+            <a href={social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              Instagram
+            </a>
+            <a href={social.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M19.6 6.4a5.7 5.7 0 0 1-3.4-1.2 5.7 5.7 0 0 1-1.9-3.2h-3v13.4a2.7 2.7 0 0 1-2.7 2.6 2.7 2.7 0 0 1-2.6-2.7 2.7 2.7 0 0 1 3.4-2.6V9.6a5.8 5.8 0 0 0-6.4 5.8 5.8 5.8 0 0 0 5.8 5.7 5.8 5.8 0 0 0 5.8-5.7V9.1a8.7 8.7 0 0 0 5 1.5V7.6c-.1 0-.1 0 0-1.2Z"/></svg>
+              TikTok
+            </a>
+            <a href={social.google} target="_blank" rel="noopener noreferrer" aria-label="Google Business">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M21.8 10.2H12v3.7h5.7c-.5 2.6-2.8 4.5-5.7 4.5-3.3 0-6-2.7-6-6s2.7-6 6-6c1.5 0 2.8.5 3.8 1.4l2.7-2.7C16.8 3.5 14.5 2.5 12 2.5 6.8 2.5 2.5 6.8 2.5 12S6.8 21.5 12 21.5c5.5 0 9.5-3.9 9.5-9.3 0-.6-.1-1.3-.2-2Z"/></svg>
+              Google Reviews
+            </a>
+          </div>
+        </div>
+        <a class="btn btn-primary aside-cta" href={brand.calendlyUrl} target="_blank" rel="noopener">Book Online via Calendly</a>
+      </aside>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .contact-section {
+    color: #ffffff;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(260px, 0.6fr);
+    gap: clamp(44px, 6vw, 90px);
+    align-items: start;
+  }
+
+  .contact-form-wrap h2 {
+    margin: 0 0 32px;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  .contact-form {
+    display: grid;
+    gap: 20px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .form-group {
+    display: grid;
+    gap: 8px;
+  }
+
+  .form-group label {
+    color: rgba(255, 255, 255, 0.82);
+    font-family: var(--font-sans);
+    font-size: 0.84rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+
+  .req {
+    color: var(--color-gold);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 13px 16px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 3px;
+    color: #ffffff;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 500;
+    outline: none;
+    transition: border-color 180ms ease, background 180ms ease;
+    box-sizing: border-box;
+  }
+
+  .form-group select option {
+    background: #04102a;
+    color: #ffffff;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--color-gold);
+    background: rgba(255, 255, 255, 0.09);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 130px;
+  }
+
+  .submit-btn {
+    justify-self: start;
+    min-width: 180px;
+    min-height: 52px;
+    font-size: 0.86rem;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  /* Aside */
+  .contact-aside {
+    display: grid;
+    gap: 28px;
+    padding: 32px 28px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 3px solid var(--color-gold);
+  }
+
+  .aside-block {
+    display: grid;
+    gap: 6px;
+  }
+
+  .aside-block h3 {
+    margin: 0;
+    color: var(--color-gold);
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .aside-block p,
+  .aside-block a {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .aside-block a:hover {
+    color: var(--color-gold);
+  }
+
+  .aside-socials {
+    display: grid;
+    gap: 10px;
+  }
+
+  .aside-socials a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.95rem;
+    transition: color 180ms ease;
+  }
+
+  .aside-socials a:hover {
+    color: var(--color-gold);
+  }
+
+  .aside-socials svg {
+    flex-shrink: 0;
+  }
+
+  .aside-cta {
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  @media (max-width: 860px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-aside {
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
+      border-top: 3px solid var(--color-gold);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

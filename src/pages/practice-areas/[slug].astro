@@ -22,7 +22,7 @@ const detail = (service as typeof service & { detail?: {
 ---
 
 <BaseLayout
-  title={`${service.title} | ${brand.firmName}`}
+  title={(service as any).pageTitle ?? `${service.title} | ${brand.firmName}`}
   description={`${service.summary} Schedule a confidential immigration consultation with ${brand.attorneyName}.`}
 >
   <section class="service-hero section-dark page-hero">

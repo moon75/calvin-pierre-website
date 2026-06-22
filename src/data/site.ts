@@ -1,3 +1,10 @@
+export const social = {
+  instagram: 'https://www.instagram.com/askattorneypierre/',
+  facebook: 'https://www.facebook.com/p/Pierre-Vanguard-Law-61586692410211/',
+  tiktok: 'https://www.tiktok.com/@askattorneypierre',
+  google: 'https://share.google/VCchbSeLp1HbR5w9B',
+};
+
 export const brand = {
   firmName: 'Pierre Vanguard Law',
   attorneyName: 'Calvin Pierre, Esq.',
@@ -50,16 +57,14 @@ export const mainNav = [
   { label: 'Home', href: '/' },
   { label: 'Practice Areas', href: '/practice-areas/', hasDropdown: true },
   { label: 'Emergency Services', href: '/emergency-services/', hasDropdown: true },
-  { label: 'Testimonial', href: '/testimonials/' },
+  { label: 'About Us', href: '/about/', hasDropdown: true },
   { label: 'Book Now', href: '/book-now/' },
   { label: 'Contact Us', href: '/contact/' },
-  { label: 'News', href: '/news/' },
-  { label: 'About Us', href: '/about/' },
 ];
 
 export const stats = [
   { value: '250+', label: 'Clients Serviced Nationwide' },
-  { value: '5★', label: 'Rating on Google' },
+  { value: '4.9★', label: 'Rating on Google' },
   { value: '4', label: 'Languages Supported' },
 ];
 
@@ -67,6 +72,7 @@ export const services = [
   {
     title: 'Asylum',
     slug: 'asylum',
+    pageTitle: 'Asylum Lawyer Newark NJ | Calvin Pierre',
     image: assets.asylum,
     summary: 'Protection-focused representation for people seeking safety, stability, and legal protection in the United States.',
     detail: {
@@ -99,6 +105,7 @@ export const services = [
   {
     title: 'Appeals',
     slug: 'appeals',
+    pageTitle: 'Immigration Appeals Lawyer NJ | Calvin Pierre',
     image: assets.appeals,
     summary: 'Strategic immigration appeals and case reviews after difficult decisions, denials, or removal orders.',
     detail: {
@@ -131,6 +138,7 @@ export const services = [
   {
     title: 'Bond Hearings',
     slug: 'bond-hearings',
+    pageTitle: 'Bond Hearing Lawyer Newark NJ | Calvin Pierre',
     image: assets.bond,
     summary: 'Urgent support for detained immigrants and families seeking release options and hearing preparation.',
     detail: {
@@ -163,6 +171,7 @@ export const services = [
   {
     title: 'Citizenship',
     slug: 'citizenship',
+    pageTitle: 'Citizenship Lawyer Newark NJ | Calvin Pierre',
     image: assets.citizenship,
     summary: 'Guidance through naturalization, eligibility review, filings, and interview preparation.',
     detail: {
@@ -195,6 +204,7 @@ export const services = [
   {
     title: 'Deportation Defense & Removal Proceedings',
     slug: 'deportation-defense-removal-proceedings',
+    pageTitle: 'Deportation Defense Lawyer Newark NJ | Calvin Pierre',
     image: assets.hero,
     summary: 'Court-focused defense for clients facing removal proceedings, ICE pressure, and urgent deadlines.',
     detail: {
@@ -231,6 +241,7 @@ export const services = [
   {
     title: 'Green Card / Permanent Residence',
     slug: 'green-card-permanent-residence',
+    pageTitle: 'Green Card Lawyer Newark NJ | Calvin Pierre',
     image: assets.about,
     summary: 'Family, humanitarian, and adjustment pathways for permanent residence.',
     detail: {
@@ -267,6 +278,7 @@ export const services = [
   {
     title: 'Habeas Corpus',
     slug: 'habeas-corpus',
+    pageTitle: 'Habeas Corpus Attorney NJ | Calvin Pierre',
     image: assets.logoSquare,
     summary: 'Federal action options for unlawful or prolonged immigration detention.',
     detail: {
@@ -303,6 +315,7 @@ export const services = [
   {
     title: 'Temporary Protected Status',
     slug: 'temporary-protected-status',
+    pageTitle: 'TPS Lawyer Newark NJ | Calvin Pierre',
     image: assets.hero,
     summary: 'TPS eligibility, filings, renewals, and work authorization support.',
     detail: {
@@ -339,6 +352,7 @@ export const services = [
   {
     title: 'Visas',
     slug: 'visas',
+    pageTitle: 'Visa Lawyer Newark NJ | Calvin Pierre',
     image: assets.visas,
     summary: 'Legal support for visa strategy, documentation, and application preparation.',
     detail: {
@@ -367,6 +381,7 @@ export const services = [
   {
     title: 'Work Visas & Employment Authorization',
     slug: 'work-visas-employment-authorization',
+    pageTitle: 'Work Visa Lawyer Newark NJ | Calvin Pierre',
     image: assets.visas,
     summary: 'Employment-based immigration and work permit guidance for workers and employers.',
     detail: {

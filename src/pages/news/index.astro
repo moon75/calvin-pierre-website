@@ -3,22 +3,55 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { brand } from '../../data/site';
 ---
 
-<BaseLayout title={`News | ${brand.firmName}`} description="Immigration law updates, firm news, and client education articles.">
+<BaseLayout title={`News | ${brand.firmName}`} description="Immigration law updates, firm news, and client education articles from Pierre Vanguard Law.">
   <section class="section section-dark page-hero">
     <div class="container section-title">
       <p class="eyebrow">News</p>
       <h1>Immigration updates and client education.</h1>
-      <p>Blog content will move here from WordPress or Sanity. Keep articles practical, local, and service-linked.</p>
+      <p>Stay informed with the latest immigration law news and firm updates.</p>
     </div>
   </section>
-  <section class="prose-page watermark-section">
-    <div class="container">
-      <h2>Content migration placeholder</h2>
-      <p>
-        The old WordPress posts can be exported through the WordPress REST API or
-        XML export, cleaned, then converted to Sanity documents or Astro content
-        collections.
-      </p>
+  <section class="section coming-soon-section watermark-section">
+    <div class="container coming-soon-inner">
+      <p class="coming-soon-label">Coming Soon</p>
+      <p class="coming-soon-sub">We're working on bringing you helpful immigration law articles, firm news, and client resources. Check back soon.</p>
+      <a class="btn btn-primary" href="/contact/">Contact Us in the Meantime</a>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .coming-soon-section {
+    color: #ffffff;
+  }
+
+  .coming-soon-inner {
+    display: grid;
+    gap: 22px;
+    justify-items: center;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: clamp(72px, 10vw, 130px) 0;
+  }
+
+  .coming-soon-label {
+    display: inline-block;
+    padding: 8px 22px;
+    background: rgba(201, 171, 105, 0.14);
+    color: var(--color-gold);
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .coming-soon-sub {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 1rem;
+    line-height: 1.72;
+  }
+</style>

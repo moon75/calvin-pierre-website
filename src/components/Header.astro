@@ -1,6 +1,6 @@
 ---
 import { ChevronDown, Globe2, Mail, Menu, Phone } from '@lucide/astro';
-import { assets, brand, mainNav, services } from '../data/site';
+import { assets, brand, mainNav, services, social } from '../data/site';
 
 const areas = [
   { label: 'Asylum', href: '/practice-areas/asylum/' },
@@ -22,7 +22,7 @@ const areas = [
   },
   { label: 'Visas', href: '/practice-areas/visas/' },
   {
-    label: 'Work Visas & Employment Authorisation',
+    label: 'Work Visas & Employment Authorization',
     href: '/practice-areas/work-visas-employment-authorization/',
   },
 ];
@@ -50,6 +50,20 @@ const languages = [
               {language.label}
             </button>
           ))}
+        </div>
+        <div class="topbar-socials" aria-label="Social media">
+          <a href={social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.2h-3.1V7.7c0-.9.3-1.6 1.6-1.6h1.7V3.2C16.4 3.1 15.5 3 14.5 3c-2.1 0-3.6 1.3-3.6 3.6v3.2H8v3.2h2.9V21h2.6Z"/></svg>
+          </a>
+          <a href={social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href={social.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true"><path d="M19.6 6.4a5.7 5.7 0 0 1-3.4-1.2 5.7 5.7 0 0 1-1.9-3.2h-3v13.4a2.7 2.7 0 0 1-2.7 2.6 2.7 2.7 0 0 1-2.6-2.7 2.7 2.7 0 0 1 3.4-2.6V9.6a5.8 5.8 0 0 0-6.4 5.8 5.8 5.8 0 0 0 5.8 5.7 5.8 5.8 0 0 0 5.8-5.7V9.1a8.7 8.7 0 0 0 5 1.5V7.6c-.1 0-.1 0 0-1.2Z"/></svg>
+          </a>
+          <a href={social.google} target="_blank" rel="noopener noreferrer" aria-label="Google Reviews">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true"><path d="M21.8 10.2H12v3.7h5.7c-.5 2.6-2.8 4.5-5.7 4.5-3.3 0-6-2.7-6-6s2.7-6 6-6c1.5 0 2.8.5 3.8 1.4l2.7-2.7C16.8 3.5 14.5 2.5 12 2.5 6.8 2.5 2.5 6.8 2.5 12S6.8 21.5 12 21.5c5.5 0 9.5-3.9 9.5-9.3 0-.6-.1-1.3-.2-2Z"/></svg>
+          </a>
         </div>
         <span>Emergency 24/7</span>
       </div>
@@ -88,6 +102,17 @@ const languages = [
               </div>
             );
           }
+          if (item.label === 'About Us') {
+            return (
+              <div class="nav-dropdown">
+                <a href={item.href}>{item.label} <ChevronDown size={13} /></a>
+                <div class="dropdown-menu">
+                  <a href="/testimonials/">Testimonials</a>
+                  <a href="/news/">News</a>
+                </div>
+              </div>
+            );
+          }
           return <a href={item.href}>{item.label}</a>;
         })}
         <a class="whatsapp" href={brand.whatsappHref} target="_blank" rel="noopener">
@@ -102,6 +127,8 @@ const languages = [
         <summary aria-label="Open menu"><Menu size={24} /></summary>
         <nav aria-label="Mobile navigation">
           {mainNav.map((item) => <a href={item.href}>{item.label}</a>)}
+          <a href="/testimonials/" style="padding-left:32px;font-size:0.9rem;opacity:0.8">— Testimonials</a>
+          <a href="/news/" style="padding-left:32px;font-size:0.9rem;opacity:0.8">— News</a>
           <a href={brand.whatsappHref}>WhatsApp</a>
         </nav>
       </details>
@@ -275,6 +302,26 @@ const languages = [
     opacity: 1;
     visibility: visible;
     transform: translate(-50%, 0);
+  }
+
+  .topbar-socials {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .topbar-socials a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.72);
+    transition: color 180ms ease;
+    min-height: auto;
+    gap: 0;
+  }
+
+  .topbar-socials a:hover {
+    color: var(--color-gold);
   }
 
   .languages {
@@ -453,7 +500,8 @@ const languages = [
     }
 
     .top-left a:nth-child(2),
-    .top-right span {
+    .top-right span,
+    .topbar-socials {
       display: none;
     }
 
