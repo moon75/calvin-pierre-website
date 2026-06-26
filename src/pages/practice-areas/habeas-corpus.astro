@@ -7,7 +7,7 @@ import {
   Briefcase,
   CheckCircle2,
   Clock,
-  Download,
+
   FileText,
   Gavel,
   Globe,
@@ -18,7 +18,6 @@ import {
   Phone,
   Plus,
   Quote,
-  Scale,
   ShieldCheck,
   ShieldOff,
   Star,
@@ -164,21 +163,11 @@ const faqs = [
 ];
 
 const trustStats = [
-  { label: '4.9 Average Rating', sub: '4.9/5 from immigration clients', Icon: Star },
-  { label: '30+ Successful Cases', sub: '30+ ICE release and federal habeas wins', Icon: BadgeCheck },
-  { label: 'Federal Court Experience', sub: 'Years of federal habeas corpus litigation', Icon: Scale },
   { label: 'Licensed Immigration Attorney', sub: 'Licensed in New Jersey', Icon: UserCheck },
   { label: 'Featured Expert', sub: 'Recognized habeas corpus specialist', Icon: Award },
-  { label: 'Proven Track Record', sub: 'Families reunited across NJ, PA & NY', Icon: ShieldCheck },
+  { label: 'Proven Track Record', sub: 'Families reunited across NJ, PA, NY & FL', Icon: ShieldCheck },
 ];
 
-const rightsChecklist = [
-  'What to do immediately after arrest',
-  'How to locate your loved one in detention',
-  'Your loved one\'s rights during detention',
-  'When habeas corpus can help',
-  'Common risks and potential damages',
-];
 ---
 
 <BaseLayout
@@ -365,6 +354,7 @@ const rightsChecklist = [
         <div>
           <strong>Offices</strong>
           <span>3 Gateway Center, Suite 1229<br />Newark, NJ 07102</span>
+          <span>16768 NE 5th Avenue<br />North Miami Beach, FL 33162</span>
         </div>
       </div>
       <div class="hb-contact-card">
@@ -424,44 +414,6 @@ const rightsChecklist = [
     </div>
   </section>
 
-  <!-- ── Know Your Rights ── -->
-  <section class="section hb-rights-section">
-    <div class="container hb-rights-inner">
-      <div class="hb-rights-head">
-        <h2>Know Your Rights: What To Do If ICE Arrests Your Loved One</h2>
-        <p>Download our free comprehensive guide to help you navigate the first critical hours.</p>
-      </div>
-      <div class="hb-rights-card">
-        <div class="hb-rights-card-header">
-          <Download size={20} stroke-width={1.8} />
-          <div>
-            <strong>FREE DOWNLOAD:</strong>
-            <span>"ICE Detention — Your Family's First 48 Hours"</span>
-          </div>
-        </div>
-        <ul class="hb-rights-list">
-          {rightsChecklist.map((item) => (
-            <li><CheckCircle2 size={16} stroke-width={2} /><span>{item}</span></li>
-          ))}
-        </ul>
-        <div class="hb-rights-btns">
-          <a class="btn hb-dl-btn" href={brand.whatsappHref} target="_blank" rel="noopener">
-            <MessageCircle size={14} stroke-width={2} />
-            Request Guide via WhatsApp — English
-          </a>
-          <a class="btn hb-dl-btn" href={brand.whatsappHref} target="_blank" rel="noopener">
-            <MessageCircle size={14} stroke-width={2} />
-            Spanish
-          </a>
-          <a class="btn hb-dl-btn" href={brand.whatsappHref} target="_blank" rel="noopener">
-            <MessageCircle size={14} stroke-width={2} />
-            Haitian Creole
-          </a>
-        </div>
-        <p class="hb-rights-note">This guide provides general information only and does not constitute legal advice. Every detention situation is unique. For personalized legal guidance, schedule a consultation with our office.</p>
-      </div>
-    </div>
-  </section>
 
 </BaseLayout>
 
@@ -1199,122 +1151,6 @@ const rightsChecklist = [
   }
 
   /* ── Know Your Rights ── */
-  .hb-rights-section {
-    color: #ffffff;
-    background:
-      radial-gradient(circle at 20% 50%, rgba(201,171,105,0.07), transparent 40%),
-      linear-gradient(180deg, #061227 0%, #04102a 100%);
-  }
-
-  .hb-rights-inner {
-    display: grid;
-    gap: 32px;
-    max-width: 860px;
-    margin: 0 auto;
-  }
-
-  .hb-rights-head { text-align: center; }
-
-  .hb-rights-head h2 {
-    margin: 0 0 12px;
-    color: #ffffff;
-    font-family: var(--font-serif);
-    font-size: clamp(1.85rem, 3vw, 2.7rem);
-    font-weight: 700;
-    line-height: 1.1;
-  }
-
-  .hb-rights-head p { margin: 0; color: rgba(255,255,255,0.7); font-size: 1rem; line-height: 1.65; }
-
-  .hb-rights-card {
-    display: grid;
-    gap: 22px;
-    padding: 30px 32px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(201,171,105,0.3);
-  }
-
-  .hb-rights-card-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-  }
-
-  .hb-rights-card-header svg { color: var(--color-gold); flex-shrink: 0; margin-top: 2px; }
-
-  .hb-rights-card-header div { display: grid; gap: 4px; }
-
-  .hb-rights-card-header strong {
-    color: var(--color-gold);
-    font-family: var(--font-sans);
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-  }
-
-  .hb-rights-card-header span {
-    color: #ffffff;
-    font-family: var(--font-serif);
-    font-size: 1.15rem;
-    font-weight: 700;
-    line-height: 1.3;
-  }
-
-  .hb-rights-list {
-    display: grid;
-    gap: 10px;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-  }
-
-  .hb-rights-list li {
-    display: grid;
-    grid-template-columns: 20px minmax(0,1fr);
-    gap: 10px;
-    align-items: start;
-    color: rgba(255,255,255,0.82);
-    font-size: 0.94rem;
-    line-height: 1.55;
-  }
-
-  .hb-rights-list li svg { color: var(--color-gold); margin-top: 2px; flex-shrink: 0; }
-
-  .hb-rights-btns {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .hb-dl-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 20px;
-    min-height: 44px;
-    background: var(--color-gold);
-    color: #0a1f44;
-    border: 0;
-    font-family: var(--font-sans);
-    font-size: 0.8rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-    border-radius: 2px;
-    transition: background 200ms ease;
-  }
-
-  .hb-dl-btn:hover { background: #b8973a; color: #0a1f44; }
-
-  .hb-rights-note {
-    margin: 0;
-    color: rgba(255,255,255,0.45);
-    font-size: 0.82rem;
-    font-style: italic;
-    line-height: 1.6;
-  }
-
   /* ── Responsive ── */
   @media (max-width: 980px) {
     .hb-hero-grid { grid-template-columns: 1fr; }
@@ -1332,10 +1168,7 @@ const rightsChecklist = [
     .hb-step-num { min-width: 36px; height: 36px; font-size: 0.8rem; }
     .hb-contact-grid { grid-template-columns: 1fr; }
     .hb-trust-grid { grid-template-columns: 1fr; }
-    .hb-rights-card { padding: 22px 20px; }
-    .hb-rights-btns { flex-direction: column; }
-    .hb-dl-btn { width: 100%; justify-content: center; }
-    .hb-faq-item summary { padding: 14px 16px; }
+.hb-faq-item summary { padding: 14px 16px; }
     .hb-faq-answer { padding: 0 16px 14px; }
   }
 </style>

@@ -7,7 +7,6 @@ import {
   ChevronDown,
   Clock,
   Globe,
-  Lightbulb,
   Plus,
   Scale,
   ShieldCheck,
@@ -829,50 +828,6 @@ const paymentOptions = [
 const guarantee =
   "If your work visa is denied due to our error or negligence (not due to ineligibility we disclosed upfront or information you failed to provide), we'll file a motion to reopen or reconsider at no additional attorney fee.";
 
-const resources = [
-  {
-    title: 'Work Visa Pathfinder Tool',
-    body: 'Discover which work visas match your qualifications: your eligible categories (H-1B, L-1, O-1, TN, EAD, etc.), estimated processing timelines and costs, employer sponsorship requirements, green card pathway potential, and a personalized action plan.',
-    button: 'Find My Work Visa Path',
-    Icon: Sparkles,
-  },
-  {
-    title: 'H-1B Lottery Survival Guide',
-    body: 'Maximize your odds, understand the process, explore alternatives.',
-    button: 'Download PDF',
-    Icon: ShieldCheck,
-  },
-  {
-    title: 'Work Visa Types Explained',
-    body: '15-minute videos on H-1B, L-1, O-1, TN, and EAD pathways.',
-    button: 'Watch Series',
-    Icon: Lightbulb,
-  },
-  {
-    title: 'H-1B Sponsorship Database',
-    body: 'Search 50,000+ companies by sponsorship history and industry.',
-    button: 'Search Database',
-    Icon: BadgeCheck,
-  },
-  {
-    title: 'O-1 Extraordinary Ability Self-Assessment',
-    body: 'Do you qualify? Evidence checklist and qualification guide.',
-    button: 'Download Guide',
-    Icon: CheckCircle2,
-  },
-  {
-    title: 'Interview Prep: Discussing Visa Sponsorship',
-    body: 'What to say (and not say) when asking employers about sponsorship.',
-    button: 'Watch Video',
-    Icon: Wallet,
-  },
-  {
-    title: 'Work Authorization Calendar & Deadline Tracker',
-    body: 'Never miss extension deadlines, track your visa timeline.',
-    button: 'Access Tracker',
-    Icon: Clock,
-  },
-];
 ---
 
 <BaseLayout
@@ -1091,38 +1046,6 @@ const resources = [
         <h3>Our Guarantee</h3>
         <p>{guarantee}</p>
       </div>
-    </div>
-  </section>
-
-  <section class="section resources-section">
-    <div class="container resources-head">
-      <span class="hero-eyebrow"><Lightbulb size={16} stroke-width={1.8} />Career Tools<Lightbulb size={16} stroke-width={1.8} /></span>
-      <h2>Free Work Visa Resources &amp; Career Tools</h2>
-      <p>Plan smarter with these free tools — but personalized legal strategy is still what protects your career. Don't leave your work authorization to chance.</p>
-    </div>
-    <div class="container resources-grid">
-      {resources.map((resource) => {
-        const Icon = resource.Icon;
-        return (
-          <article class="resource-card">
-            <div class="resource-icon"><Icon size={26} stroke-width={1.6} /></div>
-            <h3>{resource.title}</h3>
-            <p>{resource.body}</p>
-            <a class="resource-btn" href="/book-now/">
-              {resource.button}
-              <ArrowRight size={14} stroke-width={2} />
-            </a>
-          </article>
-        );
-      })}
-    </div>
-    <div class="container resources-cta">
-      <a class="btn btn-work-whatsapp" href={brand.whatsappHref} target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
-          <path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.8-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.3-.6-.4Zm-5.4 7.5h-.1c-1.8 0-3.6-.5-5.1-1.4l-.4-.2-3.8 1 1-3.7-.2-.4c-1-1.6-1.5-3.4-1.5-5.3 0-5.5 4.5-10 10-10 2.7 0 5.2 1 7 2.9 1.9 1.9 2.9 4.4 2.9 7.1 0 5.5-4.5 10-10 10Zm8.5-18.5C18.3 1 15.3 0 12.1 0 5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6.1L0 24l5.9-1.5c1.8 1 3.9 1.5 6.1 1.5h.1c6.6 0 12-5.4 12-12 0-3.2-1.3-6.2-3.5-8.5Z"/>
-        </svg>
-        <span>Get Your Work Visa Strategy on WhatsApp</span>
-      </a>
     </div>
   </section>
 
@@ -1439,8 +1362,7 @@ const resources = [
   .path-head,
   .stories-head,
   .challenges-head,
-  .pricing-head,
-  .resources-head {
+  .pricing-head {
     display: grid;
     gap: 16px;
     justify-items: center;
@@ -1452,8 +1374,7 @@ const resources = [
   .path-head h2,
   .stories-head h2,
   .challenges-head h2,
-  .pricing-head h2,
-  .resources-head h2 {
+  .pricing-head h2 {
     margin: 0;
     color: #ffffff;
     font-family: var(--font-serif);
@@ -1465,8 +1386,7 @@ const resources = [
   .path-head p,
   .stories-head p,
   .challenges-head p,
-  .pricing-head p,
-  .resources-head p {
+  .pricing-head p {
     margin: 0;
     color: rgba(255, 255, 255, 0.7);
     font-size: 1rem;
@@ -2016,81 +1936,6 @@ const resources = [
     color: rgba(255, 255, 255, 0.82);
     font-size: 0.95rem;
     line-height: 1.7;
-  }
-
-  .resources-section {
-    color: #ffffff;
-    background:
-      radial-gradient(circle at 80% 10%, rgba(201, 171, 105, 0.12), transparent 32%),
-      linear-gradient(180deg, #04102a 0%, #061227 100%);
-  }
-
-  .resources-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 18px;
-    margin-bottom: 36px;
-  }
-
-  .resource-card {
-    display: grid;
-    gap: 12px;
-    align-content: start;
-    padding: 26px 24px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: background 220ms ease, border-color 220ms ease, transform 220ms ease;
-  }
-
-  .resource-card:hover {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(201, 171, 105, 0.45);
-    transform: translateY(-3px);
-  }
-
-  .resource-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 52px;
-    height: 52px;
-    background: var(--color-gold);
-    color: #0a1f44;
-    border-radius: 4px;
-  }
-
-  .resource-card h3 {
-    margin: 0;
-    color: #ffffff;
-    font-family: var(--font-serif);
-    font-size: 1.18rem;
-    font-weight: 700;
-    line-height: 1.25;
-  }
-
-  .resource-card p {
-    margin: 0;
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.9rem;
-    line-height: 1.6;
-  }
-
-  .resource-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    align-self: start;
-    margin-top: 4px;
-    color: var(--color-gold);
-    font-size: 0.82rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-  }
-
-  .resources-cta {
-    display: flex;
-    justify-content: center;
   }
 
   @media (max-width: 600px) {

@@ -3,11 +3,39 @@ import { ArrowRight, CalendarDays, Clock, Globe2, Mail, Phone, ShieldCheck, Star
 import { brand } from '../data/site';
 
 const trustStats = [
-  { value: '250+', label: 'Clients Serviced Nationwide' },
+  { value: '24/7', label: 'Emergency Availability' },
   { value: '5★', label: 'Rating on Google' },
   { value: '4', label: 'Languages Supported' },
 ];
 ---
+
+<section class="newsletter-band">
+  <div class="container newsletter-inner">
+    <div class="newsletter-copy">
+      <h2>Stay informed. Stay protected.</h2>
+      <p>Get immigration updates, policy updates, and resources.</p>
+    </div>
+    <form class="newsletter-form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="newsletter" />
+      <p class="nl-hp"><label>Don't fill this out: <input name="bot-field" /></label></p>
+      <div class="nl-fields">
+        <label class="nl-field">
+          <span>First Name <span class="nl-req">*</span></span>
+          <input type="text" name="first_name" required />
+        </label>
+        <label class="nl-field">
+          <span>Last Name <span class="nl-req">*</span></span>
+          <input type="text" name="last_name" required />
+        </label>
+        <label class="nl-field nl-field--email">
+          <span>Email <span class="nl-req">*</span></span>
+          <input type="email" name="email" required />
+        </label>
+      </div>
+      <button type="submit" class="nl-btn">Subscribe</button>
+    </form>
+  </div>
+</section>
 
 <section class="consult-panel" id="consultation">
   <div class="consult-pattern" aria-hidden="true"></div>
@@ -118,6 +146,140 @@ const trustStats = [
 </section>
 
 <style>
+  /* Newsletter opt-in */
+  .newsletter-band {
+    padding: 56px 0;
+    background:
+      radial-gradient(circle at 18% 6%, rgba(201, 171, 105, 0.12), transparent 32%),
+      linear-gradient(160deg, #061633 0%, #04122b 50%, #030d22 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .newsletter-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+    gap: clamp(32px, 5vw, 72px);
+    align-items: center;
+  }
+
+  .newsletter-copy h2 {
+    margin: 0 0 10px;
+    color: var(--color-gold);
+    font-family: var(--font-serif);
+    font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: 0;
+  }
+
+  .newsletter-copy p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.66);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .nl-hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .newsletter-form {
+    display: grid;
+    gap: 14px;
+  }
+
+  .nl-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .nl-field--email {
+    grid-column: 1 / -1;
+  }
+
+  .nl-field {
+    display: grid;
+    gap: 6px;
+  }
+
+  .nl-field > span {
+    color: rgba(255, 255, 255, 0.6);
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .nl-req {
+    color: var(--color-gold);
+  }
+
+  .nl-field input {
+    width: 100%;
+    padding: 11px 14px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 6px;
+    color: #ffffff;
+    font-family: var(--font-sans);
+    font-size: 0.92rem;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 180ms ease, background 180ms ease;
+  }
+
+  .nl-field input:focus {
+    border-color: var(--color-gold);
+    background: rgba(201, 171, 105, 0.06);
+  }
+
+  .nl-btn {
+    justify-self: start;
+    padding: 12px 28px;
+    background: linear-gradient(135deg, var(--color-gold) 0%, #b89250 100%);
+    border: 0;
+    border-radius: 6px;
+    color: #ffffff;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(201, 171, 105, 0.28);
+    transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+  }
+
+  .nl-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(201, 171, 105, 0.38);
+    filter: brightness(1.06);
+  }
+
+  @media (max-width: 860px) {
+    .newsletter-inner {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .nl-fields {
+      grid-template-columns: 1fr;
+    }
+
+    .nl-field--email {
+      grid-column: 1;
+    }
+  }
+
+  /* Consultation panel */
   .consult-panel {
     position: relative;
     overflow: hidden;

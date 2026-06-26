@@ -8,7 +8,7 @@ import { brand } from '../data/site';
     <div class="container section-title">
       <p class="eyebrow">Book Now</p>
       <h1>Schedule a consultation with {brand.attorneyName}</h1>
-      <p>Use the calendar below, call the office, or send a WhatsApp message for urgent matters.</p>
+      <p>Use the calendar below, call <a href={brand.phoneHref}>{brand.phone}</a>, or send a <a href={brand.whatsappHref} target="_blank" rel="noopener">WhatsApp</a> message for urgent matters.</p>
     </div>
   </section>
 

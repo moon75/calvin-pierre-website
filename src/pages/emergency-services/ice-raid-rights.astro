@@ -3,7 +3,6 @@ import {
   AlertTriangle,
   ArrowRight,
   BookOpen,
-  FileDown,
   Gavel,
   MapPin,
   MessageCircle,
@@ -135,12 +134,6 @@ const iceFaqs = [
   },
 ];
 
-const rightsCards = [
-  { label: 'English', lang: 'en' },
-  { label: 'Español', lang: 'es' },
-  { label: 'Português', lang: 'pt' },
-  { label: 'Kreyòl', lang: 'ht' },
-];
 ---
 
 <BaseLayout
@@ -318,38 +311,6 @@ const rightsCards = [
             </div>
           </details>
         ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="section rights-card-section watermark-section">
-    <div class="container">
-      <div class="rights-card-inner">
-        <span class="rights-card-icon-wrap" aria-hidden="true">
-          <FileDown size={32} stroke-width={1.5} />
-        </span>
-        <h2>Download Your Free "Know Your Rights" Card</h2>
-        <p class="rights-card-lead">
-          Print this card and keep it in your home, car, and workplace. It explains your rights in plain
-          language — so you know exactly what to say and do if ICE arrives, even under pressure.
-        </p>
-        <div class="rights-card-buttons">
-          {rightsCards.map(({ label }) => (
-            <a
-              class="btn rights-card-btn"
-              href={brand.whatsappHref}
-              target="_blank"
-              rel="noopener"
-              aria-label={`Request Know Your Rights card in ${label}`}
-            >
-              <FileDown size={15} stroke-width={2} />
-              {label}
-            </a>
-          ))}
-        </div>
-        <p class="rights-card-note">
-          Cards are sent via WhatsApp in PDF format — free of charge, no strings attached.
-        </p>
       </div>
     </div>
   </section>
@@ -1055,94 +1016,6 @@ const rightsCards = [
     color: rgba(255, 255, 255, 0.7);
     font-size: 0.94rem;
     line-height: 1.72;
-  }
-
-  /* ── Know Your Rights Card section ── */
-  .rights-card-section {
-    color: #ffffff;
-    background:
-      radial-gradient(circle at 50% 50%, rgba(201, 171, 105, 0.08), transparent 60%),
-      linear-gradient(180deg, #061227 0%, #04102a 100%);
-  }
-
-  .rights-card-inner {
-    max-width: 700px;
-    margin: 0 auto;
-    text-align: center;
-    display: grid;
-    gap: 22px;
-    justify-items: center;
-  }
-
-  .rights-card-icon-wrap {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 68px;
-    height: 68px;
-    background: rgba(201, 171, 105, 0.14);
-    border: 1px solid rgba(201, 171, 105, 0.4);
-    border-radius: 50%;
-    color: var(--color-gold);
-  }
-
-  .rights-card-inner h2 {
-    margin: 0;
-    color: #ffffff;
-    font-family: var(--font-serif);
-    font-size: clamp(1.85rem, 3vw, 2.6rem);
-    font-weight: 700;
-    line-height: 1.12;
-    letter-spacing: 0.3px;
-    text-transform: uppercase;
-  }
-
-  .rights-card-lead {
-    max-width: 600px;
-    margin: 0;
-    color: rgba(255, 255, 255, 0.72);
-    font-family: var(--font-sans);
-    font-size: 1rem;
-    line-height: 1.65;
-  }
-
-  .rights-card-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    justify-content: center;
-  }
-
-  .rights-card-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 26px;
-    min-width: 130px;
-    justify-content: center;
-    color: #0a1f44;
-    background: var(--color-gold);
-    border: 0;
-    border-radius: 4px;
-    font-family: var(--font-sans);
-    font-size: 0.88rem;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-    transition: background 200ms ease, transform 200ms ease;
-  }
-
-  .rights-card-btn:hover {
-    background: #b8973a;
-    color: #0a1f44;
-    transform: translateY(-2px);
-  }
-
-  .rights-card-note {
-    margin: 0;
-    color: rgba(255, 255, 255, 0.45);
-    font-family: var(--font-sans);
-    font-size: 0.84rem;
-    font-style: italic;
   }
 
   /* ── Final CTA ── */
